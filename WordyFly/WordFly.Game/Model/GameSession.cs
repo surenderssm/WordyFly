@@ -19,7 +19,6 @@ namespace WordFly.Game.Model
         public GameSession()
         {
             ID = Guid.NewGuid().ToString();
-            States = new List<SessionState>();
 
         }
     }
