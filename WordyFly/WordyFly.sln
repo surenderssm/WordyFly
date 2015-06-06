@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordyFly.Service", "WordyFl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordyFly.Service.Tests", "WordyFly.Service.Tests\WordyFly.Service.Tests.csproj", "{57CF6B2F-5EE1-4553-A1F2-6AB9FCD68E18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordFly.Game", "WordFly.Game\WordFly.Game.csproj", "{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordFly.GameManager", "WordFly.GameManager\WordFly.GameManager.csproj", "{9611A003-8353-4C96-B72B-7B0022D8A5FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{57CF6B2F-5EE1-4553-A1F2-6AB9FCD68E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57CF6B2F-5EE1-4553-A1F2-6AB9FCD68E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57CF6B2F-5EE1-4553-A1F2-6AB9FCD68E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9611A003-8353-4C96-B72B-7B0022D8A5FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9611A003-8353-4C96-B72B-7B0022D8A5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9611A003-8353-4C96-B72B-7B0022D8A5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9611A003-8353-4C96-B72B-7B0022D8A5FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

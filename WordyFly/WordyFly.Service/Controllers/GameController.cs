@@ -4,15 +4,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WordFly.Game;
+using WordFly.Game.Model;
 
 namespace WordyFly.Service.Controllers
 {
-    public class ValuesController : ApiController
+    public class GameController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public GameSession Get()
         {
-            return new string[] { "value1", "value2" };
+            return Repository.RepositoryManager.GetGame();
         }
 
         // GET api/values/5
