@@ -14,12 +14,12 @@ namespace WordFly.Game.Model
         public long CurrentState { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        List<GameSession> States { get; set; }
+        List<SessionState> States { get; set; }
 
         public GameSession()
         {
             ID = Guid.NewGuid().ToString();
-            States = new List<GameSession>();
+            States = new List<SessionState>();
 
         }
     }
@@ -48,11 +48,14 @@ namespace WordFly.Game.Model
     {
         public string Name { get; set; }
         public string DisplayName { get; set; }
+
+        // a..z->1..26
         public int CodeValue { get; set; }
 
         public AtomicAlpha(int value)
         {
             CodeValue = value;
+            Name = ((char)value).ToString();
         }
     }
 }

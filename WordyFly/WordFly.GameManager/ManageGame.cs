@@ -25,5 +25,8 @@ namespace WordFly.GameManager
 
             return currentSession;
         }
+
+        // NEw Game
+        // ManageGame
     }
 }
