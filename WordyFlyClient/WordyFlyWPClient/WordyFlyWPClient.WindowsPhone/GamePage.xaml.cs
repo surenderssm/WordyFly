@@ -203,48 +203,56 @@ namespace WordyFlyWPClient
         {
             btn3.Content = queue.Dequeue();
             btn3SlideIn.Begin();
+            btn3SlideIn.Seek(new TimeSpan(0, 0, 2));
         }
 
         private void btn4SlideIn_Completed(object sender, object e)
         {
             btn4.Content = queue.Dequeue();
             btn4SlideIn.Begin();
+            btn4SlideIn.Seek(new TimeSpan(0, 0, 2));
         }
 
         private void btn5SlideIn_Completed(object sender, object e)
         {
             btn5.Content = queue.Dequeue();
             btn5SlideIn.Begin();
+            btn5SlideIn.Seek(new TimeSpan(0, 0, 4));
         }
 
         private void btn6SlideIn_Completed(object sender, object e)
         {
             btn6.Content = queue.Dequeue();
             btn6SlideIn.Begin();
+            btn6SlideIn.Seek(new TimeSpan(0, 0, 4));
         }
 
         private void btn7SlideIn_Completed(object sender, object e)
         {
             btn7.Content = queue.Dequeue();
             btn7SlideIn.Begin();
+            btn7SlideIn.Seek(new TimeSpan(0, 0, 6));
         }
 
         private void btn8SlideIn_Completed(object sender, object e)
         {
             btn8.Content = queue.Dequeue();
             btn8SlideIn.Begin();
+            btn8SlideIn.Seek(new TimeSpan(0, 0, 6));
         }
 
         private void btn9SlideIn_Completed(object sender, object e)
         {
             btn9.Content = queue.Dequeue();
             btn9SlideIn.Begin();
+            btn9SlideIn.Seek(new TimeSpan(0, 0, 8));
         }
 
         private void btn10SlideIn_Completed(object sender, object e)
         {
             btn10.Content = queue.Dequeue();
             btn10SlideIn.Begin();
+            btn10SlideIn.Seek(new TimeSpan(0, 0, 8));
         }
     }
 }

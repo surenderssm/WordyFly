@@ -36,62 +36,62 @@
             <Grid.Resources>
                 <Storyboard x:Name="btn1SlideIn" Completed="btn1SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn1">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:11" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-0"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:10" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn2SlideIn" Completed="btn2SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn2">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:11" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-0"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:10" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn3SlideIn" Completed="btn3SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn3">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-150"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:13" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:12" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn4SlideIn" Completed="btn4SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn4">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-150"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:13" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:12" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn5SlideIn" Completed="btn5SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn5">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:15" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-200"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:14" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn6SlideIn" Completed="btn6SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn6">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:15" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-200"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:14" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn7SlideIn" Completed="btn7SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn7">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-350"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:17" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-300"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:16" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn8SlideIn" Completed="btn8SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn8">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-350"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:17" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-300"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:16" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn9SlideIn" Completed="btn9SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn9">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-450"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:19" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:18" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="btn10SlideIn" Completed="btn10SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn10">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="-450"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:19" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:18" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Grid.Resources>
@@ -100,12 +100,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn1" Content="A"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0,40,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="550" />
+                        <CompositeTransform TranslateY="500" />
                     </Button.RenderTransform>
                 </Button>
                 <Button Name="btn2" Content="B"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0,9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="550" />
+                        <CompositeTransform TranslateY="500" />
                     </Button.RenderTransform>
                 </Button>
 
@@ -113,12 +113,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn3" Content="C"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="140,0,30,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="650" />
+                        <CompositeTransform TranslateY="600" />
                     </Button.RenderTransform>
                 </Button>
                 <Button Name="btn4" Content="D"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="650" />
+                        <CompositeTransform TranslateY="600" />
                     </Button.RenderTransform>
                 </Button>
 
@@ -126,12 +126,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn5" Content="E"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="70,0,50,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="750" />
+                        <CompositeTransform TranslateY="700" />
                     </Button.RenderTransform>
                 </Button>
                 <Button Name="btn6" Content="F"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="750" />
+                        <CompositeTransform TranslateY="700" />
                     </Button.RenderTransform>
                 </Button>
 
@@ -139,12 +139,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn7" Content="G"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="30,0,80,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="850" />
+                        <CompositeTransform TranslateY="800" />
                     </Button.RenderTransform>
                 </Button>
                 <Button Name="btn8" Content="H"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="850" />
+                        <CompositeTransform TranslateY="800" />
                     </Button.RenderTransform>
                 </Button>
 
@@ -152,12 +152,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn9" Content="I"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="90,0,60,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="950" />
+                        <CompositeTransform TranslateY="900" />
                     </Button.RenderTransform>
                 </Button>
                 <Button Name="btn10" Content="J"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
                     <Button.RenderTransform>
-                        <CompositeTransform TranslateY="950" />
+                        <CompositeTransform TranslateY="900" />
                     </Button.RenderTransform>
                 </Button>
 
