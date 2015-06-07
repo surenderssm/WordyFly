@@ -60,11 +60,16 @@ namespace WordyFlyWPClient
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         public Word tempWord;
-
+        public Queue<char> queue = new Queue<char>();
         public GamePage()
         {
             this.InitializeComponent();
             tempWord = new Word();
+            char[] charList= "KLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray(); 
+            foreach( char c in charList)
+            {
+                queue.Enqueue(c);
+            }
             textBlock.DataContext = tempWord;
             //tbInput.Focus(FocusState.Programmatic);
             this.navigationHelper = new NavigationHelper(this);
@@ -131,12 +136,21 @@ namespace WordyFlyWPClient
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             // tbInput.Focus(FocusState.Programmatic);
             //   tbInput.Focus(FocusState.Programmatic);
-            MainImageSlideIn.Begin();
-            
+            await StatusBar.GetForCurrentView().HideAsync();
+            btn1SlideIn.Begin();
+            btn2SlideIn.Begin();
+            btn3SlideIn.Begin();
+            btn4SlideIn.Begin();
+            btn5SlideIn.Begin();
+            btn6SlideIn.Begin();
+            btn7SlideIn.Begin();
+            btn8SlideIn.Begin();
+            btn9SlideIn.Begin();
+            btn10SlideIn.Begin();
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -160,8 +174,77 @@ namespace WordyFlyWPClient
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainImageSlideIn.Begin();
+
+            btn1SlideIn.Begin();
+            btn2SlideIn.Begin();
+            btn3SlideIn.Begin();
+            btn4SlideIn.Begin();
+            btn5SlideIn.Begin();
+            btn6SlideIn.Begin();
+            btn7SlideIn.Begin();
+            btn8SlideIn.Begin();
+            btn9SlideIn.Begin();
+            btn10SlideIn.Begin();
+        }
+
+        private void btn1SlideIn_Completed(object sender, object e)
+        {            
+            btn1.Content = queue.Dequeue();
+            btn1SlideIn.Begin();
+        }
+
+        private void btn2SlideIn_Completed(object sender, object e)
+        {
+            btn2.Content = queue.Dequeue();
+            btn2SlideIn.Begin();
+        }
+
+        private void btn3SlideIn_Completed(object sender, object e)
+        {
+            btn3.Content = queue.Dequeue();
+            btn3SlideIn.Begin();
+        }
+
+        private void btn4SlideIn_Completed(object sender, object e)
+        {
+            btn4.Content = queue.Dequeue();
+            btn4SlideIn.Begin();
+        }
+
+        private void btn5SlideIn_Completed(object sender, object e)
+        {
+            btn5.Content = queue.Dequeue();
+            btn5SlideIn.Begin();
+        }
+
+        private void btn6SlideIn_Completed(object sender, object e)
+        {
+            btn6.Content = queue.Dequeue();
+            btn6SlideIn.Begin();
+        }
+
+        private void btn7SlideIn_Completed(object sender, object e)
+        {
+            btn7.Content = queue.Dequeue();
+            btn7SlideIn.Begin();
+        }
+
+        private void btn8SlideIn_Completed(object sender, object e)
+        {
+            btn8.Content = queue.Dequeue();
+            btn8SlideIn.Begin();
+        }
+
+        private void btn9SlideIn_Completed(object sender, object e)
+        {
+            btn9.Content = queue.Dequeue();
+            btn9SlideIn.Begin();
+        }
+
+        private void btn10SlideIn_Completed(object sender, object e)
+        {
+            btn10.Content = queue.Dequeue();
+            btn10SlideIn.Begin();
         }
     }
 }
