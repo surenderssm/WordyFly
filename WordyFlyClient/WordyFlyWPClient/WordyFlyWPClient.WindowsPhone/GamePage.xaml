@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid x:Name="LayoutRoot">
 
@@ -27,6 +27,14 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,10,19,9" Background="#FF158338">
+            <Grid.Resources>
+                <Storyboard x:Name="MainImageSlideIn">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn1">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                        <EasingDoubleKeyFrame KeyTime="0:0:10" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
@@ -42,7 +50,11 @@
             </Grid.ColumnDefinitions>
             <Button Name="btn1" Content="A" Grid.Row="0" 
                     Grid.Column="0" HorizontalAlignment="Center" 
-                    VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface" Click="ButtonClick"/>
+                    VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ButtonClick">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateY="200" />
+                </Button.RenderTransform>
+            </Button>
             <Button Name="btn2" Content="X" Grid.Row="1" Click="ButtonClick"
                     Grid.Column="3" HorizontalAlignment="Center" 
                     VerticalAlignment="Stretch" BorderBrush="Transparent"/>
@@ -63,9 +75,9 @@
                     VerticalAlignment="Stretch" BorderBrush="Transparent"/>
         </Grid>
         <StackPanel Grid.Row="2" Margin="19,0,0,0" Height="60" Orientation="Horizontal">
-            
+
             <Button Name="btnReset" Content="Reset"  HorizontalAlignment="Left" 
-                    VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface"/>
+                    VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface" Click="btnReset_Click"/>
             <TextBlock Name="textBlock" Text="{Binding CurrentWord}" Width="149" FontSize="26.667" TextWrapping="Wrap" TextAlignment="Center" />
             <Button Name="btnSubmit" Content="Submit" 
                     HorizontalAlignment="Right" 

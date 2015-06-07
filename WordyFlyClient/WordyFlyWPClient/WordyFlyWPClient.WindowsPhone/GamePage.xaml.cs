@@ -135,6 +135,8 @@ namespace WordyFlyWPClient
         {
             // tbInput.Focus(FocusState.Programmatic);
             //   tbInput.Focus(FocusState.Programmatic);
+            MainImageSlideIn.Begin();
+            
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -149,6 +151,17 @@ namespace WordyFlyWPClient
         {
             tempWord.CurrentWord += Convert.ToString((sender as Button).Content);
             //  textBlock.DataContext = CurrentWord;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainImageSlideIn.Begin();
         }
     }
 }
