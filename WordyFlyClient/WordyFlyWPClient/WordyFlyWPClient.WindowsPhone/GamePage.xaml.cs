@@ -262,6 +262,7 @@ namespace WordyFlyWPClient
             charBlock2.AlphaBlock.Point = alpha.Point;
             charBlock2.BlockReset();
             block2SlideIn.Begin();
+            block2SlideIn.Seek(new TimeSpan(0, 0, 2));
             charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -272,7 +273,7 @@ namespace WordyFlyWPClient
             charBlock3.AlphaBlock.Point = alpha.Point;
             charBlock3.BlockReset();
             block3SlideIn.Begin();
-            block3SlideIn.Seek(new TimeSpan(0, 0, 2));
+            block3SlideIn.Seek(new TimeSpan(0, 0, 4));
             charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -283,7 +284,7 @@ namespace WordyFlyWPClient
             charBlock4.AlphaBlock.Point = alpha.Point;
             charBlock4.BlockReset();
             block4SlideIn.Begin();
-            block4SlideIn.Seek(new TimeSpan(0, 0, 2));
+            block4SlideIn.Seek(new TimeSpan(0, 0, 6));
             charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -294,7 +295,7 @@ namespace WordyFlyWPClient
             charBlock5.AlphaBlock.Point = alpha.Point;
             charBlock5.BlockReset();
             block5SlideIn.Begin();
-            block5SlideIn.Seek(new TimeSpan(0, 0, 4));
+            block5SlideIn.Seek(new TimeSpan(0, 0, 8));
             charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -305,7 +306,7 @@ namespace WordyFlyWPClient
             charBlock6.AlphaBlock.Point = alpha.Point;
             charBlock6.BlockReset();
             block6SlideIn.Begin();
-            block6SlideIn.Seek(new TimeSpan(0, 0, 4));
+            block6SlideIn.Seek(new TimeSpan(0, 0, 10));
             charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -316,7 +317,7 @@ namespace WordyFlyWPClient
             charBlock7.AlphaBlock.Point = alpha.Point;
             charBlock7.BlockReset();
             block7SlideIn.Begin();
-            block7SlideIn.Seek(new TimeSpan(0, 0, 6));
+            block7SlideIn.Seek(new TimeSpan(0, 0, 12));
             charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -327,7 +328,7 @@ namespace WordyFlyWPClient
             charBlock8.AlphaBlock.Point = alpha.Point;
             charBlock8.BlockReset();
             block8SlideIn.Begin();
-            block8SlideIn.Seek(new TimeSpan(0, 0, 6));
+            block8SlideIn.Seek(new TimeSpan(0, 0, 14));
             charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -338,7 +339,7 @@ namespace WordyFlyWPClient
             charBlock9.AlphaBlock.Point = alpha.Point;
             charBlock9.BlockReset();
             block9SlideIn.Begin();
-            block9SlideIn.Seek(new TimeSpan(0, 0, 8));
+            block9SlideIn.Seek(new TimeSpan(0, 0, 16));
             charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
@@ -349,7 +350,7 @@ namespace WordyFlyWPClient
             charBlock10.AlphaBlock.Point = alpha.Point;
             charBlock10.BlockReset();
             block10SlideIn.Begin();
-            block10SlideIn.Seek(new TimeSpan(0, 0, 8));
+            block10SlideIn.Seek(new TimeSpan(0, 0, 18));
             charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
