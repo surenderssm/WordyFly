@@ -24,15 +24,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="500"/>
-            <RowDefinition Height="70*"/>
+            <!--<RowDefinition Height="70*"/>-->
             <RowDefinition Height="70"/>
+            <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="0,0,0,0" Background="#FF0086D5" Canvas.ZIndex="100"/>
 
         <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,10,19,9" Background="#00158338">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,0" Background="#00158338">
             <Grid.Resources>
                 <Storyboard x:Name="block1SlideIn" Completed="block1SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block1">
@@ -95,84 +96,77 @@
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Grid.Resources>
-
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="block1" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Name="block1" Grid.Column="0" HorizontalAlignment="Center" Width="72" Height="72" Margin="12,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="500"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock1"  BlockTapped="charBlock_BlockTapped1"/>
                 </Grid>
-                <Grid Name="block2" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+            <Grid Name="block2" Grid.Column="1" HorizontalAlignment="Center" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="550"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock2"  BlockTapped="charBlock_BlockTapped1"/>
                 </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="block3" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+            <Grid Name="block3" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="600"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock3"  BlockTapped="charBlock_BlockTapped3"/>
                 </Grid>
-                <Grid Name="block4" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block4" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="650"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock4"  BlockTapped="charBlock_BlockTapped4"/>
                 </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="block5" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+            <Grid Name="block5" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="700"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock5"  BlockTapped="charBlock_BlockTapped5"/>
                 </Grid>
-                <Grid Name="block6" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block6" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="750"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock6"  BlockTapped="charBlock_BlockTapped6"/>
                 </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="block7" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+            <Grid Name="block7" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="800"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock7"  BlockTapped="charBlock_BlockTapped7"/>
                 </Grid>
-                <Grid Name="block8" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block8" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="850"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock8"  BlockTapped="charBlock_BlockTapped8"/>
                 </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="block9" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+            <Grid Name="block9" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="900"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock9"  BlockTapped="charBlock_BlockTapped9"/>
                 </Grid>
-                <Grid Name="block10" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block10" Grid.Column="1" HorizontalAlignment="Center"  Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="950"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock10"  BlockTapped="charBlock_BlockTapped10"/>
                 </Grid>
-            </StackPanel>
-
-
+            
         </Grid>
-        <StackPanel Grid.Row="2" Background="#FF47C9F8">
+        <!--<StackPanel Grid.Row="2" Background="#FF47C9F8">
 
-        </StackPanel>
-        <StackPanel Grid.Row="3" Margin="0,0,0,0" Orientation="Horizontal" Background="#FF0086D5" Canvas.ZIndex="100">
+        </StackPanel>-->
+        <StackPanel Grid.Row="2" Margin="0,0,0,0" Orientation="Horizontal" Background="#FF0086D5" Canvas.ZIndex="100">
             <Button Name="btnReset" Content="Reset"  HorizontalAlignment="Left" 
                     VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface" Click="btnReset_Click"/>
             <TextBlock Name="textBlock" Text="{Binding CurrentWord}" Width="149" FontSize="26.667" TextWrapping="Wrap" TextAlignment="Center" />
@@ -180,5 +174,6 @@
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface"/>
         </StackPanel>
+        <StackPanel Grid.Row="3" Background="#FF47C9F8"/>
     </Grid>
 </Page>
