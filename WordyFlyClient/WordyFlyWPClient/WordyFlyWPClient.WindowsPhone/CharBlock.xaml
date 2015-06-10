@@ -1,0 +1,20 @@
+﻿<UserControl
+    x:Class="WordyFlyWPClient.CharBlock"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordyFlyWPClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="72"
+    d:DesignWidth="72">
+
+    <Grid Name="grdBlock" Background="{Binding Background}" Tapped="Grid_Tapped">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="txtPoint" Grid.Row="0" Text="{Binding Point}" FontSize="16" Margin="4,2,0,0"></TextBlock>
+        <TextBlock Name="txtChar" Grid.Row="1" Text="{Binding Character}" FontSize="54" HorizontalAlignment="Center" Margin="0,-10,0,0" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

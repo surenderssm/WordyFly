@@ -22,8 +22,8 @@
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="510"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="500"/>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
@@ -34,139 +34,143 @@
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,10,19,9" Background="#00158338">
             <Grid.Resources>
-                <Storyboard x:Name="btn1SlideIn" Completed="btn1SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn1">
+                <Storyboard x:Name="block1SlideIn" Completed="block1SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block1">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-0"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:10" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn2SlideIn" Completed="btn2SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn2">
+                <Storyboard x:Name="block2SlideIn" Completed="block2SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block2">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-0"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:10" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn3SlideIn" Completed="btn3SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn3">
+                <Storyboard x:Name="block3SlideIn" Completed="block3SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block3">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:12" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn4SlideIn" Completed="btn4SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn4">
+                <Storyboard x:Name="block4SlideIn" Completed="block4SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block4">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:12" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn5SlideIn" Completed="btn5SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn5">
+                <Storyboard x:Name="block5SlideIn" Completed="block5SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block5">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-200"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:14" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn6SlideIn" Completed="btn6SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn6">
+                <Storyboard x:Name="block6SlideIn" Completed="block6SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block6">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-200"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:14" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn7SlideIn" Completed="btn7SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn7">
+                <Storyboard x:Name="block7SlideIn" Completed="block7SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block7">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-300"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:16" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn8SlideIn" Completed="btn8SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn8">
+                <Storyboard x:Name="block8SlideIn" Completed="block8SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block8">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-300"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:16" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn9SlideIn" Completed="btn9SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn9">
+                <Storyboard x:Name="block9SlideIn" Completed="block9SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block9">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:18" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
-                <Storyboard x:Name="btn10SlideIn" Completed="btn10SlideIn_Completed">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="btn10">
+                <Storyboard x:Name="block10SlideIn" Completed="block10SlideIn_Completed">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block10">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
                         <EasingDoubleKeyFrame KeyTime="0:0:18" Value="500" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Grid.Resources>
-            
-            
-            <StackPanel Orientation="Horizontal">
-                <Button Name="btn1" Content="A"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0,40,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="500" />
-                    </Button.RenderTransform>
-                </Button>
-                <Button Name="btn2" Content="B"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0,9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="500" />
-                    </Button.RenderTransform>
-                </Button>
 
+            <StackPanel Orientation="Horizontal">
+                <Grid Name="block1" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="500"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock1"  BlockTapped="charBlock_BlockTapped1"/>
+                </Grid>
+                <Grid Name="block2" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="500"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock2"  BlockTapped="charBlock_BlockTapped1"/>
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn3" Content="C"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="140,0,30,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="600" />
-                    </Button.RenderTransform>
-                </Button>
-                <Button Name="btn4" Content="D"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="600" />
-                    </Button.RenderTransform>
-                </Button>
-
+                <Grid Name="block3" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="600"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock3"  BlockTapped="charBlock_BlockTapped3"/>
+                </Grid>
+                <Grid Name="block4" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="600"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock4"  BlockTapped="charBlock_BlockTapped4"/>
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn5" Content="E"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="70,0,50,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="700" />
-                    </Button.RenderTransform>
-                </Button>
-                <Button Name="btn6" Content="F"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="700" />
-                    </Button.RenderTransform>
-                </Button>
-
+                <Grid Name="block5" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="700"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock5"  BlockTapped="charBlock_BlockTapped5"/>
+                </Grid>
+                <Grid Name="block6" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="700"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock6"  BlockTapped="charBlock_BlockTapped6"/>
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn7" Content="G"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="30,0,80,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="800" />
-                    </Button.RenderTransform>
-                </Button>
-                <Button Name="btn8" Content="H"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="800" />
-                    </Button.RenderTransform>
-                </Button>
-
+                <Grid Name="block7" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="800"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock7"  BlockTapped="charBlock_BlockTapped7"/>
+                </Grid>
+                <Grid Name="block8" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="800"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock8"  BlockTapped="charBlock_BlockTapped8"/>
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn9" Content="I"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="90,0,60,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="900" />
-                    </Button.RenderTransform>
-                </Button>
-                <Button Name="btn10" Content="J"  BorderBrush="Transparent" Click="ButtonClick" Width="80" Height="80" Margin="9.5,0" HorizontalAlignment="Left" MinWidth="0" MinHeight="0" VerticalAlignment="Top" FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}">
-                    <Button.RenderTransform>
-                        <CompositeTransform TranslateY="900" />
-                    </Button.RenderTransform>
-                </Button>
-
+                <Grid Name="block9" Width="72" Height="72" Margin="12,0,40,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="500"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock9"  BlockTapped="charBlock_BlockTapped9"/>
+                </Grid>
+                <Grid Name="block10" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                    <Grid.RenderTransform>
+                        <CompositeTransform TranslateY="500"></CompositeTransform>
+                    </Grid.RenderTransform>
+                    <local:CharBlock x:Name="charBlock10"  BlockTapped="charBlock_BlockTapped10"/>
+                </Grid>
             </StackPanel>
 
 
         </Grid>
         <StackPanel Grid.Row="2" Background="#FF47C9F8">
-            
+
         </StackPanel>
         <StackPanel Grid.Row="3" Margin="0,0,0,0" Orientation="Horizontal" Background="#FF0086D5" Canvas.ZIndex="100">
             <Button Name="btnReset" Content="Reset"  HorizontalAlignment="Left" 

@@ -16,12 +16,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WordyFlyWPClient
 {
-
     public class Word : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -58,23 +58,19 @@ namespace WordyFlyWPClient
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private Random rand = new Random();
 
-        public Word tempWord;
-        public Queue<char> queue = new Queue<char>();
+        public Word tempWord; 
+        public Queue<Alpha> queue = new Queue<Alpha>();
         public GamePage()
         {
             this.InitializeComponent();
-            tempWord = new Word();
-            char[] charList= "KLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray(); 
-            foreach( char c in charList)
-            {
-                queue.Enqueue(c);
-            }
-            textBlock.DataContext = tempWord;
-            //tbInput.Focus(FocusState.Programmatic);
+
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            InitGame();
         }
 
         /// <summary>
@@ -141,16 +137,16 @@ namespace WordyFlyWPClient
             // tbInput.Focus(FocusState.Programmatic);
             //   tbInput.Focus(FocusState.Programmatic);
             await StatusBar.GetForCurrentView().HideAsync();
-            btn1SlideIn.Begin();
-            btn2SlideIn.Begin();
-            btn3SlideIn.Begin();
-            btn4SlideIn.Begin();
-            btn5SlideIn.Begin();
-            btn6SlideIn.Begin();
-            btn7SlideIn.Begin();
-            btn8SlideIn.Begin();
-            btn9SlideIn.Begin();
-            btn10SlideIn.Begin();
+            block1SlideIn.Begin();
+            block2SlideIn.Begin();
+            block3SlideIn.Begin();
+            block4SlideIn.Begin();
+            block5SlideIn.Begin();
+            block6SlideIn.Begin();
+            block7SlideIn.Begin();
+            block8SlideIn.Begin();
+            block9SlideIn.Begin();
+            block10SlideIn.Begin();
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -172,87 +168,231 @@ namespace WordyFlyWPClient
             
         }
 
+        private void InitGame()
+        {
+            tempWord = new Word();
+            char[] charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            
+            foreach (char c in charList)
+            {
+                queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
+            }
+
+            textBlock.DataContext = tempWord;
+            
+            Alpha alpha = queue.Dequeue();
+            charBlock1.AlphaBlock.Character = alpha.Character;
+            charBlock1.AlphaBlock.Point = alpha.Point;
+            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0,70), Rotation=rand.Next(0,30)-15 };
+
+            alpha = queue.Dequeue();
+            charBlock2.AlphaBlock.Character = alpha.Character;
+            charBlock2.AlphaBlock.Point = alpha.Point;
+            charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock3.AlphaBlock.Character = alpha.Character;
+            charBlock3.AlphaBlock.Point = alpha.Point;
+            charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock4.AlphaBlock.Character = alpha.Character;
+            charBlock4.AlphaBlock.Point = alpha.Point;
+            charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock5.AlphaBlock.Character = alpha.Character;
+            charBlock5.AlphaBlock.Point = alpha.Point;
+            charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock6.AlphaBlock.Character = alpha.Character;
+            charBlock6.AlphaBlock.Point = alpha.Point;
+            charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock7.AlphaBlock.Character = alpha.Character;
+            charBlock7.AlphaBlock.Point = alpha.Point;
+            charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock8.AlphaBlock.Character = alpha.Character;
+            charBlock8.AlphaBlock.Point = alpha.Point;
+            charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock9.AlphaBlock.Character = alpha.Character;
+            charBlock9.AlphaBlock.Point = alpha.Point;
+            charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
+
+            alpha = queue.Dequeue();
+            charBlock10.AlphaBlock.Character = alpha.Character;
+            charBlock10.AlphaBlock.Point = alpha.Point;
+            charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+        }
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-
-            btn1SlideIn.Begin();
-            btn2SlideIn.Begin();
-            btn3SlideIn.Begin();
-            btn4SlideIn.Begin();
-            btn5SlideIn.Begin();
-            btn6SlideIn.Begin();
-            btn7SlideIn.Begin();
-            btn8SlideIn.Begin();
-            btn9SlideIn.Begin();
-            btn10SlideIn.Begin();
+            tempWord.CurrentWord = string.Empty;
+            
+            charBlock1.BlockReset();
+            charBlock2.BlockReset();
+            charBlock3.BlockReset();
+            charBlock4.BlockReset();
+            charBlock5.BlockReset();
+            charBlock6.BlockReset();
+            charBlock7.BlockReset();
+            charBlock8.BlockReset();
+            charBlock9.BlockReset();
+            charBlock10.BlockReset();
         }
-
-        private void btn1SlideIn_Completed(object sender, object e)
-        {            
-            btn1.Content = queue.Dequeue();
-            btn1SlideIn.Begin();
-        }
-
-        private void btn2SlideIn_Completed(object sender, object e)
+        private void block1SlideIn_Completed(object sender, object e)
         {
-            btn2.Content = queue.Dequeue();
-            btn2SlideIn.Begin();
+            Alpha alpha = queue.Dequeue();
+            charBlock1.AlphaBlock.Character = alpha.Character;
+            charBlock1.AlphaBlock.Point = alpha.Point;
+            charBlock1.BlockReset();
+            block1SlideIn.Begin();
+            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn3SlideIn_Completed(object sender, object e)
+        private void block2SlideIn_Completed(object sender, object e)
         {
-            btn3.Content = queue.Dequeue();
-            btn3SlideIn.Begin();
-            btn3SlideIn.Seek(new TimeSpan(0, 0, 2));
+            Alpha alpha = queue.Dequeue();
+            charBlock2.AlphaBlock.Character = alpha.Character;
+            charBlock2.AlphaBlock.Point = alpha.Point;
+            charBlock2.BlockReset();
+            block2SlideIn.Begin();
+            charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn4SlideIn_Completed(object sender, object e)
+        private void block3SlideIn_Completed(object sender, object e)
         {
-            btn4.Content = queue.Dequeue();
-            btn4SlideIn.Begin();
-            btn4SlideIn.Seek(new TimeSpan(0, 0, 2));
+            Alpha alpha = queue.Dequeue();
+            charBlock3.AlphaBlock.Character = alpha.Character;
+            charBlock3.AlphaBlock.Point = alpha.Point;
+            charBlock3.BlockReset();
+            block3SlideIn.Begin();
+            block3SlideIn.Seek(new TimeSpan(0, 0, 2));
+            charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn5SlideIn_Completed(object sender, object e)
+        private void block4SlideIn_Completed(object sender, object e)
         {
-            btn5.Content = queue.Dequeue();
-            btn5SlideIn.Begin();
-            btn5SlideIn.Seek(new TimeSpan(0, 0, 4));
+            Alpha alpha = queue.Dequeue();
+            charBlock4.AlphaBlock.Character = alpha.Character;
+            charBlock4.AlphaBlock.Point = alpha.Point;
+            charBlock4.BlockReset();
+            block4SlideIn.Begin();
+            block4SlideIn.Seek(new TimeSpan(0, 0, 2));
+            charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn6SlideIn_Completed(object sender, object e)
+        private void block5SlideIn_Completed(object sender, object e)
         {
-            btn6.Content = queue.Dequeue();
-            btn6SlideIn.Begin();
-            btn6SlideIn.Seek(new TimeSpan(0, 0, 4));
+            Alpha alpha = queue.Dequeue();
+            charBlock5.AlphaBlock.Character = alpha.Character;
+            charBlock5.AlphaBlock.Point = alpha.Point;
+            charBlock5.BlockReset();
+            block5SlideIn.Begin();
+            block5SlideIn.Seek(new TimeSpan(0, 0, 4));
+            charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn7SlideIn_Completed(object sender, object e)
+        private void block6SlideIn_Completed(object sender, object e)
         {
-            btn7.Content = queue.Dequeue();
-            btn7SlideIn.Begin();
-            btn7SlideIn.Seek(new TimeSpan(0, 0, 6));
+            Alpha alpha = queue.Dequeue();
+            charBlock6.AlphaBlock.Character = alpha.Character;
+            charBlock6.AlphaBlock.Point = alpha.Point;
+            charBlock6.BlockReset();
+            block6SlideIn.Begin();
+            block6SlideIn.Seek(new TimeSpan(0, 0, 4));
+            charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn8SlideIn_Completed(object sender, object e)
+        private void block7SlideIn_Completed(object sender, object e)
         {
-            btn8.Content = queue.Dequeue();
-            btn8SlideIn.Begin();
-            btn8SlideIn.Seek(new TimeSpan(0, 0, 6));
+            Alpha alpha = queue.Dequeue();
+            charBlock7.AlphaBlock.Character = alpha.Character;
+            charBlock7.AlphaBlock.Point = alpha.Point;
+            charBlock7.BlockReset();
+            block7SlideIn.Begin();
+            block7SlideIn.Seek(new TimeSpan(0, 0, 6));
+            charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn9SlideIn_Completed(object sender, object e)
+        private void block8SlideIn_Completed(object sender, object e)
         {
-            btn9.Content = queue.Dequeue();
-            btn9SlideIn.Begin();
-            btn9SlideIn.Seek(new TimeSpan(0, 0, 8));
+            Alpha alpha = queue.Dequeue();
+            charBlock8.AlphaBlock.Character = alpha.Character;
+            charBlock8.AlphaBlock.Point = alpha.Point;
+            charBlock8.BlockReset();
+            block8SlideIn.Begin();
+            block8SlideIn.Seek(new TimeSpan(0, 0, 6));
+            charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
         }
 
-        private void btn10SlideIn_Completed(object sender, object e)
+        private void block9SlideIn_Completed(object sender, object e)
         {
-            btn10.Content = queue.Dequeue();
-            btn10SlideIn.Begin();
-            btn10SlideIn.Seek(new TimeSpan(0, 0, 8));
+            Alpha alpha = queue.Dequeue();
+            charBlock9.AlphaBlock.Character = alpha.Character;
+            charBlock9.AlphaBlock.Point = alpha.Point;
+            charBlock9.BlockReset();
+            block9SlideIn.Begin();
+            block9SlideIn.Seek(new TimeSpan(0, 0, 8));
+            charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
+        }
+
+        private void block10SlideIn_Completed(object sender, object e)
+        {
+            Alpha alpha = queue.Dequeue();
+            charBlock10.AlphaBlock.Character = alpha.Character;
+            charBlock10.AlphaBlock.Point = alpha.Point;
+            charBlock10.BlockReset();
+            block10SlideIn.Begin();
+            block10SlideIn.Seek(new TimeSpan(0, 0, 8));
+            charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(70, 140), Rotation = rand.Next(0, 30) - 15 };
+        }
+
+        private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped2(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped3(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped4(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped5(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped6(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped7(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped8(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped9(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+        }
+        private void charBlock_BlockTapped10(object sender, TappedRoutedEventArgs e)
+        {
+            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
         }
     }
+    
 }
