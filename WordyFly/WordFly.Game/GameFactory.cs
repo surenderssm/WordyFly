@@ -9,10 +9,19 @@ namespace WordFly.Game
 {
     public static class GameFactory
     {
-        public static GameSession GetNew()
+        public static GameSession GetGame(GameType gameType)
         {
-            GameSession gSession = new GameSession();
-            return gSession;
+            GameGenrator genrator = new GameGenrator();
+
+            GameSession game = null;
+            // TODO : types of Game
+            switch (gameType)
+            {
+                default:
+                    game = genrator.CreateNewGame(gameType);
+                    break;
+            }
+            return game;
         }
     }
 }

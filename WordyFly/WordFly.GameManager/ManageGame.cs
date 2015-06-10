@@ -20,13 +20,12 @@ namespace WordFly.GameManager
         {
             if (currentSession == null)
             {
-                currentSession = GameFactory.GetNew();
+                currentSession = GameFactory.GetGame(GameType.Basic);
             }
-
             return currentSession;
         }
 
-        // NEw Game
+        // New Game
         // ManageGame
     }
 }
