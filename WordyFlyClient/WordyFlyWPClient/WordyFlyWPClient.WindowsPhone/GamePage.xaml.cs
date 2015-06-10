@@ -171,8 +171,8 @@ namespace WordyFlyWPClient
         private void InitGame()
         {
             tempWord = new Word();
-            char[] charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            char[] charList= Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
             foreach (char c in charList)
             {
                 queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
