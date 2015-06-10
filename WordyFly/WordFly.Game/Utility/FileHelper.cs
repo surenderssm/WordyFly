@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,10 @@ namespace WordFly.Game.Utility
         private string WordSourceLocation;
         public FileHelper(string wordSourceLocation)
         {
-            WordSourceLocation = wordSourceLocation;
+            //wordSourceLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, );
+
+            string runningBasePath = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase).LocalPath;
+            WordSourceLocation = Path.Combine(Path.GetDirectoryName(runningBasePath), wordSourceLocation);
             PopulateWordList();
         }
         /// <summary>
@@ -24,7 +28,7 @@ namespace WordFly.Game.Utility
         {
             foreach (string file in Directory.GetFiles(WordSourceLocation))
             {
-                File.ReadAllLines(file).Distinct().Where(t => !wordList.ContainsKey(t.ToUpper())).ToList().ForEach(word => wordList.Add(word.ToUpper(), new Word() {value=word, sourceFile=file }));
+                File.ReadAllLines(file).Distinct().Where(t => !wordList.ContainsKey(t.ToUpper())).ToList().ForEach(word => wordList.Add(word.ToUpper(), new Word() { value = word, sourceFile = file }));
             }
         }
     }
