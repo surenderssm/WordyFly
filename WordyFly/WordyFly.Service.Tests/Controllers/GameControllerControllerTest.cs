@@ -7,6 +7,8 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordyFly.Service;
 using WordyFly.Service.Controllers;
+using System.Threading;
+using System.Diagnostics;
 
 namespace WordyFly.Service.Tests.Controllers
 {
@@ -16,10 +18,17 @@ namespace WordyFly.Service.Tests.Controllers
         [TestMethod]
         public void Get()
         {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
             // Arrange
             GameController controller = new GameController();
 
             var data = controller.Get();
+
+            watch.Stop();
+
+            Console.WriteLine("Seconds " + watch.Elapsed.Seconds);
 
         }
 

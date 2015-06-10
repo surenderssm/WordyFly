@@ -10,8 +10,11 @@ namespace WordFly.Game.Utility
     public class FileHelper
     {
         public Dictionary<string, Word> wordList = new Dictionary<string, Word>();
-        public FileHelper()
+
+        private string WordSourceLocation;
+        public FileHelper(string wordSourceLocation)
         {
+            WordSourceLocation = wordSourceLocation;
             PopulateWordList();
         }
         /// <summary>
@@ -19,7 +22,7 @@ namespace WordFly.Game.Utility
         /// </summary>
         private void PopulateWordList()
         {
-            foreach (string file in Directory.GetFiles(@"..\..\Files"))
+            foreach (string file in Directory.GetFiles(WordSourceLocation))
             {
                 File.ReadAllLines(file).Distinct().Where(t => !wordList.ContainsKey(t.ToUpper())).ToList().ForEach(word => wordList.Add(word.ToUpper(), new Word() {value=word, sourceFile=file }));
             }

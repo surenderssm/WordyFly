@@ -8,7 +8,7 @@ namespace WordFly.Game.Utility
 {
     public class WordsWiki
     {
-        public static FileHelper dictionaryHelper = new FileHelper();
+        public static FileHelper dictionaryHelper = new FileHelper(Common.CommonUtility.WordSourceFileLocation);
         /// <summary>
         /// Swap two characters without using a third variable
         /// </summary>
