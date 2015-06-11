@@ -12,20 +12,21 @@ namespace WordFly.GameManager
     {
         private GameSession currentSession;
 
+        private DateTime lastGameCreated;
+
         public ManageGame()
         {
             currentSession = null;
         }
         public GameSession GetGame()
         {
-            if (currentSession == null)
+            //TODO: hack new game after every two minutes remove later
+            if (currentSession == null || DateTime.UtcNow.Subtract(lastGameCreated).Minutes > 2)
             {
                 currentSession = GameFactory.GetGame(GameType.Basic);
+                lastGameCreated = DateTime.UtcNow;
             }
             return currentSession;
         }
-
-        // New Game
-        // ManageGame
     }
 }

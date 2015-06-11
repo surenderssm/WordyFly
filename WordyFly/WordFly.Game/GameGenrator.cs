@@ -19,7 +19,7 @@ namespace WordFly.Game
             switch (gameType)
             {
                 case GameType.Basic:
-                    game = new GameSession(8, 8, 2);
+                    game = new GameSession(8, 10, 2);
                     break;
                 case GameType.Advanced:
                     game = new GameSession(12, 12, 2);
@@ -104,6 +104,10 @@ namespace WordFly.Game
                   AtomicAlpha alpha = new AtomicAlpha(randomGenerator.Next(0, 26));
                   alphaBag.Add(alpha);
               });
+
+            //TODO: probability of Vowels
+            // TODO: probability of % of vowels
+            
             return alphaBag.ToList();
         }
 
