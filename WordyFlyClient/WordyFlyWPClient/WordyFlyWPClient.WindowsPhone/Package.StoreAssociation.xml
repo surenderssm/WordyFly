@@ -198,5 +198,11 @@
     <MainPackageIdentityName>953technoapurva.Spare2</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.TestApp-123</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=ab3a3b46-99a3-41ec-a026-d3fd8952f9d7" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=ab3a3b46-99a3-41ec-a026-d3fd8952f9d7">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.4</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

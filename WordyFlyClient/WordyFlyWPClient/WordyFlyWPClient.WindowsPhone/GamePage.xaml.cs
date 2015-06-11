@@ -146,7 +146,10 @@ namespace WordyFlyWPClient
         private void InitGame()
         {
             gameSession = new GameSession();
+            gameSession.TimerSetup();
             txtPoint.DataContext = gameSession;
+            txtTotalWord.DataContext = gameSession;
+            txtTimer.DataContext = gameSession;
 
             tempWord = new Word();
             string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
@@ -407,6 +410,7 @@ namespace WordyFlyWPClient
                 {
                     gameSession.wordList.Add(tempWord.CurrentWord, tempWord);
                     gameSession.TotalPoint += tempWord.Point;
+                    gameSession.TotalWord++;
                 }
                 ResetAlpha();
             }
