@@ -101,13 +101,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             
-            <Grid Name="block1" Grid.Column="0" HorizontalAlignment="Center" Width="72" Height="72" Margin="12,0,0,0" VerticalAlignment="Top">
+            <Grid Name="block1" Grid.Column="0" HorizontalAlignment="Center" Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="500"></CompositeTransform>
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock1"  BlockTapped="charBlock_BlockTapped1"/>
                 </Grid>
-            <Grid Name="block2" Grid.Column="1" HorizontalAlignment="Center" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+            <Grid Name="block2" Grid.Column="1" HorizontalAlignment="Center" Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="550"></CompositeTransform>
                     </Grid.RenderTransform>
@@ -119,7 +119,7 @@
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock3"  BlockTapped="charBlock_BlockTapped3"/>
                 </Grid>
-                <Grid Name="block4" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block4" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="650"></CompositeTransform>
                     </Grid.RenderTransform>
@@ -131,7 +131,7 @@
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock5"  BlockTapped="charBlock_BlockTapped5"/>
                 </Grid>
-                <Grid Name="block6" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block6" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="750"></CompositeTransform>
                     </Grid.RenderTransform>
@@ -143,7 +143,7 @@
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock7"  BlockTapped="charBlock_BlockTapped7"/>
                 </Grid>
-                <Grid Name="block8" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block8" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="850"></CompositeTransform>
                     </Grid.RenderTransform>
@@ -155,7 +155,7 @@
                     </Grid.RenderTransform>
                     <local:CharBlock x:Name="charBlock9"  BlockTapped="charBlock_BlockTapped9"/>
                 </Grid>
-                <Grid Name="block10" Grid.Column="1" HorizontalAlignment="Center"  Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
+                <Grid Name="block10" Grid.Column="1" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
                     <Grid.RenderTransform>
                         <CompositeTransform TranslateY="950"></CompositeTransform>
                     </Grid.RenderTransform>

@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.Storage;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -71,6 +72,7 @@ namespace WordyFlyWPClient
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             InitGame();
+            CreateDictionary();
         }
 
         /// <summary>
@@ -228,6 +230,17 @@ namespace WordyFlyWPClient
             charBlock10.AlphaBlock.Character = alpha.Character;
             charBlock10.AlphaBlock.Point = alpha.Point;
             charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+        }
+        private async void CreateDictionary()
+        {
+            await UserProfile.GetUserProfile();
+            //StorageFolder assetFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            //StorageFile assetFile = await assetFolder.GetFileAsync(@"Files\Words.txt");
+            //Stream stream = await assetFile.OpenStreamForReadAsync();
+            //using (var streamReader = new StreamReader(stream))
+            //{
+            //    string str = streamReader.ReadToEnd().Replace("\r\n", "\n").Split('\n').ToDictionary(t=>t) ;
+            //}
         }
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
