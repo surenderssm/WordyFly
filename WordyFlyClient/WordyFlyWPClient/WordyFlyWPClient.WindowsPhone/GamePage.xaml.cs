@@ -18,40 +18,13 @@ using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.Storage;
+using Windows.UI.Popups;
+using WordyFlyWPClient.DataModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WordyFlyWPClient
-{
-    public class Word : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string currentWord = string.Empty;
-
-
-        public string CurrentWord
-        {
-            get
-            {
-                return currentWord.ToUpper();
-            }
-            set
-            {
-                currentWord = value;
-                OnPropertyChange("CurrentWord");
-            }
-        }
-
-        protected void OnPropertyChange(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-    }
+{    
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -63,6 +36,7 @@ namespace WordyFlyWPClient
 
         public Word tempWord; 
         public Queue<Alpha> queue = new Queue<Alpha>();
+        public GameSession gameSession;
         public GamePage()
         {
             this.InitializeComponent();
@@ -171,8 +145,11 @@ namespace WordyFlyWPClient
 
         private void InitGame()
         {
+            gameSession = new GameSession();
+            txtPoint.DataContext = gameSession;
+
             tempWord = new Word();
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
             char[] charList= Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
             foreach (char c in charList)
             {
@@ -242,10 +219,11 @@ namespace WordyFlyWPClient
             //    string str = streamReader.ReadToEnd().Replace("\r\n", "\n").Split('\n').ToDictionary(t=>t) ;
             //}
         }
-        private void btnReset_Click(object sender, RoutedEventArgs e)
+        private void ResetAlpha()
         {
             tempWord.CurrentWord = string.Empty;
-            
+            tempWord.Point = 0;
+
             charBlock1.BlockReset();
             charBlock2.BlockReset();
             charBlock3.BlockReset();
@@ -256,6 +234,10 @@ namespace WordyFlyWPClient
             charBlock8.BlockReset();
             charBlock9.BlockReset();
             charBlock10.BlockReset();
+        }
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAlpha();
         }
         private void block1SlideIn_Completed(object sender, object e)
         {
@@ -369,42 +351,65 @@ namespace WordyFlyWPClient
         private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped2(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped3(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped4(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped5(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped6(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped7(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped8(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped9(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
         }
         private void charBlock_BlockTapped10(object sender, TappedRoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
+            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+        }
+
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempWord.CurrentWord.Length >= 3)
+            {
+                if (UserProfile.ValidWords.ContainsKey(tempWord.CurrentWord.ToUpper()) && !gameSession.wordList.ContainsKey(tempWord.CurrentWord.ToUpper()))
+                {
+                    gameSession.wordList.Add(tempWord.CurrentWord, tempWord);
+                    gameSession.TotalPoint += tempWord.Point;
+                }
+                ResetAlpha();
+            }
         }
     }
     

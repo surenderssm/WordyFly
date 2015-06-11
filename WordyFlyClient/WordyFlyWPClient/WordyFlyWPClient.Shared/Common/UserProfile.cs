@@ -21,9 +21,9 @@ namespace WordyFlyWPClient.Common
                 string[] allWords = streamReader.ReadToEnd().Replace("\r\n", "\n").Split('\n');
                 foreach(string word in allWords)
                 {
-                    if(!ValidWords.ContainsKey(word))
+                    if(!ValidWords.ContainsKey(word.ToUpper()))
                     {
-                        ValidWords.Add(word, word);
+                        ValidWords.Add(word.ToUpper(), word.ToUpper());
                     }
                 }
             }
