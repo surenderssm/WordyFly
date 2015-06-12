@@ -159,7 +159,7 @@ namespace WordyFlyWPClient
                 queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
             }
 
-            textBlock.DataContext = tempWord;
+            txtCurrentWord.DataContext = tempWord;
             
             Alpha alpha = queue.Dequeue();
             charBlock1.AlphaBlock.Character = alpha.Character;
@@ -226,6 +226,9 @@ namespace WordyFlyWPClient
         {
             tempWord.CurrentWord = string.Empty;
             tempWord.Point = 0;
+            txtCurrentWord.Visibility = Visibility.Collapsed;
+            txtTotalWord.Visibility = Visibility.Visible;
+            txtPoint.Visibility = Visibility.Visible;
 
             charBlock1.BlockReset();
             charBlock2.BlockReset();
@@ -350,56 +353,63 @@ namespace WordyFlyWPClient
             block10SlideIn.Seek(new TimeSpan(0, 0, 18));
             charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
         }
-
+        private void updateCurrentWord(string word, int point)
+        {
+            tempWord.CurrentWord += word;
+            tempWord.Point += point;
+            txtCurrentWord.Visibility = Visibility.Visible;
+            txtTotalWord.Visibility = Visibility.Collapsed;
+            txtPoint.Visibility = Visibility.Collapsed;
+        }
         private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character), 
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped2(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped3(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped4(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped5(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped6(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped7(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped8(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped9(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped10(object sender, TappedRoutedEventArgs e)
         {
-            tempWord.CurrentWord += Convert.ToString((sender as CharBlock).AlphaBlock.Character);
-            tempWord.Point += Convert.ToInt32((sender as CharBlock).AlphaBlock.Point);
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
+                Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
 
         private async void btnSubmit_Click(object sender, RoutedEventArgs e)
