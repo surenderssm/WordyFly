@@ -30,7 +30,21 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="0,0,0,0" Background="#FF0086D5" Canvas.ZIndex="100"/>
+        <Grid Grid.Row="0" Margin="0,0,0,0" Background="#FF0086D5" Canvas.ZIndex="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Name="txtPoint" Text="{Binding TotalPointString}" FontSize="28" Margin="15,5,0,0"></TextBlock>
+                <TextBlock Grid.Row="1" Name="txtTotalWord" Text="{Binding TotalWordString}" FontSize="28" Margin="15,0,0,0"></TextBlock>
+            </Grid>
+            <TextBlock Grid.Column="1" Name="txtTimer" Text="{Binding TimerString}" FontSize="56" Margin="0,5,15,0" HorizontalAlignment="Right"></TextBlock>
+        </Grid>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,0" Background="#00158338">
@@ -100,80 +114,85 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <Grid Name="block1" Grid.Column="0" HorizontalAlignment="Center" Width="72" Height="72" Margin="12,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="500"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock1"  BlockTapped="charBlock_BlockTapped1"/>
-                </Grid>
-            <Grid Name="block2" Grid.Column="1" HorizontalAlignment="Center" Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="550"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock2"  BlockTapped="charBlock_BlockTapped1"/>
-                </Grid>
+
+            <Grid Name="block1" Grid.Column="0" HorizontalAlignment="Center" Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="500"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock1"  BlockTapped="charBlock_BlockTapped1"/>
+            </Grid>
+            <Grid Name="block2" Grid.Column="1" HorizontalAlignment="Center" Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="550"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock2"  BlockTapped="charBlock_BlockTapped1"/>
+            </Grid>
             <Grid Name="block3" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="600"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock3"  BlockTapped="charBlock_BlockTapped3"/>
-                </Grid>
-                <Grid Name="block4" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="650"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock4"  BlockTapped="charBlock_BlockTapped4"/>
-                </Grid>
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="600"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock3"  BlockTapped="charBlock_BlockTapped3"/>
+            </Grid>
+            <Grid Name="block4" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="650"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock4"  BlockTapped="charBlock_BlockTapped4"/>
+            </Grid>
             <Grid Name="block5" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="700"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock5"  BlockTapped="charBlock_BlockTapped5"/>
-                </Grid>
-                <Grid Name="block6" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="750"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock6"  BlockTapped="charBlock_BlockTapped6"/>
-                </Grid>
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="700"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock5"  BlockTapped="charBlock_BlockTapped5"/>
+            </Grid>
+            <Grid Name="block6" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="750"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock6"  BlockTapped="charBlock_BlockTapped6"/>
+            </Grid>
             <Grid Name="block7" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="800"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock7"  BlockTapped="charBlock_BlockTapped7"/>
-                </Grid>
-                <Grid Name="block8" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="850"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock8"  BlockTapped="charBlock_BlockTapped8"/>
-                </Grid>
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="800"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock7"  BlockTapped="charBlock_BlockTapped7"/>
+            </Grid>
+            <Grid Name="block8" Grid.Column="1" HorizontalAlignment="Center"   Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="850"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock8"  BlockTapped="charBlock_BlockTapped8"/>
+            </Grid>
             <Grid Name="block9" Grid.Column="0" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="900"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock9"  BlockTapped="charBlock_BlockTapped9"/>
-                </Grid>
-                <Grid Name="block10" Grid.Column="1" HorizontalAlignment="Center"  Width="72" Height="72" Margin="9.5,0,0,0" VerticalAlignment="Top">
-                    <Grid.RenderTransform>
-                        <CompositeTransform TranslateY="950"></CompositeTransform>
-                    </Grid.RenderTransform>
-                    <local:CharBlock x:Name="charBlock10"  BlockTapped="charBlock_BlockTapped10"/>
-                </Grid>
-            
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="900"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock9"  BlockTapped="charBlock_BlockTapped9"/>
+            </Grid>
+            <Grid Name="block10" Grid.Column="1" HorizontalAlignment="Center"  Width="72" Height="72"  VerticalAlignment="Top">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="950"></CompositeTransform>
+                </Grid.RenderTransform>
+                <local:CharBlock x:Name="charBlock10"  BlockTapped="charBlock_BlockTapped10"/>
+            </Grid>
+
         </Grid>
         <!--<StackPanel Grid.Row="2" Background="#FF47C9F8">
 
         </StackPanel>-->
-        <StackPanel Grid.Row="2" Margin="0,0,0,0" Orientation="Horizontal" Background="#FF0086D5" Canvas.ZIndex="100">
-            <Button Name="btnReset" Content="Reset"  HorizontalAlignment="Left" 
+        <Grid Grid.Row="2" Margin="0,0,0,0" Background="#FF0086D5" Canvas.ZIndex="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="btnReset" Content="Reset"  HorizontalAlignment="Left" 
                     VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface" Click="btnReset_Click"/>
-            <TextBlock Name="textBlock" Text="{Binding CurrentWord}" Width="149" FontSize="26.667" TextWrapping="Wrap" TextAlignment="Center" />
-            <Button Name="btnSubmit" Content="Submit"
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface"/>
-        </StackPanel>
+            <TextBlock Grid.Column="1" Name="textBlock" HorizontalAlignment="Center" Text="{Binding CurrentWord}" FontSize="26.667" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="2" Name="btnSubmit" Content="Submit"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" BorderBrush="Transparent" FontFamily="Global User Interface" Click="btnSubmit_Click"/>
+        </Grid>
         <StackPanel Grid.Row="3" Background="#FF47C9F8"/>
     </Grid>
 </Page>

@@ -14,66 +14,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WordyFlyWPClient.DataModel;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace WordyFlyWPClient
-{
-    public class Alpha : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string character = string.Empty;
-        private string point = string.Empty;
-        private SolidColorBrush background = new SolidColorBrush(Color.FromArgb(0xFF, 0xE7, 0x14, 0x01));
-
-        public string Character
-        {
-            get
-            {
-                return character.ToUpper();
-            }
-            set
-            {
-                character = value;
-                OnPropertyChange("Character");
-            }
-        }
-
-        public string Point
-        {
-            get
-            {
-                return point;
-            }
-            set
-            {
-                point = value;
-                OnPropertyChange("Point");
-            }
-        }
-        public SolidColorBrush Background
-        {
-            get
-            {
-                return background;
-            }
-            set
-            {
-                background = value;
-                OnPropertyChange("Background");
-            }
-        }
-
-        protected void OnPropertyChange(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-    }
+{    
     public sealed partial class CharBlock : UserControl
     {
         public Alpha AlphaBlock = new Alpha();
