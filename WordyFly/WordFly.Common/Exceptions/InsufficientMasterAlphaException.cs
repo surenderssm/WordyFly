@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace WordFly.Common.Exceptions
 {
-    public class GenericGameException : BaseException
+    public class InsufficientMasterAlphaException : BaseException
     {
-        private const string title = "GenericGameException";
+        private const string title = "Master Alpha is not Sufficient !";
 
-        public GenericGameException(string message)
+        public InsufficientMasterAlphaException(string message)
             : base(string.Concat(title, message))
         {
         }
 
-        public GenericGameException(string message, Exception inner)
+        public InsufficientMasterAlphaException(string message, Exception inner)
             : base(string.Concat(title, message), inner)
         {
         }

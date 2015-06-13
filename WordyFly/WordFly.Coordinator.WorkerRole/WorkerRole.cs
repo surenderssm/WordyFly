@@ -64,6 +64,8 @@ namespace WordFly.Coordinator.WorkerRole
             while (!cancellationToken.IsCancellationRequested)
             {
                 Trace.TraceInformation("Working");
+                GameCoordinator coordinator = new GameCoordinator();
+                coordinator.StartCoordinating();
                 await Task.Delay(1000);
             }
         }

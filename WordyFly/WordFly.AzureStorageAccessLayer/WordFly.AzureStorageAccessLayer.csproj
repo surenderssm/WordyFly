@@ -49,7 +49,7 @@
       <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,21 +64,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameGeneratorConfig.cs" />
+    <Compile Include="Entities\GameConfig.cs" />
+    <Compile Include="MiscStorgaeAccess.cs" />
+    <Compile Include="GameStorgaeAccess.cs" />
+    <Compile Include="Entities\GameEntity.cs" />
+    <Compile Include="Entities\StorageEntityBase.cs" />
     <Compile Include="StorageAccessBase.cs" />
+    <Compile Include="StorageConverter.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WordFly.ConfigManager\WordFly.ConfigManager.csproj">
       <Project>{803714e3-2fba-496a-a3dc-9dd3f2bd3ffc}</Project>
       <Name>WordFly.ConfigManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WordFly.Game\WordFly.Game.csproj">
+      <Project>{a1f64ef6-83d0-4b88-be7f-3096f3911ef9}</Project>
+      <Name>WordFly.Game</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

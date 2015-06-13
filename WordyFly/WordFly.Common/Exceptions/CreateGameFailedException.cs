@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace WordFly.Common.Exceptions
 {
-    public class GenericGameException : BaseException
+    public class CreateGameFailedException : BaseException
     {
-        private const string title = "GenericGameException";
+        private const string title = "CreateGameFailedException";
 
-        public GenericGameException(string message)
+        public CreateGameFailedException(string message)
             : base(string.Concat(title, message))
         {
         }
 
-        public GenericGameException(string message, Exception inner)
+        public CreateGameFailedException(string message, Exception inner)
             : base(string.Concat(title, message), inner)
         {
         }

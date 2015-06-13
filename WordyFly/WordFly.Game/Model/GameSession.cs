@@ -14,13 +14,16 @@ namespace WordFly.Game.Model
     public class GameSession
     {
         [DataMember]
-        public string ID { get; set; }
+        public Guid ID { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public long CurrentState { get; set; }
+        public int CurrentState { get; set; }
         [DataMember]
         public DateTime StartTime { get; set; }
+            [DataMember]
+        public long GameDurationInSeconds { get; set; }
+        
         [DataMember]
         public DateTime EndTime { get; set; }
 
@@ -28,12 +31,12 @@ namespace WordFly.Game.Model
         /// States present in teh game
         /// </summary>
         [DataMember]
-        public List<SessionState> States { get; set; }
+        public List<GameState> States { get; set; }
         [DataMember]
-        public int NumberOfSessions { get; set; }
+        public int NumberOfStates { get; set; }
         // Number of Alpha in a partuclar Session
         [DataMember]
-        public int SizeOfSession { get; set; }
+        public int SizeOfState { get; set; }
 
         /// <summary>
         /// Get the Minimum Raw Charactes Required
@@ -46,7 +49,7 @@ namespace WordFly.Game.Model
                 // TODO:Surender revisit
                 // SessionJumpCounter will be always less then SizeOf Session
 
-                return SizeOfSession * NumberOfSessions;
+                return SizeOfState * NumberOfStates;
 
             }
         }
@@ -58,7 +61,7 @@ namespace WordFly.Game.Model
             get { return sessionJumpCounter; }
             set
             {
-                if (value > SizeOfSession)
+                if (value > SizeOfState)
                 {
                     throw new GenericGameException("SessionJumpCounter will be always less then SizeOf Session");
                 }
@@ -74,7 +77,7 @@ namespace WordFly.Game.Model
         public List<AtomicAlpha> MasterAlpha { get; set; }
         public GameSession()
         {
-            ID = Guid.NewGuid().ToString();
+
         }
 
         /// <summary>
@@ -85,15 +88,15 @@ namespace WordFly.Game.Model
         /// <param name="sessionJumpCounter">Number of jumps to change the session</param>
         public GameSession(int numberOfSessions, int sizeOfSession, int sessionJumpCounter)
         {
-            ID = Guid.NewGuid().ToString();
-            this.NumberOfSessions = numberOfSessions;
-            this.SizeOfSession = sizeOfSession;
+            ID = Guid.NewGuid();
+            this.NumberOfStates = numberOfSessions;
+            this.SizeOfState = sizeOfSession;
             this.SessionJumpCounter = sessionJumpCounter;
         }
     }
 
     [DataContract]
-    public class SessionState
+    public class GameState
     {
         [DataMember]
         public int Id { get; set; }

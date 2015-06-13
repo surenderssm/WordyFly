@@ -9,7 +9,10 @@ namespace WordFly.AzureStorageAccessLayer
     /// <summary>
     /// SRP of handling all the constats of AzureStorage layer
     /// </summary>
-    class Constants
+    public class Constants
     {
+        public const string GameRepositoryTableName = "GameRepository";
+        public const string GameConfigTableName = "GameConfig";
+
     }
 }
