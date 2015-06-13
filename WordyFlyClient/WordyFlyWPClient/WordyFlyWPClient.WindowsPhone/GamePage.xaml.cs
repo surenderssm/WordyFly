@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.Storage;
 using Windows.UI.Popups;
 using WordyFlyWPClient.DataModel;
+using Windows.UI.Input;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -37,6 +38,8 @@ namespace WordyFlyWPClient
         public Word tempWord; 
         public Queue<Alpha> queue = new Queue<Alpha>();
         public GameSession gameSession;
+        private Point initialpoint;
+        GestureRecognizer gr = new GestureRecognizer();
         public GamePage()
         {
             this.InitializeComponent();
@@ -45,10 +48,70 @@ namespace WordyFlyWPClient
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            InitGame();
+            InitGame();      
+            
             CreateDictionary();
         }
 
+        private void gr_ManipulationStarted(GestureRecognizer sender, ManipulationStartedEventArgs args)
+        {
+            initialpoint = args.Position;
+        }
+
+        private void gr_ManipulationCompleted(GestureRecognizer sender, ManipulationCompletedEventArgs args)
+        {
+            Point currentpoint = args.Position;
+            if (Math.Abs(currentpoint.Y - initialpoint.Y) <= 50)
+            {
+                if ((currentpoint.X - initialpoint.X >= 100))
+                {
+                    if (tempWord.CurrentWord.Length >= 3)
+                    {
+                        if (UserProfile.ValidWords.ContainsKey(tempWord.CurrentWord.ToUpper()) && !gameSession.wordList.ContainsKey(tempWord.CurrentWord.ToUpper()))
+                        {
+                            gameSession.wordList.Add(tempWord.CurrentWord, tempWord);
+                            gameSession.TotalPoint += tempWord.Point;
+                            gameSession.TotalWord++;
+                        }
+                    }
+                    ResetAlpha();
+                    gr.CompleteGesture();
+                }
+                if (initialpoint.X - currentpoint.X >= 100)
+                {
+                    ResetAlpha();
+                    gr.CompleteGesture();
+                }
+            }
+        }
+
+        void MainPage_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            var ps = e.GetIntermediatePoints(null);
+            if (ps != null && ps.Count > 0)
+            {
+                gr.ProcessUpEvent(ps[0]);
+                e.Handled = true;
+                gr.CompleteGesture();
+            }
+        }
+
+        void MainPage_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            gr.ProcessMoveEvents(e.GetIntermediatePoints(null));
+            e.Handled = true;
+        }
+
+        void MainPage_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            var ps = e.GetIntermediatePoints(null);
+            if (ps != null && ps.Count > 0)
+            {
+                gr.ProcessDownEvent(ps[0]);
+                e.Handled = true;
+            }
+        }
+        
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
@@ -150,6 +213,15 @@ namespace WordyFlyWPClient
             txtPoint.DataContext = gameSession;
             txtTotalWord.DataContext = gameSession;
             txtTimer.DataContext = gameSession;
+
+
+            this.ManipulationMode = ManipulationModes.All;
+            this.PointerPressed += MainPage_PointerPressed;
+            this.PointerMoved += MainPage_PointerMoved;
+            this.PointerReleased += MainPage_PointerReleased;
+            gr.ManipulationCompleted += gr_ManipulationCompleted;
+            gr.ManipulationStarted += gr_ManipulationStarted;
+            gr.GestureSettings = GestureSettings.ManipulationTranslateX | Windows.UI.Input.GestureSettings.ManipulationTranslateY;
 
             tempWord = new Word();
             string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
