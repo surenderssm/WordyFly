@@ -25,7 +25,7 @@ using Windows.UI.Input;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WordyFlyWPClient
-{    
+{
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -35,7 +35,7 @@ namespace WordyFlyWPClient
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         private Random rand = new Random();
 
-        public Word tempWord; 
+        public Word tempWord;
         public Queue<Alpha> queue = new Queue<Alpha>();
         public GameSession gameSession;
         private Point initialpoint;
@@ -48,8 +48,8 @@ namespace WordyFlyWPClient
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            InitGame();      
-            
+            InitGame();
+
             CreateDictionary();
         }
 
@@ -61,27 +61,24 @@ namespace WordyFlyWPClient
         private void gr_ManipulationCompleted(GestureRecognizer sender, ManipulationCompletedEventArgs args)
         {
             Point currentpoint = args.Position;
-            if (Math.Abs(currentpoint.Y - initialpoint.Y) <= 50)
+            if ((currentpoint.X - initialpoint.X >= 100))
             {
-                if ((currentpoint.X - initialpoint.X >= 100))
+                if (tempWord.CurrentWord.Length >= 3)
                 {
-                    if (tempWord.CurrentWord.Length >= 3)
+                    if (UserProfile.ValidWords.ContainsKey(tempWord.CurrentWord.ToUpper()) && !gameSession.wordList.ContainsKey(tempWord.CurrentWord.ToUpper()))
                     {
-                        if (UserProfile.ValidWords.ContainsKey(tempWord.CurrentWord.ToUpper()) && !gameSession.wordList.ContainsKey(tempWord.CurrentWord.ToUpper()))
-                        {
-                            gameSession.wordList.Add(tempWord.CurrentWord, tempWord);
-                            gameSession.TotalPoint += tempWord.Point;
-                            gameSession.TotalWord++;
-                        }
+                        gameSession.wordList.Add(tempWord.CurrentWord, tempWord);
+                        gameSession.TotalPoint += tempWord.Point;
+                        gameSession.TotalWord++;
                     }
-                    ResetAlpha();
-                    gr.CompleteGesture();
                 }
-                if (initialpoint.X - currentpoint.X >= 100)
-                {
-                    ResetAlpha();
-                    gr.CompleteGesture();
-                }
+                ResetAlpha();
+                gr.CompleteGesture();
+            }
+            if (initialpoint.X - currentpoint.X >= 100)
+            {
+                ResetAlpha();
+                gr.CompleteGesture();
             }
         }
 
@@ -111,7 +108,7 @@ namespace WordyFlyWPClient
                 e.Handled = true;
             }
         }
-        
+
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
         /// </summary>
@@ -225,18 +222,18 @@ namespace WordyFlyWPClient
 
             tempWord = new Word();
             string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
-            char[] charList= Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
+            char[] charList = Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
             foreach (char c in charList)
             {
                 queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
             }
 
             txtCurrentWord.DataContext = tempWord;
-            
+
             Alpha alpha = queue.Dequeue();
             charBlock1.AlphaBlock.Character = alpha.Character;
             charBlock1.AlphaBlock.Point = alpha.Point;
-            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0,70), Rotation=rand.Next(0,30)-15 };
+            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
             charBlock2.AlphaBlock.Character = alpha.Character;
@@ -435,7 +432,7 @@ namespace WordyFlyWPClient
         }
         private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
         {
-            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character), 
+            updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
                 Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
         private void charBlock_BlockTapped2(object sender, TappedRoutedEventArgs e)
@@ -498,5 +495,5 @@ namespace WordyFlyWPClient
             }
         }
     }
-    
+
 }
