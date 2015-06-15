@@ -61,7 +61,7 @@ namespace WordyFlyWPClient
         private void gr_ManipulationCompleted(GestureRecognizer sender, ManipulationCompletedEventArgs args)
         {
             Point currentpoint = args.Position;
-            if ((currentpoint.X - initialpoint.X >= 100))
+            if (Math.Abs(currentpoint.X - initialpoint.X) >= 100)
             {
                 if (tempWord.CurrentWord.Length >= 3)
                 {
@@ -72,11 +72,6 @@ namespace WordyFlyWPClient
                         gameSession.TotalWord++;
                     }
                 }
-                ResetAlpha();
-                gr.CompleteGesture();
-            }
-            if (initialpoint.X - currentpoint.X >= 100)
-            {
                 ResetAlpha();
                 gr.CompleteGesture();
             }

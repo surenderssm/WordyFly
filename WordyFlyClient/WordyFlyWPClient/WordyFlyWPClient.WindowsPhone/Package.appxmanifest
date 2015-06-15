@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="953technoapurva.WordyFly" Publisher="CN=F799B6C6-0393-47B8-9EE6-123788DE18E9" Version="1.1.0.11" />
+  <Identity Name="953technoapurva.WordyFly" Publisher="CN=F799B6C6-0393-47B8-9EE6-123788DE18E9" Version="1.1.0.14" />
   <mp:PhoneIdentity PhoneProductId="4e07ac51-30dd-44fb-b278-8af8422835e5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>WordyFly</DisplayName>
