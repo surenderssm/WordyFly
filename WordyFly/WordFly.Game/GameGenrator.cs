@@ -43,12 +43,12 @@ namespace WordFly.Game
 
         private static void UpdateGameWithSessions(ref GameSession game)
         {
-            List<SessionState> states = new List<SessionState>();
+            List<GameState> states = new List<GameState>();
 
-            int sizeOfSession = game.SizeOfSession;
+            int sizeOfSession = game.SizeOfState;
             int sessionJumpCounter = game.SessionJumpCounter;
 
-            SessionState firstState = new SessionState();
+            GameState firstState = new GameState();
             firstState.Id = 0;
             firstState.StartMasterAlphaIndex = 0;
             firstState.Count = sizeOfSession;
@@ -56,9 +56,9 @@ namespace WordFly.Game
 
             int nextStartIndexOfState = firstState.EndMasterAlphaIndex + 1;
 
-            for (int counter = 1; counter < game.NumberOfSessions; counter++)
+            for (int counter = 1; counter < game.NumberOfStates; counter++)
             {
-                SessionState state = new SessionState();
+                GameState state = new GameState();
                 state.Id = counter;
                 state.StartMasterAlphaIndex = nextStartIndexOfState;
                 state.Count = sizeOfSession;

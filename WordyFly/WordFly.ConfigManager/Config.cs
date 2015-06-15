@@ -122,5 +122,49 @@ namespace WordFly.ConfigManager
         {
             get { return Get("AppInsightsTag"); }
         }
+
+        public static int NumberOfGamesToCreate
+        {
+            get
+            {
+                //int count = 1000;
+                int count = 10;
+                int.TryParse(Get("NumberOfGamesToCreate"), out count);
+                return count;
+            }
+        }
+        public static int TimeToCreateGamesInMinutes
+        {
+            get
+            {
+                int count = 10;
+                //int count = 20 * 60;
+                int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
+                return count;
+            }
+        }
+
+        public static int GameDurationInSeconds
+        {
+            get
+            {
+                int value = 2 * 60;
+                //int count = 20 * 60;
+                int.TryParse(Get("GameDurationInSeconds"), out value);
+                return value;
+            }
+        }
+
+        public static int GapBetweenTwoGamesInSeconds
+        {
+            get
+            {
+                int value = 40;
+                //int count = 20 * 60;
+                int.TryParse(Get("GapBetweenTwoGamesInSeconds"), out value);
+                return value;
+            }
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace WordFly.AzureStorageAccessLayer
     /// <summary>
     /// Base class to interact with Table Storgae
     /// </summary>
-    abstract class StorageAccessBase
+    public abstract class StorageAccessBase
     {
         public CloudStorageAccount StorageAcount { get; private set; }
 

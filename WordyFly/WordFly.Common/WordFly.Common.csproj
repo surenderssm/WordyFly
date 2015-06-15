@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -40,12 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\GenericGameException.cs" />
+    <Compile Include="Exceptions\CreateGameFailedException.cs" />
+    <Compile Include="Exceptions\InsufficientMasterAlphaException.cs" />
     <Compile Include="CommonUtility.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\InsufficientLengthMasterAlpha.cs" />
+    <Compile Include="Exceptions\GenericGameException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

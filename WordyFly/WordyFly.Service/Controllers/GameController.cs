@@ -11,10 +11,15 @@ namespace WordyFly.Service.Controllers
 {
     public class GameController : ApiController
     {
+
+        public GameController()
+        {
+
+        }
         // GET api/values
         public GameSession Get()
         {
-            return Repository.RepositoryManager.GetGame();
+            return Repository.GameManager.GameMangerObject.GetGame();
         }
 
         // GET api/values/5
