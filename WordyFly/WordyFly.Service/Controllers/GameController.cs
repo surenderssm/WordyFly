@@ -17,9 +17,16 @@ namespace WordyFly.Service.Controllers
 
         }
         // GET api/values
-        public GameSession Get()
+        public GameResponse Get()
         {
-            return Repository.GameManager.GameMangerObject.GetGame();
+            GameResponse gameResponse = new GameResponse();
+
+            // TODO: Playing
+            gameResponse.GamePlay = Repository.GameManager.GameMangerObject.GetGame();
+            gameResponse.StatusGamePlay = GameStatus.GameInPlay;
+            gameResponse.GameLeaderBoard = null;
+
+            return gameResponse;
         }
 
         // GET api/values/5

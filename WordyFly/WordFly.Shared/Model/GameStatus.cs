@@ -9,10 +9,13 @@ namespace WordFly.Shared.Model
     using System.Threading.Tasks;
 
     /// <summary>
-    /// GameRequest 
+    /// Enum to notify the state of the Game
     /// </summary>
-    public class GameRequest
+    public enum GameStatus
     {
-        public DateTime RequestOriginatedTimeStamp { get; set; }
+        Undefined,
+        GameInPlay,
+        GameInWordDisplay,
+        GameInLeaderBoard,
     }
 }
