@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WordFly.Game.Model;
+using WordFly.Shared.Model;
 using System.Diagnostics;
 namespace WordFly.Game.Test
 {

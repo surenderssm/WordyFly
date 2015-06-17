@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A1F64EF6-83D0-4B88-BE7F-3096F3911EF9}</ProjectGuid>
+    <ProjectGuid>{D48031DF-37FF-4E42-8E38-BC67DF6C7EDF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WordFly.Game</RootNamespace>
-    <AssemblyName>WordFly.Game</AssemblyName>
+    <RootNamespace>WordFly.Shared</RootNamespace>
+    <AssemblyName>WordFly.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -43,30 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameFactory.cs" />
-    <Compile Include="GameGenrator.cs" />
-    <Compile Include="GameType.cs" />
+    <Compile Include="Model\GameSession.cs" />
+    <Compile Include="Model\GameResponse.cs" />
+    <Compile Include="Model\GameRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\FileHelper.cs" />
-    <Compile Include="Utility\WordsWiki.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WordFly.Common\WordFly.Common.csproj">
-      <Project>{d670f7df-6eb9-4434-af2e-8238a25dd7c3}</Project>
-      <Name>WordFly.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WordFly.Shared\WordFly.Shared.csproj">
-      <Project>{d48031df-37ff-4e42-8e38-bc67df6c7edf}</Project>
-      <Name>WordFly.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="WordsSourceFiles\Words.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

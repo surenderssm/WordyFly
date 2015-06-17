@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using WordFly.Game.Model;
+using WordFly.Shared.Model;
 
 namespace WordFly.AzureStorageAccessLayer
 {
     public static class StorageConverter
     {
-        public static Entities.GameEntity GetStorageGame(Game.Model.GameSession gameSession)
+        public static Entities.GameEntity GetStorageGame(GameSession gameSession)
         {
             Entities.GameEntity gameEntity = new Entities.GameEntity();
 
@@ -30,7 +30,7 @@ namespace WordFly.AzureStorageAccessLayer
 
         public static GameSession GetGameSession(Entities.GameEntity gameEntity)
         {
-            Game.Model.GameSession gameSession = new Game.Model.GameSession();
+            GameSession gameSession = new GameSession();
 
             gameSession.ID = gameEntity.ID;
             gameSession.MasterAlpha = JsonConvert.DeserializeObject<List<AtomicAlpha>>(gameEntity.MasterAlpha);

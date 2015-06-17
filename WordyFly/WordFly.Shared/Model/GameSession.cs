@@ -1,15 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
-using WordFly.Common;
-using WordFly.Common.Exceptions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WordFly.Game.Model
+namespace WordFly.Shared.Model
 {
-
     [DataContract]
     public class GameSession
     {
@@ -21,9 +18,9 @@ namespace WordFly.Game.Model
         public int CurrentState { get; set; }
         [DataMember]
         public DateTime StartTime { get; set; }
-            [DataMember]
+        [DataMember]
         public long GameDurationInSeconds { get; set; }
-        
+
         [DataMember]
         public DateTime EndTime { get; set; }
 
@@ -63,7 +60,7 @@ namespace WordFly.Game.Model
             {
                 if (value > SizeOfState)
                 {
-                    throw new GenericGameException("SessionJumpCounter will be always less then SizeOf Session");
+                    throw new Exception("SessionJumpCounter will be always less then SizeOf Session");
                 }
                 else
                 {
@@ -120,32 +117,6 @@ namespace WordFly.Game.Model
         /// </summary>
         public List<Word> ValidWords { get; set; }
 
-
-        // Fill ValidWords
-        public void FillValidWords(List<AtomicAlpha> masterList)
-        {
-            string inputStream = string.Empty;
-            int minimumWordLength = 3;
-            try
-            {
-                for (int index = this.StartMasterAlphaIndex; index <= this.EndMasterAlphaIndex; index++)
-                {
-                    inputStream += masterList.ElementAt(index).Name;
-                }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                throw new InsufficientMasterAlphaException(String.Format("Filling Valid Words StartIndex: {0} EndIndex : {1}. Exception :{2}", StartMasterAlphaIndex, EndMasterAlphaIndex, ex.ToString()));
-            }
-            var wordsDictionary = Utility.WordsWiki.GetAllValidWords(inputStream, minimumWordLength);
-
-            ValidWords = new List<Word>();
-
-            wordsDictionary.Keys.ToList().ForEach(key =>
-            {
-                ValidWords.Add(new Word(wordsDictionary[key].value));
-            });
-        }
     }
 
     [DataContract]
