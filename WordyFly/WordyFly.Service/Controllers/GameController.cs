@@ -22,11 +22,11 @@ namespace WordyFly.Service.Controllers
             GameResponse gameResponse = new GameResponse();
 
             // TODO: Playing
-            gameResponse.GamePlay = Repository.GameManager.GameMangerObject.GetGame();
+//            gameResponse.GamePlay = Repository.GameManager.GameMangerObject.GetGame();
             gameResponse.StatusGamePlay = GameStatus.GameInPlay;
             gameResponse.GameLeaderBoard = null;
-
             return gameResponse;
+
         }
 
         // GET api/values/5

@@ -7,32 +7,30 @@ using System.Threading.Tasks;
 
 namespace WordFly.Shared.Model
 {
-    [DataContract]
     public class GameSession
     {
-        [DataMember]
         public Guid ID { get; set; }
-        [DataMember]
+        
         public string Name { get; set; }
-        [DataMember]
+        
         public int CurrentState { get; set; }
-        [DataMember]
+        
         public DateTime StartTime { get; set; }
-        [DataMember]
+        
         public long GameDurationInSeconds { get; set; }
 
-        [DataMember]
+        
         public DateTime EndTime { get; set; }
 
         /// <summary>
         /// States present in teh game
         /// </summary>
-        [DataMember]
+        
         public List<GameState> States { get; set; }
-        [DataMember]
+        
         public int NumberOfStates { get; set; }
         // Number of Alpha in a partuclar Session
-        [DataMember]
+        
         public int SizeOfState { get; set; }
 
         /// <summary>
@@ -70,7 +68,7 @@ namespace WordFly.Shared.Model
         }
 
         // Container for Raw Alpha Stream
-        [DataMember]
+        
         public List<AtomicAlpha> MasterAlpha { get; set; }
         public GameSession()
         {
@@ -92,15 +90,14 @@ namespace WordFly.Shared.Model
         }
     }
 
-    [DataContract]
     public class GameState
     {
-        [DataMember]
+        
         public int Id { get; set; }
-        [DataMember]
+        
         // Start Index in MasterAlphaStream to get the Alpha of Session
         public int StartMasterAlphaIndex { get; set; }
-        [DataMember]
+        
         // Total Number of ALphas of Session
         public int Count { get; set; }
         // Start Index in MasterAlphaStream to get the Alpha of Session
@@ -111,7 +108,7 @@ namespace WordFly.Shared.Model
                 return StartMasterAlphaIndex + Count - 1;
             }
         }
-        [DataMember]
+        
         /// <summary>
         /// Contains all the eligible Words which can be in current Session
         /// </summary>
@@ -119,17 +116,17 @@ namespace WordFly.Shared.Model
 
     }
 
-    [DataContract]
+    
     /// <summary>
     /// Valid WOrd
     /// </summary>
     public class Word
     {
-        [DataMember]
+        
         public string Value { get; set; }
-        [DataMember]
+        
         public string Meaning { get; set; }
-        [DataMember]
+        
         // Score which will be added TODO: COme up with ENUM for Score or type of Score
         public int Score { get; set; }
 
@@ -142,16 +139,16 @@ namespace WordFly.Shared.Model
             this.Value = value;
         }
     }
-    [DataContract]
+    
     public class AtomicAlpha
     {
-        [DataMember]
+        
         public string Name { get; set; }
-        [DataMember]
+        
         public string DisplayName { get; set; }
 
         private const int BaseCodeValue = 65; // ASCII('A') :: 65
-        [DataMember]
+        
         // [A..Z]:[0..25]
         public int CodeValue { get; set; }
 
