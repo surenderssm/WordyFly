@@ -456,12 +456,6 @@ namespace WordyFlyWPClient
         }
         private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
         {
-            var a = ContentRoot.ActualHeight;
-            DoubleAnimationUsingKeyFrames b =block1SlideIn.Children[0] as DoubleAnimationUsingKeyFrames;
-            EasingDoubleKeyFrame myEasingKey = b.KeyFrames[1] as EasingDoubleKeyFrame;
-            myEasingKey.KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 5));
-
-            //var c=b.keyFrames
             updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
                 Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
