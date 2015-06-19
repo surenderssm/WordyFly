@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WordFly.Game.Model;
+using WordFly.Shared.Model;
 
 using Storage = WordFly.AzureStorageAccessLayer;
 namespace WordyFly.Service.Repository

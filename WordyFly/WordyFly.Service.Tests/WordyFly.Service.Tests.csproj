@@ -107,6 +107,10 @@
       <Project>{a1f64ef6-83d0-4b88-be7f-3096f3911ef9}</Project>
       <Name>WordFly.Game</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WordFly.Shared\WordFly.Shared.csproj">
+      <Project>{d48031df-37ff-4e42-8e38-bc67df6c7edf}</Project>
+      <Name>WordFly.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WordyFly.Service\WordyFly.Service.csproj">
       <Project>{B9C5B970-85BE-4E5F-A182-AB5FAD1E1A4C}</Project>
       <Name>WordyFly.Service</Name>

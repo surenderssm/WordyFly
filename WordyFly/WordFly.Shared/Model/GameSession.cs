@@ -1,41 +1,36 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
-using WordFly.Common;
-using WordFly.Common.Exceptions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WordFly.Game.Model
+namespace WordFly.Shared.Model
 {
-
-    [DataContract]
     public class GameSession
     {
-        [DataMember]
         public Guid ID { get; set; }
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public int CurrentState { get; set; }
-        [DataMember]
-        public DateTime StartTime { get; set; }
-            [DataMember]
-        public long GameDurationInSeconds { get; set; }
         
-        [DataMember]
+        public string Name { get; set; }
+        
+        public int CurrentState { get; set; }
+        
+        public DateTime StartTime { get; set; }
+        
+        public long GameDurationInSeconds { get; set; }
+
+        
         public DateTime EndTime { get; set; }
 
         /// <summary>
         /// States present in teh game
         /// </summary>
-        [DataMember]
+        
         public List<GameState> States { get; set; }
-        [DataMember]
+        
         public int NumberOfStates { get; set; }
         // Number of Alpha in a partuclar Session
-        [DataMember]
+        
         public int SizeOfState { get; set; }
 
         /// <summary>
@@ -63,7 +58,7 @@ namespace WordFly.Game.Model
             {
                 if (value > SizeOfState)
                 {
-                    throw new GenericGameException("SessionJumpCounter will be always less then SizeOf Session");
+                    throw new Exception("SessionJumpCounter will be always less then SizeOf Session");
                 }
                 else
                 {
@@ -73,7 +68,7 @@ namespace WordFly.Game.Model
         }
 
         // Container for Raw Alpha Stream
-        [DataMember]
+        
         public List<AtomicAlpha> MasterAlpha { get; set; }
         public GameSession()
         {
@@ -95,15 +90,14 @@ namespace WordFly.Game.Model
         }
     }
 
-    [DataContract]
     public class GameState
     {
-        [DataMember]
+        
         public int Id { get; set; }
-        [DataMember]
+        
         // Start Index in MasterAlphaStream to get the Alpha of Session
         public int StartMasterAlphaIndex { get; set; }
-        [DataMember]
+        
         // Total Number of ALphas of Session
         public int Count { get; set; }
         // Start Index in MasterAlphaStream to get the Alpha of Session
@@ -114,51 +108,25 @@ namespace WordFly.Game.Model
                 return StartMasterAlphaIndex + Count - 1;
             }
         }
-        [DataMember]
+        
         /// <summary>
         /// Contains all the eligible Words which can be in current Session
         /// </summary>
         public List<Word> ValidWords { get; set; }
 
-
-        // Fill ValidWords
-        public void FillValidWords(List<AtomicAlpha> masterList)
-        {
-            string inputStream = string.Empty;
-            int minimumWordLength = 3;
-            try
-            {
-                for (int index = this.StartMasterAlphaIndex; index <= this.EndMasterAlphaIndex; index++)
-                {
-                    inputStream += masterList.ElementAt(index).Name;
-                }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                throw new InsufficientMasterAlphaException(String.Format("Filling Valid Words StartIndex: {0} EndIndex : {1}. Exception :{2}", StartMasterAlphaIndex, EndMasterAlphaIndex, ex.ToString()));
-            }
-            var wordsDictionary = Utility.WordsWiki.GetAllValidWords(inputStream, minimumWordLength);
-
-            ValidWords = new List<Word>();
-
-            wordsDictionary.Keys.ToList().ForEach(key =>
-            {
-                ValidWords.Add(new Word(wordsDictionary[key].value));
-            });
-        }
     }
 
-    [DataContract]
+    
     /// <summary>
     /// Valid WOrd
     /// </summary>
     public class Word
     {
-        [DataMember]
+        
         public string Value { get; set; }
-        [DataMember]
+        
         public string Meaning { get; set; }
-        [DataMember]
+        
         // Score which will be added TODO: COme up with ENUM for Score or type of Score
         public int Score { get; set; }
 
@@ -171,16 +139,16 @@ namespace WordFly.Game.Model
             this.Value = value;
         }
     }
-    [DataContract]
+    
     public class AtomicAlpha
     {
-        [DataMember]
+        
         public string Name { get; set; }
-        [DataMember]
+        
         public string DisplayName { get; set; }
 
         private const int BaseCodeValue = 65; // ASCII('A') :: 65
-        [DataMember]
+        
         // [A..Z]:[0..25]
         public int CodeValue { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WordFly.Game;
 using Storage = WordFly.AzureStorageAccessLayer;
-using WordFly.Game.Model;
+using WordFly.Shared.Model;
 using WordFly.Common;
 using System.Threading;
 namespace WordFly.Coordinator.WorkerRole

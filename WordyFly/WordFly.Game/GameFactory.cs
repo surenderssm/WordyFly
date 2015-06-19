@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WordFly.Game.Model;
+using WordFly.Shared.Model;
 
 namespace WordFly.Game
 {

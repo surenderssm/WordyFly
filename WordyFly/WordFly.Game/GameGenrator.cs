@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WordFly.Game.Model;
+using WordFly.Common.Exceptions;
+using WordFly.Shared.Model;
 
 namespace WordFly.Game
 {
     // Handles all the sceanrios/FUnction to create Game
    public class GameGenrator
     {
-      
         public GameSession CreateNewGame(GameType gameType)
         {
             //TODO:surender pull game info from different types of game
@@ -71,9 +71,35 @@ namespace WordFly.Game
             // FIll the Valid words in Parallel
             Parallel.For(0, states.Count, stateIndex =>
             {
-                states.ElementAt(stateIndex).FillValidWords(masterAlpha);
+                FillValidWords(states.ElementAt(stateIndex),masterAlpha);
             });
             game.States = states;
+        }
+
+
+        // Fill ValidWords
+        public static void FillValidWords(GameState state,List<AtomicAlpha> masterList)
+        {
+            string inputStream = string.Empty;
+            int minimumWordLength = 3;
+            try
+            {
+                for (int index = state.StartMasterAlphaIndex; index <= state.EndMasterAlphaIndex; index++)
+                {
+                    inputStream += masterList.ElementAt(index).Name;
+                }
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                throw new InsufficientMasterAlphaException(String.Format("Filling Valid Words StartIndex: {0} EndIndex : {1}. Exception :{2}", state.StartMasterAlphaIndex, state.EndMasterAlphaIndex, ex.ToString()));
+            }
+            var wordsDictionary = Utility.WordsWiki.GetAllValidWords(inputStream, minimumWordLength);
+            state.ValidWords =new List<Word>();
+
+            wordsDictionary.Keys.ToList().ForEach(key =>
+            {
+                state.ValidWords.Add(new Word(wordsDictionary[key].value));
+            });
         }
 
         /// <summary>
