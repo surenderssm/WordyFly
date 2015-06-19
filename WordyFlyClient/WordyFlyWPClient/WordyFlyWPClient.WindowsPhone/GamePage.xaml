@@ -23,7 +23,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="500"/>            
+            <RowDefinition Height="100*"/>            
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
@@ -53,7 +53,7 @@
                 <Storyboard x:Name="block1SlideIn" Completed="block1SlideIn_Completed">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="block1">
                         <EasingDoubleKeyFrame KeyTime="0" Value="-0"/>
-                        <EasingDoubleKeyFrame KeyTime="0:0:20" Value="500" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:20" Value="500"/>
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="block2SlideIn" Completed="block2SlideIn_Completed">

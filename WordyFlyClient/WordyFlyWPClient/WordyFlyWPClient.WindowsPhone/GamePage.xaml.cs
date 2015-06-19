@@ -40,6 +40,7 @@ namespace WordyFlyWPClient
         public GameSession gameSession;
         private Point initialpoint;
         GestureRecognizer gr = new GestureRecognizer();
+        private static double baseGHridHeight = 490;
         public GamePage()
         {
             this.InitializeComponent();
@@ -49,7 +50,6 @@ namespace WordyFlyWPClient
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             InitGame();
-
             CreateDictionary();
         }
 
@@ -196,8 +196,37 @@ namespace WordyFlyWPClient
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            StoryBoardInit();
         }
 
+        private void StoryBoardInit()
+        {
+            double gridActualHeight = ContentRoot.ActualHeight;
+            double multiplier = gridActualHeight / 490;
+            List<DoubleAnimationUsingKeyFrames> animationList = new List<DoubleAnimationUsingKeyFrames>();
+
+            animationList.Add(block1SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block2SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block3SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block4SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block5SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block6SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block7SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block8SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block9SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            animationList.Add(block10SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+
+            foreach (DoubleAnimationUsingKeyFrames doubleAnimation in animationList)
+            {
+                foreach (EasingDoubleKeyFrame myEasingKey in doubleAnimation.KeyFrames)
+                {
+                   // EasingDoubleKeyFrame myEasingKey = doubleAnimation.KeyFrames[1] as EasingDoubleKeyFrame;
+                    myEasingKey.Value = multiplier * myEasingKey.Value;
+                    // myEasingKey.KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 5));
+                }
+
+            }
+        }
         private void InitGame()
         {
             gameSession = new GameSession();
@@ -427,6 +456,12 @@ namespace WordyFlyWPClient
         }
         private void charBlock_BlockTapped1(object sender, TappedRoutedEventArgs e)
         {
+            var a = ContentRoot.ActualHeight;
+            DoubleAnimationUsingKeyFrames b =block1SlideIn.Children[0] as DoubleAnimationUsingKeyFrames;
+            EasingDoubleKeyFrame myEasingKey = b.KeyFrames[1] as EasingDoubleKeyFrame;
+            myEasingKey.KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 5));
+
+            //var c=b.keyFrames
             updateCurrentWord(Convert.ToString((sender as CharBlock).AlphaBlock.Character),
                 Convert.ToInt32((sender as CharBlock).AlphaBlock.Point));
         }
