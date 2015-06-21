@@ -50,7 +50,7 @@ namespace WordyFlyWPClient
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
             InitGame();
-            CreateDictionary();
+            //CreateDictionary();
         }
 
         private void gr_ManipulationStarted(GestureRecognizer sender, ManipulationStartedEventArgs args)
@@ -204,6 +204,48 @@ namespace WordyFlyWPClient
             double gridActualHeight = ContentRoot.ActualHeight;
             double multiplier = gridActualHeight / 490;
             List<DoubleAnimationUsingKeyFrames> animationList = new List<DoubleAnimationUsingKeyFrames>();
+
+            block1.Width = multiplier * block1.Width;
+            block1.Height = multiplier * block1.Height;
+            block2.Width = multiplier * block2.Width;
+            block2.Height = multiplier * block2.Height;
+            block3.Width = multiplier * block3.Width;
+            block3.Height = multiplier * block3.Height;
+            block4.Width = multiplier * block4.Width;
+            block4.Height = multiplier * block4.Height;
+            block5.Width = multiplier * block5.Width;
+            block5.Height = multiplier * block5.Height;
+            block6.Width = multiplier * block6.Width;
+            block6.Height = multiplier * block6.Height;
+            block7.Width = multiplier * block7.Width;
+            block7.Height = multiplier * block7.Height;
+            block8.Width = multiplier * block8.Width;
+            block8.Height = multiplier * block8.Height;
+            block9.Width = multiplier * block9.Width;
+            block9.Height = multiplier * block9.Height;
+            block10.Width = multiplier * block10.Width;
+            block10.Height = multiplier * block10.Height;
+
+            charBlock1.AlphaBlock.CharacterFontSize = multiplier * charBlock1.AlphaBlock.CharacterFontSize;
+            charBlock1.AlphaBlock.PointFontSize = multiplier * charBlock1.AlphaBlock.PointFontSize;
+            charBlock2.AlphaBlock.CharacterFontSize = multiplier * charBlock2.AlphaBlock.CharacterFontSize;
+            charBlock2.AlphaBlock.PointFontSize = multiplier * charBlock2.AlphaBlock.PointFontSize;
+            charBlock3.AlphaBlock.CharacterFontSize = multiplier * charBlock3.AlphaBlock.CharacterFontSize;
+            charBlock3.AlphaBlock.PointFontSize = multiplier * charBlock3.AlphaBlock.PointFontSize;
+            charBlock4.AlphaBlock.PointFontSize = multiplier * charBlock4.AlphaBlock.PointFontSize;
+            charBlock4.AlphaBlock.CharacterFontSize = multiplier * charBlock4.AlphaBlock.CharacterFontSize;
+            charBlock5.AlphaBlock.PointFontSize = multiplier * charBlock5.AlphaBlock.PointFontSize;
+            charBlock5.AlphaBlock.CharacterFontSize = multiplier * charBlock5.AlphaBlock.CharacterFontSize;
+            charBlock6.AlphaBlock.PointFontSize = multiplier * charBlock6.AlphaBlock.PointFontSize;
+            charBlock6.AlphaBlock.CharacterFontSize = multiplier * charBlock6.AlphaBlock.CharacterFontSize;
+            charBlock7.AlphaBlock.PointFontSize = multiplier * charBlock7.AlphaBlock.PointFontSize;
+            charBlock7.AlphaBlock.CharacterFontSize = multiplier * charBlock7.AlphaBlock.CharacterFontSize;
+            charBlock8.AlphaBlock.CharacterFontSize = multiplier * charBlock8.AlphaBlock.CharacterFontSize;
+            charBlock8.AlphaBlock.PointFontSize = multiplier * charBlock8.AlphaBlock.PointFontSize;
+            charBlock9.AlphaBlock.CharacterFontSize = multiplier * charBlock9.AlphaBlock.CharacterFontSize;
+            charBlock9.AlphaBlock.PointFontSize = multiplier * charBlock9.AlphaBlock.PointFontSize;
+            charBlock10.AlphaBlock.CharacterFontSize = multiplier * charBlock10.AlphaBlock.CharacterFontSize;
+            charBlock10.AlphaBlock.PointFontSize = multiplier * charBlock10.AlphaBlock.PointFontSize;
 
             animationList.Add(block1SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
             animationList.Add(block2SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);

@@ -8,7 +8,7 @@
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     d:DataContext="{Binding Source={d:DesignData Source=../WordyFlyWPClient.Shared/DataModel/SampleData.json, Type=data:SampleDataSource}}"
     xmlns:data="using:WordyFlyWPClient.Data"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -69,8 +69,18 @@
             </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
-
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Images/BackgroundDarkBlue.png"/>
+        </Grid.Background>
+        
+        <Button Grid.Row="1" Content="Play" Click="GroupSection_ItemClick" HorizontalAlignment="Center" Margin="145,202.027,146,291"></Button>
+    </Grid>
+    <!--<Grid x:Name="LayoutRoot">
         <Hub x:Name="Hub" x:Uid="Hub" Header="WordyFly" Background="{ThemeResource HubBackgroundImageBrush}">
             <HubSection x:Uid="HubSection1" Header="SECTION 1" DataContext="{Binding Groups}" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
                 <DataTemplate>
@@ -167,5 +177,5 @@
                 </DataTemplate>
             </HubSection>
         </Hub>
-    </Grid>
+    </Grid>-->
 </Page>

@@ -20,7 +20,7 @@ namespace WordyFlyWPClient.Common
         public DateTimeOffset lastTime;
         public DateTimeOffset stopTime;
         private int timesTicked = 0;
-        private int timesToTick = 119;
+        private int timesToTick = 120;
         private string timerString = "0:00";
 
         public Dictionary<string, Word> wordList = new Dictionary<string, Word>();
@@ -83,13 +83,13 @@ namespace WordyFlyWPClient.Common
             set
             {
                 timesTicked = value;
-                if((timesToTick - timesTicked) % 60<10)
+                if((timesToTick - timesTicked+1) % 60<10)
                 {
-                    TimerString = ((timesToTick-timesTicked) / 60).ToString() + ":0" + ((timesToTick - timesTicked+1) % 60).ToString();
+                    TimerString = ((timesToTick-timesTicked+1) / 60).ToString() + ":0" + ((timesToTick - timesTicked+1) % 60).ToString();
                 }
                 else
                 {
-                    TimerString = ((timesToTick - timesTicked) / 60).ToString() + ":" + ((timesToTick - timesTicked+1) % 60).ToString();
+                    TimerString = ((timesToTick - timesTicked+1) / 60).ToString() + ":" + ((timesToTick - timesTicked+1) % 60).ToString();
                 }
                 OnPropertyChange("TimesTicked");
             }

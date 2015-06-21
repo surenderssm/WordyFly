@@ -13,6 +13,8 @@ namespace WordyFlyWPClient.DataModel
 
         private string character = string.Empty;
         private string point = string.Empty;
+        private double characterFontSize = 54;
+        private double pointFontSize = 16;
         private SolidColorBrush background = new SolidColorBrush(Color.FromArgb(0xFF, 0xE7, 0x14, 0x01));
 
         public string Character
@@ -38,6 +40,31 @@ namespace WordyFlyWPClient.DataModel
             {
                 point = value;
                 OnPropertyChange("Point");
+            }
+        }
+        public double CharacterFontSize
+        {
+            get
+            {
+                return characterFontSize;
+            }
+            set
+            {
+                characterFontSize = value;
+                OnPropertyChange("CharacterFontSize");
+            }
+        }
+
+        public double PointFontSize
+        {
+            get
+            {
+                return pointFontSize;
+            }
+            set
+            {
+                pointFontSize = value;
+                OnPropertyChange("PointFontSize");
             }
         }
         public SolidColorBrush Background

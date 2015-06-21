@@ -101,15 +101,15 @@ namespace WordyFlyWPClient
         /// </summary>
         /// <param name="sender">The source of the click event.</param>
         /// <param name="e">Details about the click event.</param>
-        private void GroupSection_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Frame.Navigate(typeof(GamePage));
-            //var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
-            //if (!Frame.Navigate(typeof(SectionPage), groupId))
-            //{
-            //    throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
-            //}
-        }
+        //private void GroupSection_ItemClick(object sender, ItemClickEventArgs e)
+        //{
+        //    Frame.Navigate(typeof(GamePage));
+        //    //var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
+        //    //if (!Frame.Navigate(typeof(SectionPage), groupId))
+        //    //{
+        //    //    throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
+        //    //}
+        //}
 
         /// <summary>
         /// Shows the details of an item clicked on in the <see cref="ItemPage"/>
@@ -150,5 +150,15 @@ namespace WordyFlyWPClient
         }
 
         #endregion
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            await UserProfile.GetUserProfile();
+        }
+
+        private void GroupSection_ItemClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(GamePage));
+        }
     }
 }
