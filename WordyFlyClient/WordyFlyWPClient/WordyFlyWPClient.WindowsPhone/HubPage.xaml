@@ -108,6 +108,9 @@
                             </Grid.RenderTransform>
 
                             <TextBlock Text="STATS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,5,10,10"/>
+                            <StackPanel Grid.Column="1">
+                                <!--<TextBlock Text=""-->
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </PivotItem>
