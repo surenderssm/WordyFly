@@ -11,6 +11,7 @@ namespace WordyFlyWPClient.Common
     {
         public static int Version { get; set; }
         public static Dictionary<string, object> ValidWords = new Dictionary<string, object>();
+
         public static async Task<Dictionary<string, object>> GetUserProfile()
         {
             StorageFolder assetFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;

@@ -21,6 +21,7 @@ using Windows.Storage;
 using Windows.UI.Popups;
 using WordyFlyWPClient.DataModel;
 using Windows.UI.Input;
+using System.Threading.Tasks;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -269,8 +270,10 @@ namespace WordyFlyWPClient
 
             }
         }
-        private void InitGame()
+        private async Task InitGame()
         {
+            //var resultTest = await WordFly.ServiceClientMe.GameRepository.GetGame();
+
             gameSession = new GameSession();
             gameSession.TimerSetup();
             txtPoint.DataContext = gameSession;
