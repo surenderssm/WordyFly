@@ -71,14 +71,78 @@
     </Page.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="100*"/>
+            <RowDefinition Height="350"/>
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Images/BackgroundDarkBlue.png"/>
         </Grid.Background>
-        
-        <Button Grid.Row="1" Content="Play" Click="GroupSection_ItemClick" HorizontalAlignment="Center" Margin="145,202.027,146,291"></Button>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="Images/blankImage.jpg" Margin="10"></Image>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Welcome" FontSize="18.667" VerticalAlignment="Bottom" FontWeight="Thin" FontFamily="Tahoma" Margin="0,0,0,2.5"/>
+                <TextBlock Grid.Row="1" Text="WordyFlyGuest1234" FontSize="21.333" VerticalAlignment="Top" FontFamily="Segoe WP Semibold" FontWeight="Medium" Margin="0,2.5,0,0"/>
+            </Grid>
+        </Grid>
+        <Button Grid.Row="1" Content="Play" Click="GroupSection_ItemClick" HorizontalAlignment="Center"></Button>
+        <Grid Grid.Row="2">
+            <Pivot>
+                <PivotItem>
+                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.167" Width="234">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="90*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                            <Grid.RenderTransform>
+                                <CompositeTransform Rotation="-90"/>
+                            </Grid.RenderTransform>
+
+                            <TextBlock Text="STATS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                        </Grid>
+                    </Grid>
+                </PivotItem>
+                <PivotItem>
+                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.167" Width="234">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="90*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                            <Grid.RenderTransform>
+                                <CompositeTransform Rotation="-90"/>
+                            </Grid.RenderTransform>
+
+                            <TextBlock Text="OPTIONS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                        </Grid>
+                    </Grid>
+                </PivotItem>
+                <PivotItem>
+                    <Grid HorizontalAlignment="Left" Margin="0,0,0,-0.167" Width="234">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="90*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                            <Grid.RenderTransform>
+                                <CompositeTransform Rotation="-90"/>
+                            </Grid.RenderTransform>
+
+                            <TextBlock Text="ABOUT" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                        </Grid>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+        </Grid>
     </Grid>
     <!--<Grid x:Name="LayoutRoot">
         <Hub x:Name="Hub" x:Uid="Hub" Header="WordyFly" Background="{ThemeResource HubBackgroundImageBrush}">

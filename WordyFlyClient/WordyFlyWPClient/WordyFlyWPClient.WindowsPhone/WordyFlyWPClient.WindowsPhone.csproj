@@ -119,6 +119,7 @@
     <Content Include="Files\Words.txt" />
     <Content Include="Images\BackGroundBlue.jpg" />
     <Content Include="Images\BackgroundDarkBlue.png" />
+    <Content Include="Images\blankImage.jpg" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
