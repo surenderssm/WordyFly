@@ -139,8 +139,9 @@ namespace WordyFlyWPClient
         /// </para>
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            await StatusBar.GetForCurrentView().HideAsync();
             this.navigationHelper.OnNavigatedTo(e);
         }
 

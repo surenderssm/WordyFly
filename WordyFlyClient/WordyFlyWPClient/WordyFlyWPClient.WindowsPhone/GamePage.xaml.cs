@@ -163,11 +163,11 @@ namespace WordyFlyWPClient
         /// </summary>
         /// <param name="e">Provides data for navigation methods and event
         /// handlers that cannot cancel the navigation request.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // tbInput.Focus(FocusState.Programmatic);
             //   tbInput.Focus(FocusState.Programmatic);
-            await StatusBar.GetForCurrentView().HideAsync();
+            //await StatusBar.GetForCurrentView().HideAsync();
             block1SlideIn.Begin();
             block2SlideIn.Begin();
             block3SlideIn.Begin();

@@ -102,12 +102,12 @@
                             <ColumnDefinition Width="18*"/>
                             <ColumnDefinition Width="90*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-170.008,113.732,84.175,105.394" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto" Height="96.874">
                             <Grid.RenderTransform>
                                 <CompositeTransform Rotation="-90"/>
                             </Grid.RenderTransform>
 
-                            <TextBlock Text="STATS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                            <TextBlock Text="STATS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,5,10,10"/>
                         </Grid>
                     </Grid>
                 </PivotItem>
@@ -117,12 +117,12 @@
                             <ColumnDefinition Width="18*"/>
                             <ColumnDefinition Width="90*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-170.008,113.732,84.175,105.394" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto" Height="96.874">
                             <Grid.RenderTransform>
                                 <CompositeTransform Rotation="-90"/>
                             </Grid.RenderTransform>
 
-                            <TextBlock Text="OPTIONS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                            <TextBlock Text="OPTIONS" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,5,10,10"/>
                         </Grid>
                     </Grid>
                 </PivotItem>
@@ -132,12 +132,12 @@
                             <ColumnDefinition Width="18*"/>
                             <ColumnDefinition Width="90*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-152.674,140.566,78.174,131.727" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto">
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="-170.008,113.732,84.175,105.394" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" UseLayoutRounding="False" Width="320" d:LayoutRounding="Auto" Height="96.874">
                             <Grid.RenderTransform>
                                 <CompositeTransform Rotation="-90"/>
                             </Grid.RenderTransform>
 
-                            <TextBlock Text="ABOUT" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+                            <TextBlock Text="ABOUT" FontSize="36" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,5,10,10"/>
                         </Grid>
                     </Grid>
                 </PivotItem>
