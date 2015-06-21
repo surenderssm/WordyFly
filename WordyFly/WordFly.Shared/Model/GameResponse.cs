@@ -28,5 +28,7 @@ namespace WordFly.Shared.Model
         /// If GameStatus: LeaderBoard : > GamePlay going to contain the New Game
         /// </summary>
         public GameStatus StatusGamePlay;
+
+        public int ResponseStatus { get; set; }
     }
 }

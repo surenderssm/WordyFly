@@ -20,16 +20,20 @@ namespace WordFly.AzureStorageAccessLayer.Entities
         public int SessionJumpCounter { get; set; }
         //JSON of Master ALpha
         public string MasterAlpha { get; set; }
+       
         // JSON of States (up to 64KB in size) (Number of states * Max words <64 KB)
+        // Blob path of the State stored
         public string States { get; set; }
+
         public int GameStatus { get; set; }
     }
 
     /// <summary>
     /// State of the Game in the Storage
     /// </summary>
-    public enum GameStatus
+    public enum GameEntityStatus
     { 
+        Undefined,
         NotPlayed,
         Played,
         Current,

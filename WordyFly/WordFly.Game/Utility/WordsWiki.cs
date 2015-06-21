@@ -40,7 +40,7 @@ namespace WordFly.Game.Utility
         /// <param name="currentString">Current value of the string in the tree (Pass it empty)</param>
         /// <param name="stringList">Output dictionary</param>
         /// <param name="lengthSelect">Length of words to be formed</param>
-        public static void GetValidWords(char[] inputStream, string currentString, ref Dictionary<string, Word> stringList, int lengthSelect)
+        public static void GetValidWords(char[] inputStream, string currentString, ref Dictionary<string, RootWord> stringList, int lengthSelect)
         {
             if (currentString.Length == lengthSelect)
             {
@@ -65,9 +65,9 @@ namespace WordFly.Game.Utility
         /// <param name="inputStream">Input stream</param>
         /// <param name="minWordLength">Minimum length of words to be formed</param>
         /// <returns></returns>
-        public static Dictionary<string, Word> GetAllValidWords(string inputStream, int minWordLength)
+        public static Dictionary<string, RootWord> GetAllValidWords(string inputStream, int minWordLength)
         {
-            Dictionary<string, Word> stringList = new Dictionary<string, Word>();
+            Dictionary<string, RootWord> stringList = new Dictionary<string, RootWord>();
             Parallel.For(minWordLength, inputStream.Length + 1, i =>
             {
                 GetValidWords(inputStream.ToCharArray(), "", ref stringList, i);

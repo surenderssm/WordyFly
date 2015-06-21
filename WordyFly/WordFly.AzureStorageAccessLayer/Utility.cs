@@ -15,12 +15,12 @@ namespace WordFly.AzureStorageAccessLayer
         /// <summary>
         /// Date basis partiniton key
         /// </summary>
-        public static string DatePartitionKey
+        public static string DayPartitionKey
         {
             get
             {
 
-                return DateTime.UtcNow.Date.ToShortDateString();
+                return DateTime.UtcNow.Date.Day.ToString();
             }
         }
 
@@ -65,6 +65,7 @@ namespace WordFly.AzureStorageAccessLayer
             MiscStorgaeAccess storageAceess = new MiscStorgaeAccess();
 
             Entities.GameConfig gameConfig = new Entities.GameConfig();
+            gameConfig.PartitionKey = "TBD";
             gameConfig.Key = gameGeneratorKey;
             gameConfig.Value =JsonConvert.SerializeObject(config);
             storageAceess.SaveGameConfig(gameConfig);

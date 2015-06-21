@@ -34,6 +34,8 @@ namespace WordyFly.Service.Repository
 
             if (currentGame == null)
             {
+                currentGame = new GameSession();
+
                 lock (currentGame)
                 {
                     currentGame = GetGameFromTimeStamp(timeStamp);
@@ -52,9 +54,18 @@ namespace WordyFly.Service.Repository
 
         private GameSession GetGameFromTimeStamp(DateTime timeStamp)
         {
-            gameStorageAccess = new Storage.GameStorageAccess(Storage.Constants.GameRepositoryTableName);
-            var gameEntity = gameStorageAccess.GetCurrentGame(timeStamp);
-            return Storage.StorageConverter.GetGameSession(gameEntity);
+            try
+            {
+                gameStorageAccess = new Storage.GameStorageAccess(Storage.Constants.GameRepositoryTableName);
+                var gameStoreEntity = gameStorageAccess.GetCurrentGame(timeStamp);
+                var gameSession = Storage.StorageConverter.GetGameSession(gameStoreEntity);
+                return gameSession;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
     }
 }

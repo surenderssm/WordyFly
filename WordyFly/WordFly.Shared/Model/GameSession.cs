@@ -9,28 +9,40 @@ namespace WordFly.Shared.Model
 {
     public class GameSession
     {
+        private string _logicalGroup = null;
+        public string LogicalGroup
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_logicalGroup))
+                {
+                    _logicalGroup = "Default1";
+                }
+                return _logicalGroup;
+            }
+            set { _logicalGroup = value; }
+        }
         public Guid ID { get; set; }
-        
+
         public string Name { get; set; }
-        
+
         public int CurrentState { get; set; }
-        
+
         public DateTime StartTime { get; set; }
-        
+
         public long GameDurationInSeconds { get; set; }
 
-        
+
         public DateTime EndTime { get; set; }
 
         /// <summary>
         /// States present in teh game
         /// </summary>
-        
-        public List<GameState> States { get; set; }
-        
+        public GameState States { get; set; }
+
         public int NumberOfStates { get; set; }
         // Number of Alpha in a partuclar Session
-        
+
         public int SizeOfState { get; set; }
 
         /// <summary>
@@ -40,11 +52,9 @@ namespace WordFly.Shared.Model
         {
             get
             {
-
                 // TODO:Surender revisit
                 // SessionJumpCounter will be always less then SizeOf Session
-
-                return SizeOfState * NumberOfStates;
+                return SizeOfState * 2 + (SessionJumpCounter * (NumberOfStates - 1));
 
             }
         }
@@ -68,8 +78,9 @@ namespace WordFly.Shared.Model
         }
 
         // Container for Raw Alpha Stream
-        
+
         public List<AtomicAlpha> MasterAlpha { get; set; }
+
         public GameSession()
         {
 
@@ -92,12 +103,21 @@ namespace WordFly.Shared.Model
 
     public class GameState
     {
-        
+        public string GameID { get; set; }
+
+        public List<GameAtomicState> Items;
+
+    }
+
+
+    public class GameAtomicState
+    {
+
         public int Id { get; set; }
-        
+
         // Start Index in MasterAlphaStream to get the Alpha of Session
         public int StartMasterAlphaIndex { get; set; }
-        
+
         // Total Number of ALphas of Session
         public int Count { get; set; }
         // Start Index in MasterAlphaStream to get the Alpha of Session
@@ -108,7 +128,7 @@ namespace WordFly.Shared.Model
                 return StartMasterAlphaIndex + Count - 1;
             }
         }
-        
+
         /// <summary>
         /// Contains all the eligible Words which can be in current Session
         /// </summary>
@@ -116,17 +136,17 @@ namespace WordFly.Shared.Model
 
     }
 
-    
+
     /// <summary>
     /// Valid WOrd
     /// </summary>
     public class Word
     {
-        
+
         public string Value { get; set; }
-        
+
         public string Meaning { get; set; }
-        
+
         // Score which will be added TODO: COme up with ENUM for Score or type of Score
         public int Score { get; set; }
 
@@ -139,16 +159,16 @@ namespace WordFly.Shared.Model
             this.Value = value;
         }
     }
-    
+
     public class AtomicAlpha
     {
-        
+
         public string Name { get; set; }
-        
+
         public string DisplayName { get; set; }
 
         private const int BaseCodeValue = 65; // ASCII('A') :: 65
-        
+
         // [A..Z]:[0..25]
         public int CodeValue { get; set; }
 
@@ -157,5 +177,16 @@ namespace WordFly.Shared.Model
             CodeValue = value;
             Name = ((char)(value + BaseCodeValue)).ToString();
         }
+
+        public AtomicAlpha(char charCode)
+        {
+            Name = charCode.ToString();
+            CodeValue = (int)(charCode)-BaseCodeValue;
+        }
+        public AtomicAlpha()
+        {
+
+        }
     }
 }
+

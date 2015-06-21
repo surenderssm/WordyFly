@@ -10,13 +10,16 @@ namespace WordFly.Game.Utility
 {
     public class FileHelper
     {
-        public Dictionary<string, Word> wordList = new Dictionary<string, Word>();
+        public Dictionary<string, RootWord> wordList = new Dictionary<string, RootWord>();
 
         private string WordSourceLocation;
         public FileHelper(string wordSourceLocation)
         {
             //wordSourceLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, );
-
+            if (string.IsNullOrEmpty(wordSourceLocation))
+            {
+                wordSourceLocation = "WordsSourceFiles";
+            }
             string runningBasePath = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase).LocalPath;
             WordSourceLocation = Path.Combine(Path.GetDirectoryName(runningBasePath), wordSourceLocation);
             PopulateWordList();
@@ -28,11 +31,12 @@ namespace WordFly.Game.Utility
         {
             foreach (string file in Directory.GetFiles(WordSourceLocation))
             {
-                File.ReadAllLines(file).Distinct().Where(t => !wordList.ContainsKey(t.ToUpper())).ToList().ForEach(word => wordList.Add(word.ToUpper(), new Word() { value = word, sourceFile = file }));
+                File.ReadAllLines(file).Distinct().Where(t => !wordList.ContainsKey(t.ToUpper())).ToList().ForEach(word => wordList.Add(word.ToUpper(), new RootWord() { value = word, sourceFile = file }));
             }
         }
     }
-    public class Word
+  
+    public class RootWord
     {
         public string value { get; set; }
         public string meaning { get; set; }

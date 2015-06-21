@@ -15,21 +15,21 @@ namespace WordFly.ConfigManager
     {
         private static ConcurrentDictionary<string, string> configCache = new ConcurrentDictionary<string, string>(); //Local Cache
 
-        static Config()
-        {
-            if (RoleEnvironment.IsAvailable)
-                RoleEnvironment.Changed += delegate(object sender, RoleEnvironmentChangedEventArgs e)
-                {
-                    foreach (RoleEnvironmentConfigurationSettingChange setting in e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>())
-                    {
-                        if (configCache.ContainsKey(setting.ConfigurationSettingName))
-                        {
-                            string tempVal;
-                            configCache.TryRemove(setting.ConfigurationSettingName, out tempVal);
-                        }
-                    }
-                };
-        }
+        //static Config()
+        //{
+        //    //if (RoleEnvironment.IsAvailable)
+        //    //    RoleEnvironment.Changed += delegate(object sender, RoleEnvironmentChangedEventArgs e)
+        //    //    {
+        //    //        foreach (RoleEnvironmentConfigurationSettingChange setting in e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>())
+        //    //        {
+        //    //            if (configCache.ContainsKey(setting.ConfigurationSettingName))
+        //    //            {
+        //    //                string tempVal;
+        //    //                configCache.TryRemove(setting.ConfigurationSettingName, out tempVal);
+        //    //            }
+        //    //        }
+        //    //    };
+        //}
 
         /// <summary>
         /// Gets the Value of the Key from CloudConfig or AppConfig
@@ -62,9 +62,10 @@ namespace WordFly.ConfigManager
         {
             get { return Get("QueueConnection"); }
         }
-        public static string TableConnectionString
+        public static string StorageAccounntConnectionString
         {
-            get { return Get("TableConnection"); }
+            get { return "DefaultEndpointsProtocol=https;AccountName=wordflydev;AccountKey=fCsMgCogj8fAP6wxAve4CjzOnV36rrJyX5ObNyZJ8j93i5ZjhAatpososTFFSMuj5tF0LRtK8Zwe3+f6hd31NA=="; }
+            //get { return Get("TableConnection"); }
         }
 
         public static string BlobConnectionString
@@ -129,7 +130,7 @@ namespace WordFly.ConfigManager
             {
                 //int count = 1000;
                 int count = 10;
-                int.TryParse(Get("NumberOfGamesToCreate"), out count);
+              //  int.TryParse(Get("NumberOfGamesToCreate"), out count);
                 return count;
             }
         }
@@ -139,7 +140,7 @@ namespace WordFly.ConfigManager
             {
                 int count = 10;
                 //int count = 20 * 60;
-                int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
+             //   int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
                 return count;
             }
         }
@@ -150,7 +151,7 @@ namespace WordFly.ConfigManager
             {
                 int value = 2 * 60;
                 //int count = 20 * 60;
-                int.TryParse(Get("GameDurationInSeconds"), out value);
+             ///   int.TryParse(Get("GameDurationInSeconds"), out value);
                 return value;
             }
         }
@@ -161,7 +162,7 @@ namespace WordFly.ConfigManager
             {
                 int value = 40;
                 //int count = 20 * 60;
-                int.TryParse(Get("GapBetweenTwoGamesInSeconds"), out value);
+                //int.TryParse(Get("GapBetweenTwoGamesInSeconds"), out value);
                 return value;
             }
         }

@@ -58,7 +58,7 @@ namespace WordFly.Game.Test
         public void NewNormalGameTest()
         {
             //SLA in milliseconds to create new game
-            long SLAForNewGameMilliseconds = 2 * 60 * 1000; // 2 minutes
+            long SLAForNewGameMilliseconds = 4 * 60 * 1000; // 4 minutes
             Stopwatch watch = new Stopwatch();
 
             watch.Start();

@@ -13,35 +13,38 @@ namespace WordFly.Coordinator.WorkerRole
     /// <summary>
     /// Co-ordinates the Game
     /// </summary>
-    public  class GameCoordinator
+    public static class GameCoordinator
     {
 
-        public GameCoordinator()
+        static GameCoordinator()
         {
 
         }
 
-        public void StartCoordinating()
+        public static async Task StartCoordinating()
         {
-            Thread createGameCoordinator = new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                GameCreateCoordinate();
-            });
+            //Thread createGameCoordinator = new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    GameCreateCoordinate();
+            //});
 
-            createGameCoordinator.Start();
+            //createGameCoordinator.Start();
 
-            Thread archiveGame = new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                Console.WriteLine("archiving started");
-            });
+            //Thread archiveGame = new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    Console.WriteLine("archiving started");
+            //});
 
-            archiveGame.Start();
+            //archiveGame.Start();
+
+
+            await GameCreateCoordinate();
 
         }
 
-        private void GameCreateCoordinate()
+        private static async Task GameCreateCoordinate()
         {
             while (true)
             {
@@ -50,18 +53,19 @@ namespace WordFly.Coordinator.WorkerRole
                     Task createGameTask = new Task(new Action(CreateGame));
                     createGameTask.Start();
                     createGameTask.Wait();
+
                 }
                 catch (Exception)
                 {
-                    // TODO:surender
+                    // Safe fail back
                 }
-                Thread.Sleep(ConfigManager.Config.TimeToCreateGamesInMinutes * 60 * 1000);
+                await Task.Delay(ConfigManager.Config.TimeToCreateGamesInMinutes * 60 * 1000);
             }
         }
 
-        private void CreateGame()
+        private static void CreateGame()
         {
-            GameCreator.CreateGames();
+           // GameCreator.CreateGames();
         }
     }
 }

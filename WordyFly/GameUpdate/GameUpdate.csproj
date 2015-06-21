@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC8B6340-EDDD-47FA-8848-5127CD1B723D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{62B33092-02D7-47FE-94BC-012201021287}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WordFly.AzureStorageAccessLayer</RootNamespace>
-    <AssemblyName>WordFly.AzureStorageAccessLayer</AssemblyName>
+    <RootNamespace>GameUpdate</RootNamespace>
+    <AssemblyName>GameUpdate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,7 +51,7 @@
       <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,32 +66,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\GameEntity.cs" />
-    <Compile Include="GameGeneratorConfig.cs" />
-    <Compile Include="Entities\GameConfig.cs" />
-    <Compile Include="MiscStorgaeAccess.cs" />
-    <Compile Include="GameStorgaeAccess.cs" />
-    <Compile Include="Entities\GameStoreEntity.cs" />
-    <Compile Include="Entities\StorageEntityBase.cs" />
-    <Compile Include="StorageAccessBase.cs" />
-    <Compile Include="StorageConverter.cs" />
-    <Compile Include="Utility.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="GameUpdate.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WordFly.ConfigManager\WordFly.ConfigManager.csproj">
-      <Project>{803714e3-2fba-496a-a3dc-9dd3f2bd3ffc}</Project>
-      <Name>WordFly.ConfigManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WordFly.Game\WordFly.Game.csproj">
-      <Project>{a1f64ef6-83d0-4b88-be7f-3096f3911ef9}</Project>
-      <Name>WordFly.Game</Name>
+    <ProjectReference Include="..\WordFly.AzureStorageAccessLayer\WordFly.AzureStorageAccessLayer.csproj">
+      <Project>{cc8b6340-eddd-47fa-8848-5127cd1b723d}</Project>
+      <Name>WordFly.AzureStorageAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\WordFly.Shared\WordFly.Shared.csproj">
       <Project>{d48031df-37ff-4e42-8e38-bc67df6c7edf}</Project>

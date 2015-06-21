@@ -55,12 +55,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Profiles" />
     <Folder Include="WordFly.Coordinator.WorkerRoleContent\" />
     <Folder Include="WordyFly.ServiceContent\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="WordFly.Coordinator.WorkerRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="WordyFly.ServiceContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\devwordflyStaging.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

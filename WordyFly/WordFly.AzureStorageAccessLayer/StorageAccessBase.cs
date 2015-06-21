@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace WordFly.AzureStorageAccessLayer
 {
@@ -17,14 +18,21 @@ namespace WordFly.AzureStorageAccessLayer
 
         public CloudTableClient TableClient { get; private set; }
 
+        public CloudBlobClient BlobClient { get; private set; }
+
         public CloudTable EntityTable { get; private set; }
+
+        
+
+
 
         public bool IsTableLoaded { get; private set; }
 
         public StorageAccessBase()
         {
-            StorageAcount = CloudStorageAccount.Parse(ConfigManager.Config.TableConnectionString);
+            StorageAcount = CloudStorageAccount.Parse(ConfigManager.Config.StorageAccounntConnectionString);
             TableClient = StorageAcount.CreateCloudTableClient();
+            BlobClient = StorageAcount.CreateCloudBlobClient();
         }
         public bool LoadEntityTable(string entityType)
         {

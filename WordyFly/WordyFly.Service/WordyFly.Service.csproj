@@ -245,6 +245,10 @@
       <Project>{cc8b6340-eddd-47fa-8848-5127cd1b723d}</Project>
       <Name>WordFly.AzureStorageAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WordFly.Common\WordFly.Common.csproj">
+      <Project>{d670f7df-6eb9-4434-af2e-8238a25dd7c3}</Project>
+      <Name>WordFly.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WordFly.Game\WordFly.Game.csproj">
       <Project>{a1f64ef6-83d0-4b88-be7f-3096f3911ef9}</Project>
       <Name>WordFly.Game</Name>

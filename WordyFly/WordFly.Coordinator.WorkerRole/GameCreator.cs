@@ -7,6 +7,7 @@ using WordFly.Game;
 using Storage = WordFly.AzureStorageAccessLayer;
 using WordFly.Shared.Model;
 using WordFly.Common;
+using WordFly.AzureStorageAccessLayer.Entities;
 namespace WordFly.Coordinator.WorkerRole
 {
     /// <summary>
@@ -15,8 +16,6 @@ namespace WordFly.Coordinator.WorkerRole
     public static class GameCreator
     {
         private static Storage.GameStorageAccess gameStorageAccess;
-
-
         public static void CreateGames()
         {
             try
@@ -28,13 +27,29 @@ namespace WordFly.Coordinator.WorkerRole
                 {
                     DateTime gameStartTime = gameGeneratorConfig.LastGameEndTime.AddSeconds(1);
 
+                    //GameSession gameSession = new GameSession();
                     GameSession gameSession = GameFactory.GetGame(GameType.Normal);
+                    gameSession.LogicalGroup = Storage.StorageUtility.DayPartitionKey;
                     gameSession.StartTime = gameStartTime;
                     gameSession.GameDurationInSeconds = gameGeneratorConfig.GameDurationInSeconds;
-                    gameSession.EndTime = gameStartTime.AddSeconds(gameGeneratorConfig.TotalSecondsBetweenTwoGames);
-                    Storage.Entities.GameEntity game = Storage.StorageConverter.GetStorageGame(gameSession);
-                    gameStorageAccess.SaveGame(game);
+                    gameSession.EndTime = gameStartTime.AddSeconds(gameGeneratorConfig.GameDurationInSeconds + gameGeneratorConfig.TotalSecondsBetweenTwoGames);
 
+                    GameStoreEntity gameStoreEntity = Storage.StorageConverter.GetGameStoreEntity(gameSession);
+
+                    while (true)
+                    {
+                        try
+                        {
+                            gameStorageAccess.SaveGame(gameStoreEntity);
+                        }
+
+                        catch (Exception ex)
+                        {
+                            Common.Logger.Log(index +  ex.ToString());
+                            continue;
+                        }
+                        break;
+                    }
                     gameGeneratorConfig.LastGameEndTime = gameSession.EndTime;
                     // TODO: surender think about the performance
                     Storage.StorageUtility.SaveGameGeneratorConfig(gameGeneratorConfig);

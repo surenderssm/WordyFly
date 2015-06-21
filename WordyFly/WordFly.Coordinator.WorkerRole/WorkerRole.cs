@@ -61,12 +61,41 @@ namespace WordFly.Coordinator.WorkerRole
         private async Task RunAsync(CancellationToken cancellationToken)
         {
             // TODO: Replace the following with your own logic.
-            while (!cancellationToken.IsCancellationRequested)
+            //while (!cancellationToken.IsCancellationRequested)
+            //{
+            while (true)
             {
-                Trace.TraceInformation("Working");
-                GameCoordinator coordinator = new GameCoordinator();
-                coordinator.StartCoordinating();
-                await Task.Delay(1000);
+                try
+                {
+                    Task[] Tasks = new Task[]{ 
+                         Task.Factory.StartNew(() => GameCoordinator.StartCoordinating(), TaskCreationOptions.LongRunning)
+                        ,Task.Factory.StartNew(() => Print(), TaskCreationOptions.LongRunning)
+                        //,Task.Factory.StartNew(() => ArchiveStaleSessions(), TaskCreationOptions.LongRunning)
+                        //,Task.Factory.StartNew(() => DynamicAllocationToSubGroups(), TaskCreationOptions.LongRunning)
+                        //,Task.Factory.StartNew(() => ProcessEventHub(), TaskCreationOptions.LongRunning)
+                        //,Task.Factory.StartNew(() => ClearLocalCache(), TaskCreationOptions.LongRunning)
+                        };
+                    Task.WaitAll(Tasks);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("exc");                    
+                }
+               
+
+            }
+            //}
+        }
+
+        private static void Print()
+        {
+            long ctr = 0;
+            int sleep = 10;
+            while (true)
+            {
+                ctr++;
+                Console.WriteLine("ctr"+ ctr);
+                Thread.Sleep(sleep * 1000);
             }
         }
     }

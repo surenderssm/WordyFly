@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,11 +21,24 @@ namespace WordyFly.Service.Controllers
         public GameResponse Get()
         {
             GameResponse gameResponse = new GameResponse();
-
-            // TODO: Playing
-//            gameResponse.GamePlay = Repository.GameManager.GameMangerObject.GetGame();
-            gameResponse.StatusGamePlay = GameStatus.GameInPlay;
-            gameResponse.GameLeaderBoard = null;
+            try
+            {
+                // TODO: Playing
+                gameResponse.GamePlay = Repository.GameManager.GameMangerObject.GetGame();
+                // Removing States from the Get game
+                gameResponse.GamePlay.States = null;
+                gameResponse.StatusGamePlay = GameStatus.GameInPlay;
+                gameResponse.GameLeaderBoard = null;
+                gameResponse.ResponseStatus = 0;
+                return gameResponse;
+            }
+            catch (Exception ex)
+            {
+                gameResponse.ResponseStatus = 1;
+                WordFly.Common.Logger.Log(ex.ToString(), WordFly.Common.Logger.LogTypes.Exception);
+                Trace.TraceInformation(ex.ToString());
+                // TODO:   
+            }
             return gameResponse;
 
         }
