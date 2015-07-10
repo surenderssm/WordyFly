@@ -20,7 +20,7 @@ namespace GameUpdate
                 gameStorageAccess = new GameStorageAccess(Constants.GameRepositoryTableName);
 
                 var games = gameStorageAccess.GetGameEntities(GameEntityStatus.Undefined);
-
+                
                 foreach (var game in games)
                 {
                     var totalGameTime = game.EndTime.Subtract(game.StartTime);

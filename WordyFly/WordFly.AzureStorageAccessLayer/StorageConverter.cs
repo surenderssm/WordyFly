@@ -43,6 +43,7 @@ namespace WordFly.AzureStorageAccessLayer
             gameSession.StartTime = gameEntity.StartTime;
             gameSession.EndTime = gameEntity.EndTime;
             gameSession.SessionJumpCounter = gameEntity.SessionJumpCounter;
+            gameSession.GameDurationInSeconds = gameEntity.Duration;
 
             if (gameStoreEntity.GameStateEntityObject != null && gameStoreEntity.GameStateEntityObject.GameStates != null)
             {
@@ -72,6 +73,7 @@ namespace WordFly.AzureStorageAccessLayer
             gameEntity.CurrentState = gameSession.CurrentState;
             gameEntity.StartTime = gameSession.StartTime;
             gameEntity.EndTime = gameSession.EndTime;
+            gameEntity.Duration = gameSession.GameDurationInSeconds;
             return gameEntity;
         }
 
