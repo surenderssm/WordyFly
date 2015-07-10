@@ -13,6 +13,9 @@ namespace WordFly.AzureStorageAccessLayer
     {
         public const string GameRepositoryTableName = "GameRepository";
         public const string GameConfigTableName = "GameConfig";
+        public const string GameDayStoreTableName = "GameDayStore";
+        public const string GameArchiveTableName = "GameArchive";
+
 
     }
 }

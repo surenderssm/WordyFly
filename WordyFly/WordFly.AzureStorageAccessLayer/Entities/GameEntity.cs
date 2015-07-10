@@ -12,8 +12,10 @@ namespace WordFly.AzureStorageAccessLayer.Entities
         public Guid ID { get; set; }
         public string GameType { get; set; }
         public long Duration { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+
+         // DateTime.MinValue can not be stored in tableStorage due to lack of support
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public int NumberOfStates { get; set; }
         public int CurrentState { get; set; }
         public int SizeOfState { get; set; }

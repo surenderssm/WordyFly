@@ -26,17 +26,17 @@ namespace WordFly.Game
                     game = new GameSession(12, 12, 2);
                     break;
                 case GameType.Normal:
-                    game = new GameSession(60, 10, 1);
+                    game = new GameSession(60, 10, 1, 30);
                     break;
                 case GameType.HighAdvanced:
-                    game = new GameSession(14, 14, 2);
+                    game = new GameSession(14, 14, 2, 20);
                     break;
                 default:
-                    game = new GameSession(10, 10, 2);
+                    game = new GameSession(10, 10, 2, 30);
                     break;
             }
             //TODO: Surender add probability to the Game artifact
-            game.MasterAlpha = Utility.AlphaGenerator.GenerateRawAlpha(game.MaximumRawCharactersRequired, 30);
+            game.MasterAlpha = Utility.AlphaGenerator.GenerateRawAlpha(game.MaximumRawCharactersRequired, game.VowelsProbability);
             UpdateGameWithSessions(ref game);
             return game;
         }
@@ -72,9 +72,9 @@ namespace WordFly.Game
             // FIll the Valid words in Parallel
             Parallel.For(0, states.Count, stateIndex =>
             {
-                FillValidWords(states.ElementAt(stateIndex),masterAlpha);
+                FillValidWords(states.ElementAt(stateIndex), masterAlpha);
             });
-            game.States = new GameState { Items = states};
+            game.States = new GameState { Items = states };
         }
 
 

@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordFly.Coordinator.WorkerR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OfflineUtilities", "OfflineUtilities", "{C2AECE50-0799-49EE-85FB-4DAF5C8AAF74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameUpdate", "GameUpdate\GameUpdate.csproj", "{62B33092-02D7-47FE-94BC-012201021287}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameWareHouse", "OfflineUtilities\GameWareHouse\GameWareHouse.csproj", "{62B33092-02D7-47FE-94BC-012201021287}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

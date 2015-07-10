@@ -50,7 +50,7 @@ namespace WordFly.Coordinator.WorkerRole
                         }
                         break;
                     }
-                    gameGeneratorConfig.LastGameEndTime = gameSession.EndTime;
+                    gameGeneratorConfig.LastGameEndTime = (DateTime)gameSession.EndTime;
                     // TODO: surender think about the performance
                     Storage.StorageUtility.SaveGameGeneratorConfig(gameGeneratorConfig);
                 }

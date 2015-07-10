@@ -35,7 +35,7 @@ namespace WordFly.Common
         }
         public static void Log(Object logMessage, LogTypes logType = LogTypes.Information)
         {
-            string message = string.Format("Type of Log : {0} , Message : {1}", logType.ToString(), logMessage.ToString());
+            string message = string.Format("DateTime : {0} | Type of Log : {1} | Message : {2}",DateTime.Now ,logType.ToString(), logMessage.ToString());
 
             Console.WriteLine(message);
             if (eventSourceAvailable)
@@ -44,14 +44,13 @@ namespace WordFly.Common
             }
             else
             {
-                string fileName = "WordyFly.Service.Log.txt";
+                string fileName = "WordyFly.Logs.txt";
                 string runningBasePath = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase).LocalPath;
                 var filePath = Path.Combine(Path.GetDirectoryName(runningBasePath), fileName);
                 File.AppendAllText(filePath, message);
             }
             Trace.TraceInformation(message);
             Logs.Add(message);
-            
         }
 
         /// <summary>

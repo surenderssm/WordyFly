@@ -45,6 +45,7 @@ namespace WordFly.Shared.Model
 
         public int SizeOfState { get; set; }
 
+        public double VowelsProbability { get; set; }
         /// <summary>
         /// Get the Minimum Raw Charactes Required
         /// </summary>
@@ -92,12 +93,13 @@ namespace WordFly.Shared.Model
         /// <param name="numberOfSessions">Number of Expected session in Game</param>
         /// <param name="sizeOfSession">Number of ALpha in a single Session</param>
         /// <param name="sessionJumpCounter">Number of jumps to change the session</param>
-        public GameSession(int numberOfSessions, int sizeOfSession, int sessionJumpCounter)
+        public GameSession(int numberOfSessions, int sizeOfSession, int sessionJumpCounter, double vowelsProbability = 30)
         {
             ID = Guid.NewGuid();
             this.NumberOfStates = numberOfSessions;
             this.SizeOfState = sizeOfSession;
             this.SessionJumpCounter = sessionJumpCounter;
+            this.VowelsProbability = vowelsProbability;
         }
     }
 
@@ -181,7 +183,7 @@ namespace WordFly.Shared.Model
         public AtomicAlpha(char charCode)
         {
             Name = charCode.ToString();
-            CodeValue = (int)(charCode)-BaseCodeValue;
+            CodeValue = (int)(charCode) - BaseCodeValue;
         }
         public AtomicAlpha()
         {
