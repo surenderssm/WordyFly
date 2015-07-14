@@ -22,6 +22,7 @@ using Windows.UI.Popups;
 using WordyFlyWPClient.DataModel;
 using Windows.UI.Input;
 using System.Threading.Tasks;
+using WordFly.ServiceClientMe;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -37,7 +38,8 @@ namespace WordyFlyWPClient
         private Random rand = new Random();
 
         public Word tempWord;
-        public Queue<Alpha> queue = new Queue<Alpha>();
+        Queue<Masteralpha> queue = new Queue<Masteralpha>();
+        //public Queue<Alpha> queue = new Queue<Alpha>();
         public GameSession gameSession;
         private Point initialpoint;
         GestureRecognizer gr = new GestureRecognizer();
@@ -50,8 +52,6 @@ namespace WordyFlyWPClient
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            InitGame();
-            //CreateDictionary();
         }
 
         private void gr_ManipulationStarted(GestureRecognizer sender, ManipulationStartedEventArgs args)
@@ -195,8 +195,9 @@ namespace WordyFlyWPClient
             //  textBlock.DataContext = CurrentWord;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            await InitGame();
             StoryBoardInit();
         }
 
@@ -272,7 +273,10 @@ namespace WordyFlyWPClient
         }
         private async Task InitGame()
         {
-            //var resultTest = await WordFly.ServiceClientMe.GameRepository.GetGame();
+            StoryboardToggle(false);
+
+            var resultTest = await GameRepository.GetGame();
+            queue = resultTest.GamePlay.MasterAlpha;
 
             gameSession = new GameSession();
             gameSession.TimerSetup();
@@ -287,79 +291,71 @@ namespace WordyFlyWPClient
             this.PointerReleased += MainPage_PointerReleased;
             gr.ManipulationCompleted += gr_ManipulationCompleted;
             gr.ManipulationStarted += gr_ManipulationStarted;
-            gr.GestureSettings = GestureSettings.ManipulationTranslateX | Windows.UI.Input.GestureSettings.ManipulationTranslateY;
+            gr.GestureSettings = GestureSettings.ManipulationTranslateX | GestureSettings.ManipulationTranslateY;
 
             tempWord = new Word();
-            string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
-            char[] charList = Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
-            foreach (char c in charList)
-            {
-                queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
-            }
+            //string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
+            //char[] charList = Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
+            //foreach (char c in charList)
+            //{
+            //    queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
+            //}
 
             txtCurrentWord.DataContext = tempWord;
 
-            Alpha alpha = queue.Dequeue();
-            charBlock1.AlphaBlock.Character = alpha.Character;
-            charBlock1.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock1.AlphaBlock.Character = alpha.Name;
+            charBlock1.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock2.AlphaBlock.Character = alpha.Character;
-            charBlock2.AlphaBlock.Point = alpha.Point;
+            charBlock2.AlphaBlock.Character = alpha.Name;
+            charBlock2.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock3.AlphaBlock.Character = alpha.Character;
-            charBlock3.AlphaBlock.Point = alpha.Point;
+            charBlock3.AlphaBlock.Character = alpha.Name;
+            charBlock3.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock4.AlphaBlock.Character = alpha.Character;
-            charBlock4.AlphaBlock.Point = alpha.Point;
+            charBlock4.AlphaBlock.Character = alpha.Name;
+            charBlock4.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock5.AlphaBlock.Character = alpha.Character;
-            charBlock5.AlphaBlock.Point = alpha.Point;
+            charBlock5.AlphaBlock.Character = alpha.Name;
+            charBlock5.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock6.AlphaBlock.Character = alpha.Character;
-            charBlock6.AlphaBlock.Point = alpha.Point;
+            charBlock6.AlphaBlock.Character = alpha.Name;
+            charBlock6.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock7.AlphaBlock.Character = alpha.Character;
-            charBlock7.AlphaBlock.Point = alpha.Point;
+            charBlock7.AlphaBlock.Character = alpha.Name;
+            charBlock7.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock8.AlphaBlock.Character = alpha.Character;
-            charBlock8.AlphaBlock.Point = alpha.Point;
+            charBlock8.AlphaBlock.Character = alpha.Name;
+            charBlock8.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock9.AlphaBlock.Character = alpha.Character;
-            charBlock9.AlphaBlock.Point = alpha.Point;
+            charBlock9.AlphaBlock.Character = alpha.Name;
+            charBlock9.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
 
             alpha = queue.Dequeue();
-            charBlock10.AlphaBlock.Character = alpha.Character;
-            charBlock10.AlphaBlock.Point = alpha.Point;
+            charBlock10.AlphaBlock.Character = alpha.Name;
+            charBlock10.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+
+            StoryboardToggle(true);
         }
-        private async void CreateDictionary()
-        {
-            await UserProfile.GetUserProfile();
-            //StorageFolder assetFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            //StorageFile assetFile = await assetFolder.GetFileAsync(@"Files\Words.txt");
-            //Stream stream = await assetFile.OpenStreamForReadAsync();
-            //using (var streamReader = new StreamReader(stream))
-            //{
-            //    string str = streamReader.ReadToEnd().Replace("\r\n", "\n").Split('\n').ToDictionary(t=>t) ;
-            //}
-        }
+        
         private void ResetAlpha()
         {
             tempWord.CurrentWord = string.Empty;
@@ -379,15 +375,44 @@ namespace WordyFlyWPClient
             charBlock9.BlockReset();
             charBlock10.BlockReset();
         }
+        private void StoryboardToggle(bool start)
+        {
+            if(!start)
+            {
+                block1SlideIn.Stop();
+                block2SlideIn.Stop();
+                block3SlideIn.Stop();
+                block4SlideIn.Stop();
+                block5SlideIn.Stop();
+                block6SlideIn.Stop();
+                block7SlideIn.Stop();
+                block8SlideIn.Stop();
+                block9SlideIn.Stop();
+                block10SlideIn.Stop();
+            }
+            else
+            {
+                block1SlideIn.Begin();
+                block2SlideIn.Begin();
+                block3SlideIn.Begin();
+                block4SlideIn.Begin();
+                block5SlideIn.Begin();
+                block6SlideIn.Begin();
+                block7SlideIn.Begin();
+                block8SlideIn.Begin();
+                block9SlideIn.Begin();
+                block10SlideIn.Begin();
+            }
+        }
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
             ResetAlpha();
         }
         private void block1SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock1.AlphaBlock.Character = alpha.Character;
-            charBlock1.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock1.AlphaBlock.Character = alpha.Name;
+            charBlock1.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock1.BlockReset();
             block1SlideIn.Begin();
             charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
@@ -395,9 +420,9 @@ namespace WordyFlyWPClient
 
         private void block2SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock2.AlphaBlock.Character = alpha.Character;
-            charBlock2.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock2.AlphaBlock.Character = alpha.Name;
+            charBlock2.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock2.BlockReset();
             block2SlideIn.Begin();
             block2SlideIn.Seek(new TimeSpan(0, 0, 2));
@@ -406,9 +431,9 @@ namespace WordyFlyWPClient
 
         private void block3SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock3.AlphaBlock.Character = alpha.Character;
-            charBlock3.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock3.AlphaBlock.Character = alpha.Name;
+            charBlock3.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock3.BlockReset();
             block3SlideIn.Begin();
             block3SlideIn.Seek(new TimeSpan(0, 0, 4));
@@ -417,9 +442,9 @@ namespace WordyFlyWPClient
 
         private void block4SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock4.AlphaBlock.Character = alpha.Character;
-            charBlock4.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock4.AlphaBlock.Character = alpha.Name;
+            charBlock4.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock4.BlockReset();
             block4SlideIn.Begin();
             block4SlideIn.Seek(new TimeSpan(0, 0, 6));
@@ -428,9 +453,9 @@ namespace WordyFlyWPClient
 
         private void block5SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock5.AlphaBlock.Character = alpha.Character;
-            charBlock5.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock5.AlphaBlock.Character = alpha.Name;
+            charBlock5.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock5.BlockReset();
             block5SlideIn.Begin();
             block5SlideIn.Seek(new TimeSpan(0, 0, 8));
@@ -439,9 +464,9 @@ namespace WordyFlyWPClient
 
         private void block6SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock6.AlphaBlock.Character = alpha.Character;
-            charBlock6.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock6.AlphaBlock.Character = alpha.Name;
+            charBlock6.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock6.BlockReset();
             block6SlideIn.Begin();
             block6SlideIn.Seek(new TimeSpan(0, 0, 10));
@@ -450,9 +475,9 @@ namespace WordyFlyWPClient
 
         private void block7SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock7.AlphaBlock.Character = alpha.Character;
-            charBlock7.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock7.AlphaBlock.Character = alpha.Name;
+            charBlock7.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock7.BlockReset();
             block7SlideIn.Begin();
             block7SlideIn.Seek(new TimeSpan(0, 0, 12));
@@ -461,9 +486,9 @@ namespace WordyFlyWPClient
 
         private void block8SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock8.AlphaBlock.Character = alpha.Character;
-            charBlock8.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock8.AlphaBlock.Character = alpha.Name;
+            charBlock8.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock8.BlockReset();
             block8SlideIn.Begin();
             block8SlideIn.Seek(new TimeSpan(0, 0, 14));
@@ -472,9 +497,9 @@ namespace WordyFlyWPClient
 
         private void block9SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock9.AlphaBlock.Character = alpha.Character;
-            charBlock9.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock9.AlphaBlock.Character = alpha.Name;
+            charBlock9.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock9.BlockReset();
             block9SlideIn.Begin();
             block9SlideIn.Seek(new TimeSpan(0, 0, 16));
@@ -483,9 +508,9 @@ namespace WordyFlyWPClient
 
         private void block10SlideIn_Completed(object sender, object e)
         {
-            Alpha alpha = queue.Dequeue();
-            charBlock10.AlphaBlock.Character = alpha.Character;
-            charBlock10.AlphaBlock.Point = alpha.Point;
+            Masteralpha alpha = queue.Dequeue();
+            charBlock10.AlphaBlock.Character = alpha.Name;
+            charBlock10.AlphaBlock.Point = alpha.CodeValue.ToString();
             charBlock10.BlockReset();
             block10SlideIn.Begin();
             block10SlideIn.Seek(new TimeSpan(0, 0, 18));
