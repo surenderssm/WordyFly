@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\GameNotFoundException.cs" />
     <Compile Include="Exceptions\CreateGameFailedException.cs" />
     <Compile Include="Exceptions\InsufficientMasterAlphaException.cs" />
     <Compile Include="CommonUtility.cs" />

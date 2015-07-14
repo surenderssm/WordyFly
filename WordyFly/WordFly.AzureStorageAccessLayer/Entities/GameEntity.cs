@@ -28,6 +28,9 @@ namespace WordFly.AzureStorageAccessLayer.Entities
         public string States { get; set; }
 
         public int GameStatus { get; set; }
+
+        // ID of the Source Game
+        public Guid? SourceRepoGameID { get; set; }
     }
 
     /// <summary>

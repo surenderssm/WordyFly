@@ -134,6 +134,17 @@ namespace WordFly.ConfigManager
                 return count;
             }
         }
+        public static int NumberOfGamesToInsert
+        {
+            get
+            {
+                //int count = 1000;
+                int count = 40;
+                //  int.TryParse(Get("NumberOfGamesToCreate"), out count);
+                return count;
+            }
+        }
+
         public static int TimeToCreateGamesInMinutes
         {
             get
@@ -141,6 +152,17 @@ namespace WordFly.ConfigManager
                 int count = 10;
                 //int count = 20 * 60;
              //   int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
+                return count;
+            }
+        }
+
+        public static int TimeToInsertGamesInMinutes
+        {
+            get
+            {
+                int count = 160;
+                //int count = 20 * 60;
+                //   int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
                 return count;
             }
         }

@@ -14,12 +14,13 @@ namespace WordyFly.Service.Repository
 
         public static GameManager GameMangerObject = new GameManager();
         private Storage.GameStorageAccess gameStorageAccess = null;
+        private Storage.GameTransactionManager gameTransactionManager = null;
 
         private DateTime lastGameCreated;
 
         public GameManager()
         {
-            
+
         }
 
         /// <summary>
@@ -47,7 +48,6 @@ namespace WordyFly.Service.Repository
                 {
                     currentGame = GetGameFromTimeStamp(timeStamp);
                 }
-
             }
             return currentGame;
         }
@@ -56,8 +56,8 @@ namespace WordyFly.Service.Repository
         {
             try
             {
-                gameStorageAccess = new Storage.GameStorageAccess(Storage.Constants.GameRepositoryTableName);
-                var gameStoreEntity = gameStorageAccess.GetCurrentGame(timeStamp);
+                gameTransactionManager = new Storage.GameTransactionManager();
+                var gameStoreEntity = gameTransactionManager.GetGame(timeStamp);
                 var gameSession = Storage.StorageConverter.GetGameSession(gameStoreEntity);
                 return gameSession;
             }
@@ -65,7 +65,6 @@ namespace WordyFly.Service.Repository
             {
                 throw;
             }
-            
         }
     }
 }

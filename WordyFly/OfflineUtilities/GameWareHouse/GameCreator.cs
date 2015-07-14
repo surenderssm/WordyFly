@@ -11,7 +11,7 @@ namespace GameWareHouse
     using WordFly.Shared.Model;
     using WordFly.AzureStorageAccessLayer.Entities;
     using WordFly.Game;
-    using  WordFly.Common;
+    using WordFly.Common;
     using System.Diagnostics;
 
     /// <summary>
@@ -35,7 +35,8 @@ namespace GameWareHouse
                 // TODO: think for parallel approach
                 for (int index = 0; index < numberOfGames; index++)
                 {
-
+                    Stopwatch gameWatch = new Stopwatch();
+                    gameWatch.Start();
                     GameSession gameSession = GameFactory.GetGame(GameType.Normal);
                     gameSession.LogicalGroup = Storage.StorageUtility.DayPartitionKey;
                     GameStoreEntity gameStoreEntity = Storage.StorageConverter.GetGameStoreEntity(gameSession);
@@ -55,6 +56,9 @@ namespace GameWareHouse
                         }
                         break;
                     }
+                    gameWatch.Stop();
+                    string message = string.Format("Game #{2} Created : ID : {0} , Time Taken : {1}", gameSession.ID, gameWatch.ElapsedMilliseconds, index);
+                    Logger.Log(message);
                 }
 
             }
@@ -64,9 +68,9 @@ namespace GameWareHouse
                 throw new WordFly.Common.Exceptions.CreateGameFailedException("Not able to create Game !" + ex.ToString());
             }
             finally
-            { 
+            {
                 watch.Stop();
-                string message = string.Format("Time Taken to Create Games {0} : {1}",numberOfGames,watch.ElapsedMilliseconds);
+                string message = string.Format("Time Taken to Create Games {0} : {1}", numberOfGames, watch.ElapsedMilliseconds);
                 WordFly.Common.Logger.Log(message, Logger.LogTypes.Information);
             }
         }

@@ -18,7 +18,7 @@ namespace WordFly.Coordinator.WorkerRole.Test
             watch.Start();
             try
             {
-                GameCreator.CreateGames();
+                GameTransactionManager.CreateGames();
             }
             catch (Exception ex)
             {

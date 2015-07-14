@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameCoordinator.cs" />
-    <Compile Include="GameCreator.cs" />
+    <Compile Include="GameTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>

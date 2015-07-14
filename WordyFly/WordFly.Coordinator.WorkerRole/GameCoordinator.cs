@@ -23,34 +23,16 @@ namespace WordFly.Coordinator.WorkerRole
 
         public static async Task StartCoordinating()
         {
-            //Thread createGameCoordinator = new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    GameCreateCoordinate();
-            //});
-
-            //createGameCoordinator.Start();
-
-            //Thread archiveGame = new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    Console.WriteLine("archiving started");
-            //});
-
-            //archiveGame.Start();
-
-
-            await GameCreateCoordinate();
-
+            await GameInsertCoordinate();
         }
 
-        private static async Task GameCreateCoordinate()
+        private static async Task GameInsertCoordinate()
         {
             while (true)
             {
                 try
                 {
-                    Task createGameTask = new Task(new Action(CreateGame));
+                    Task createGameTask = new Task(new Action(InsertGames));
                     createGameTask.Start();
                     createGameTask.Wait();
 
@@ -58,14 +40,19 @@ namespace WordFly.Coordinator.WorkerRole
                 catch (Exception)
                 {
                     // Safe fail back
+                    continue;
                 }
-                await Task.Delay(ConfigManager.Config.TimeToCreateGamesInMinutes * 60 * 1000);
+                await Task.Delay(ConfigManager.Config.TimeToInsertGamesInMinutes * 60 * 1000);
             }
         }
 
-        private static void CreateGame()
+        private static void InsertGames()
         {
-           // GameCreator.CreateGames();
+            var gameTran = new GameTransaction();
+            for (int i = 0; i < ConfigManager.Config.NumberOfGamesToInsert; i++)
+            {
+                gameTran.InsertGames();
+            }
         }
     }
 }

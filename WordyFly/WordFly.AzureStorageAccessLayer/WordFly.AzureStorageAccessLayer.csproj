@@ -68,6 +68,7 @@
     <Compile Include="Entities\GameEntity.cs" />
     <Compile Include="GameGeneratorConfig.cs" />
     <Compile Include="Entities\GameConfig.cs" />
+    <Compile Include="GameTransactionManager.cs" />
     <Compile Include="MiscStorgaeAccess.cs" />
     <Compile Include="GameStorgaeAccess.cs" />
     <Compile Include="Entities\GameStoreEntity.cs" />
@@ -84,6 +85,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WordFly.Common\WordFly.Common.csproj">
+      <Project>{d670f7df-6eb9-4434-af2e-8238a25dd7c3}</Project>
+      <Name>WordFly.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WordFly.ConfigManager\WordFly.ConfigManager.csproj">
       <Project>{803714e3-2fba-496a-a3dc-9dd3f2bd3ffc}</Project>
       <Name>WordFly.ConfigManager</Name>

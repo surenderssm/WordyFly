@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="GameGenratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordsWikiTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WordFly.Game\WordFly.Game.csproj">

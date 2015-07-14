@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using WordFly.AzureStorageAccessLayer.Entities;
 
 namespace WordFly.AzureStorageAccessLayer
 {
@@ -23,6 +24,15 @@ namespace WordFly.AzureStorageAccessLayer
                 return DateTime.UtcNow.Date.Day.ToString();
             }
         }
+        public static string GetDayPartitionKey(DateTime datetime)
+        {
+            return datetime.Date.Day.ToString();
+        }
+
+        public static string GetRowKeyFromTicks(DateTime datetime)
+        {
+            return string.Format("{0:D19}", DateTime.MaxValue.Ticks - datetime.Ticks);
+        }
 
         public static GameGeneratorConfig GetGameGeneratorConfig()
         {
@@ -32,10 +42,9 @@ namespace WordFly.AzureStorageAccessLayer
 
             MiscStorgaeAccess storageAceess = new MiscStorgaeAccess();
 
-            var config = storageAceess.GetGameConfig(gameGeneratorKey);
-
             try
             {
+                GameConfig config = storageAceess.GetGameConfig(gameGeneratorKey);
                 gameGeneratorConfig = JsonConvert.DeserializeObject<GameGeneratorConfig>(config.Value);
             }
             catch
@@ -67,7 +76,7 @@ namespace WordFly.AzureStorageAccessLayer
             Entities.GameConfig gameConfig = new Entities.GameConfig();
             gameConfig.PartitionKey = "TBD";
             gameConfig.Key = gameGeneratorKey;
-            gameConfig.Value =JsonConvert.SerializeObject(config);
+            gameConfig.Value = JsonConvert.SerializeObject(config);
             storageAceess.SaveGameConfig(gameConfig);
         }
     }
