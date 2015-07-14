@@ -194,6 +194,7 @@
     <MainPackageIdentityName>953technoapurva.FC</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.3680792EA1A74</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.FunCorner</MainPackageIdentityName>
+    <MainPackageIdentityName>953technoapurva.IOTNotify</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.SkyDriveSpare2</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.Spare2</MainPackageIdentityName>
     <MainPackageIdentityName>953technoapurva.TestApp-123</MainPackageIdentityName>
@@ -202,7 +203,7 @@
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.1.0.17</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.1.0.18</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>
