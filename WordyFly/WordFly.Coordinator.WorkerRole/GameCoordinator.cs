@@ -43,6 +43,7 @@ namespace WordFly.Coordinator.WorkerRole
                     continue;
                 }
                 await Task.Delay(ConfigManager.Config.TimeToInsertGamesInMinutes * 60 * 1000);
+                await Task.Delay(2000);
             }
         }
 

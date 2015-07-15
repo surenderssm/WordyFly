@@ -30,5 +30,7 @@ namespace WordFly.Shared.Model
         public GameStatus StatusGamePlay;
 
         public int ResponseStatus { get; set; }
+
+        public DateTime? ServerUTC { get; set; }
     }
 }

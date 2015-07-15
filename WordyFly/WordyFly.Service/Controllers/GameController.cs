@@ -18,7 +18,7 @@ namespace WordyFly.Service.Controllers
 
         }
         // GET api/values
-        public GameResponse Get()
+        public GameResponse GetGame()
         {
             GameResponse gameResponse = new GameResponse();
             try
@@ -30,7 +30,6 @@ namespace WordyFly.Service.Controllers
                 gameResponse.StatusGamePlay = GameStatus.GameInPlay;
                 gameResponse.GameLeaderBoard = null;
                 gameResponse.ResponseStatus = 0;
-                return gameResponse;
             }
             catch (Exception ex)
             {
@@ -39,8 +38,14 @@ namespace WordyFly.Service.Controllers
                 Trace.TraceInformation(ex.ToString());
                 // TODO:   
             }
+            gameResponse.ServerUTC = DateTime.UtcNow;
             return gameResponse;
+        }
 
+        [HttpGet]
+        public DateTime Ping()
+        {
+            return DateTime.UtcNow;
         }
 
         // GET api/values/5

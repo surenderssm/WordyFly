@@ -130,7 +130,7 @@ namespace WordFly.ConfigManager
             {
                 //int count = 1000;
                 int count = 10;
-              //  int.TryParse(Get("NumberOfGamesToCreate"), out count);
+                //  int.TryParse(Get("NumberOfGamesToCreate"), out count);
                 return count;
             }
         }
@@ -138,8 +138,8 @@ namespace WordFly.ConfigManager
         {
             get
             {
-                //int count = 1000;
-                int count = 40;
+
+                int count = 300;
                 //  int.TryParse(Get("NumberOfGamesToCreate"), out count);
                 return count;
             }
@@ -149,9 +149,9 @@ namespace WordFly.ConfigManager
         {
             get
             {
-                int count = 10;
+                int count = 2 * 60;
                 //int count = 20 * 60;
-             //   int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
+                //   int.TryParse(Get("TimeToCreateGamesInMinutes"), out count);
                 return count;
             }
         }
@@ -173,7 +173,7 @@ namespace WordFly.ConfigManager
             {
                 int value = 2 * 60;
                 //int count = 20 * 60;
-             ///   int.TryParse(Get("GameDurationInSeconds"), out value);
+                ///   int.TryParse(Get("GameDurationInSeconds"), out value);
                 return value;
             }
         }
@@ -182,7 +182,7 @@ namespace WordFly.ConfigManager
         {
             get
             {
-                int value = 40;
+                int value = 45;
                 //int count = 20 * 60;
                 //int.TryParse(Get("GapBetweenTwoGamesInSeconds"), out value);
                 return value;
