@@ -25,6 +25,7 @@ namespace WordFly.ServiceClientMe
 
     public class Gameplay
     {
+        public int baseTime { get; set; }
         public string LogicalGroup { get; set; }
         public Guid ID { get; set; }
         public object Name { get; set; }
@@ -54,7 +55,7 @@ namespace WordFly.ServiceClientMe
         /// <summary>
         /// TODO: COnfigurable
         /// </summary>
-        private const string GameService = "http://c9035eadd5894f2b876da2ffa6b423cd.cloudapp.net/api/game";
+        private const string GameService = "http://devwordfly.cloudapp.net/api/game";
 
         public static async Task<Rootobject> GetGame()
         {
@@ -68,6 +69,17 @@ namespace WordFly.ServiceClientMe
                         string content = await response.Content.ReadAsStringAsync();
 
                         game = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(content);
+
+                        game.GamePlay.baseTime = (DateTime.UtcNow - game.GamePlay.StartTime).Seconds;
+                        if(game.GamePlay.baseTime > 120 || game.GamePlay.baseTime < 0)
+                        {
+                            game.GamePlay.baseTime = 0;
+                        }
+
+                        for(int i=21;i<= game.GamePlay.baseTime; i=i+2)
+                        {
+                            game.GamePlay.MasterAlpha.Dequeue();
+                        }
                     }
                 }
             }

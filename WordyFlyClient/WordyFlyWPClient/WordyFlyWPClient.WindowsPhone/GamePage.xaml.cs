@@ -44,6 +44,12 @@ namespace WordyFlyWPClient
         private Point initialpoint;
         GestureRecognizer gr = new GestureRecognizer();
         private static double baseGHridHeight = 490;
+        private double multiplier = 0;
+        public Rootobject GameResult { get; set; }
+
+        List<Storyboard> storyBoard = new List<Storyboard>();
+        List<CharBlock> charBlock = new List<CharBlock>();
+        List<Grid> gridBlock = new List<Grid>();
         public GamePage()
         {
             this.InitializeComponent();
@@ -52,8 +58,44 @@ namespace WordyFlyWPClient
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+            InitCharBlockList();
         }
 
+        public void InitCharBlockList()
+        {
+            storyBoard.Add(block1SlideIn);
+            storyBoard.Add(block2SlideIn);
+            storyBoard.Add(block3SlideIn);
+            storyBoard.Add(block4SlideIn);
+            storyBoard.Add(block5SlideIn);
+            storyBoard.Add(block6SlideIn);
+            storyBoard.Add(block7SlideIn);
+            storyBoard.Add(block8SlideIn);
+            storyBoard.Add(block9SlideIn);
+            storyBoard.Add(block10SlideIn);
+
+            charBlock.Add(charBlock1);
+            charBlock.Add(charBlock2);
+            charBlock.Add(charBlock3);
+            charBlock.Add(charBlock4);
+            charBlock.Add(charBlock5);
+            charBlock.Add(charBlock6);
+            charBlock.Add(charBlock7);
+            charBlock.Add(charBlock8);
+            charBlock.Add(charBlock9);
+            charBlock.Add(charBlock10);
+
+            gridBlock.Add(block1);
+            gridBlock.Add(block2);
+            gridBlock.Add(block3);
+            gridBlock.Add(block4);
+            gridBlock.Add(block5);
+            gridBlock.Add(block6);
+            gridBlock.Add(block7);
+            gridBlock.Add(block8);
+            gridBlock.Add(block9);
+            gridBlock.Add(block10);
+        }
         private void gr_ManipulationStarted(GestureRecognizer sender, ManipulationStartedEventArgs args)
         {
             initialpoint = args.Position;
@@ -166,24 +208,12 @@ namespace WordyFlyWPClient
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // tbInput.Focus(FocusState.Programmatic);
-            //   tbInput.Focus(FocusState.Programmatic);
-            //await StatusBar.GetForCurrentView().HideAsync();
-            block1SlideIn.Begin();
-            block2SlideIn.Begin();
-            block3SlideIn.Begin();
-            block4SlideIn.Begin();
-            block5SlideIn.Begin();
-            block6SlideIn.Begin();
-            block7SlideIn.Begin();
-            block8SlideIn.Begin();
-            block9SlideIn.Begin();
-            block10SlideIn.Begin();
             this.navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            StoryboardToggle(false);
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
@@ -192,98 +222,54 @@ namespace WordyFlyWPClient
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             tempWord.CurrentWord += Convert.ToString((sender as Button).Content);
-            //  textBlock.DataContext = CurrentWord;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await InitGame();
             StoryBoardInit();
+            await InitGame();
         }
 
         private void StoryBoardInit()
         {
             double gridActualHeight = ContentRoot.ActualHeight;
-            double multiplier = gridActualHeight / 490;
+            multiplier = gridActualHeight / 490;
             List<DoubleAnimationUsingKeyFrames> animationList = new List<DoubleAnimationUsingKeyFrames>();
 
-            block1.Width = multiplier * block1.Width;
-            block1.Height = multiplier * block1.Height;
-            block2.Width = multiplier * block2.Width;
-            block2.Height = multiplier * block2.Height;
-            block3.Width = multiplier * block3.Width;
-            block3.Height = multiplier * block3.Height;
-            block4.Width = multiplier * block4.Width;
-            block4.Height = multiplier * block4.Height;
-            block5.Width = multiplier * block5.Width;
-            block5.Height = multiplier * block5.Height;
-            block6.Width = multiplier * block6.Width;
-            block6.Height = multiplier * block6.Height;
-            block7.Width = multiplier * block7.Width;
-            block7.Height = multiplier * block7.Height;
-            block8.Width = multiplier * block8.Width;
-            block8.Height = multiplier * block8.Height;
-            block9.Width = multiplier * block9.Width;
-            block9.Height = multiplier * block9.Height;
-            block10.Width = multiplier * block10.Width;
-            block10.Height = multiplier * block10.Height;
+            //Scaling grid
+            foreach (Grid grid in gridBlock)
+            {
+                grid.Width = multiplier * grid.Width;
+                grid.Height = multiplier * grid.Height;
+            }
 
-            charBlock1.AlphaBlock.CharacterFontSize = multiplier * charBlock1.AlphaBlock.CharacterFontSize;
-            charBlock1.AlphaBlock.PointFontSize = multiplier * charBlock1.AlphaBlock.PointFontSize;
-            charBlock2.AlphaBlock.CharacterFontSize = multiplier * charBlock2.AlphaBlock.CharacterFontSize;
-            charBlock2.AlphaBlock.PointFontSize = multiplier * charBlock2.AlphaBlock.PointFontSize;
-            charBlock3.AlphaBlock.CharacterFontSize = multiplier * charBlock3.AlphaBlock.CharacterFontSize;
-            charBlock3.AlphaBlock.PointFontSize = multiplier * charBlock3.AlphaBlock.PointFontSize;
-            charBlock4.AlphaBlock.PointFontSize = multiplier * charBlock4.AlphaBlock.PointFontSize;
-            charBlock4.AlphaBlock.CharacterFontSize = multiplier * charBlock4.AlphaBlock.CharacterFontSize;
-            charBlock5.AlphaBlock.PointFontSize = multiplier * charBlock5.AlphaBlock.PointFontSize;
-            charBlock5.AlphaBlock.CharacterFontSize = multiplier * charBlock5.AlphaBlock.CharacterFontSize;
-            charBlock6.AlphaBlock.PointFontSize = multiplier * charBlock6.AlphaBlock.PointFontSize;
-            charBlock6.AlphaBlock.CharacterFontSize = multiplier * charBlock6.AlphaBlock.CharacterFontSize;
-            charBlock7.AlphaBlock.PointFontSize = multiplier * charBlock7.AlphaBlock.PointFontSize;
-            charBlock7.AlphaBlock.CharacterFontSize = multiplier * charBlock7.AlphaBlock.CharacterFontSize;
-            charBlock8.AlphaBlock.CharacterFontSize = multiplier * charBlock8.AlphaBlock.CharacterFontSize;
-            charBlock8.AlphaBlock.PointFontSize = multiplier * charBlock8.AlphaBlock.PointFontSize;
-            charBlock9.AlphaBlock.CharacterFontSize = multiplier * charBlock9.AlphaBlock.CharacterFontSize;
-            charBlock9.AlphaBlock.PointFontSize = multiplier * charBlock9.AlphaBlock.PointFontSize;
-            charBlock10.AlphaBlock.CharacterFontSize = multiplier * charBlock10.AlphaBlock.CharacterFontSize;
-            charBlock10.AlphaBlock.PointFontSize = multiplier * charBlock10.AlphaBlock.PointFontSize;
+            //Scaling block font sizes
+            foreach (CharBlock block in charBlock)
+            {
+                block.AlphaBlock.CharacterFontSize = multiplier * block.AlphaBlock.CharacterFontSize;
+                block.AlphaBlock.PointFontSize = multiplier * block.AlphaBlock.PointFontSize;
 
-            animationList.Add(block1SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block2SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block3SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block4SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block5SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block6SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block7SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block8SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block9SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
-            animationList.Add(block10SlideIn.Children[0] as DoubleAnimationUsingKeyFrames);
+            }
+
+            foreach (Storyboard story in storyBoard)
+            {
+                animationList.Add(story.Children[0] as DoubleAnimationUsingKeyFrames);
+            }
 
             foreach (DoubleAnimationUsingKeyFrames doubleAnimation in animationList)
             {
                 foreach (EasingDoubleKeyFrame myEasingKey in doubleAnimation.KeyFrames)
                 {
-                   // EasingDoubleKeyFrame myEasingKey = doubleAnimation.KeyFrames[1] as EasingDoubleKeyFrame;
                     myEasingKey.Value = multiplier * myEasingKey.Value;
-                    // myEasingKey.KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 5));
                 }
 
             }
+
         }
         private async Task InitGame()
         {
-            StoryboardToggle(false);
-
-            var resultTest = await GameRepository.GetGame();
-            queue = resultTest.GamePlay.MasterAlpha;
-
-            gameSession = new GameSession();
-            gameSession.TimerSetup();
-            txtPoint.DataContext = gameSession;
-            txtTotalWord.DataContext = gameSession;
-            txtTimer.DataContext = gameSession;
-
+            GameResult = await GameRepository.GetGame();
+            queue = GameResult.GamePlay.MasterAlpha;
 
             this.ManipulationMode = ManipulationModes.All;
             this.PointerPressed += MainPage_PointerPressed;
@@ -294,68 +280,43 @@ namespace WordyFlyWPClient
             gr.GestureSettings = GestureSettings.ManipulationTranslateX | GestureSettings.ManipulationTranslateY;
 
             tempWord = new Word();
-            //string chars = "AEIOUABCDEFGHIJKLMNOPQRAEIOUSTUVWXYZABCDEFGHIJKLMNOPAEIOUQRSTUVWXYZAEIOU";
-            //char[] charList = Enumerable.Repeat(chars, 1000).Select(s => s[rand.Next(s.Length)]).ToArray();
-            //foreach (char c in charList)
-            //{
-            //    queue.Enqueue(new Alpha() { Character = c.ToString(), Point = rand.Next(1, 10).ToString() });
-            //}
-
             txtCurrentWord.DataContext = tempWord;
 
-            Masteralpha alpha = queue.Dequeue();
-            charBlock1.AlphaBlock.Character = alpha.Name;
-            charBlock1.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 70), Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock2.AlphaBlock.Character = alpha.Name;
-            charBlock2.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock3.AlphaBlock.Character = alpha.Name;
-            charBlock3.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock4.AlphaBlock.Character = alpha.Name;
-            charBlock4.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock5.AlphaBlock.Character = alpha.Name;
-            charBlock5.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock6.AlphaBlock.Character = alpha.Name;
-            charBlock6.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock7.AlphaBlock.Character = alpha.Name;
-            charBlock7.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock8.AlphaBlock.Character = alpha.Name;
-            charBlock8.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock9.AlphaBlock.Character = alpha.Name;
-            charBlock9.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
-
-            alpha = queue.Dequeue();
-            charBlock10.AlphaBlock.Character = alpha.Name;
-            charBlock10.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            foreach (CharBlock block in charBlock)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                block.AlphaBlock.Character = alpha.Name;
+                block.AlphaBlock.Point = alpha.CodeValue.ToString();
+                block.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
 
             StoryboardToggle(true);
+
+            int baseTime = GameResult.GamePlay.baseTime;
+            for (int i = 0; i < storyBoard.Count; i++)
+            {
+                if (baseTime <= (20 + (i * 2)))
+                {
+                    storyBoard[i].Seek(new TimeSpan(0, 0, baseTime));
+                }
+                else
+                {
+                    int time = ((baseTime - (i * 2)) % 20);
+                    if (time == 0)
+                    {
+                        time = 20;
+                    }
+                    storyBoard[i].Seek(new TimeSpan(0, 0, time + (i * 2)));
+                }
+            }
+
+            gameSession = new GameSession();
+            gameSession.TimerSetup(GameResult.GamePlay.StartTime);
+            txtPoint.DataContext = gameSession;
+            txtTotalWord.DataContext = gameSession;
+            txtTimer.DataContext = gameSession;
         }
-        
+
         private void ResetAlpha()
         {
             tempWord.CurrentWord = string.Empty;
@@ -364,44 +325,23 @@ namespace WordyFlyWPClient
             txtTotalWord.Visibility = Visibility.Visible;
             txtPoint.Visibility = Visibility.Visible;
 
-            charBlock1.BlockReset();
-            charBlock2.BlockReset();
-            charBlock3.BlockReset();
-            charBlock4.BlockReset();
-            charBlock5.BlockReset();
-            charBlock6.BlockReset();
-            charBlock7.BlockReset();
-            charBlock8.BlockReset();
-            charBlock9.BlockReset();
-            charBlock10.BlockReset();
+            foreach (CharBlock block in charBlock)
+            {
+                block.BlockReset();
+            }
         }
         private void StoryboardToggle(bool start)
         {
-            if(!start)
+            foreach (Storyboard block in storyBoard)
             {
-                block1SlideIn.Stop();
-                block2SlideIn.Stop();
-                block3SlideIn.Stop();
-                block4SlideIn.Stop();
-                block5SlideIn.Stop();
-                block6SlideIn.Stop();
-                block7SlideIn.Stop();
-                block8SlideIn.Stop();
-                block9SlideIn.Stop();
-                block10SlideIn.Stop();
-            }
-            else
-            {
-                block1SlideIn.Begin();
-                block2SlideIn.Begin();
-                block3SlideIn.Begin();
-                block4SlideIn.Begin();
-                block5SlideIn.Begin();
-                block6SlideIn.Begin();
-                block7SlideIn.Begin();
-                block8SlideIn.Begin();
-                block9SlideIn.Begin();
-                block10SlideIn.Begin();
+                if (start)
+                {
+                    block.Begin();
+                }
+                else
+                {
+                    block.Stop();
+                }
             }
         }
         private void btnReset_Click(object sender, RoutedEventArgs e)
@@ -410,111 +350,141 @@ namespace WordyFlyWPClient
         }
         private void block1SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock1.AlphaBlock.Character = alpha.Name;
-            charBlock1.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock1.BlockReset();
-            block1SlideIn.Begin();
-            charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock1.AlphaBlock.Character = alpha.Name;
+                charBlock1.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock1.BlockReset();
+                block1SlideIn.Begin();
+                charBlock1.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block2SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock2.AlphaBlock.Character = alpha.Name;
-            charBlock2.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock2.BlockReset();
-            block2SlideIn.Begin();
-            block2SlideIn.Seek(new TimeSpan(0, 0, 2));
-            charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock2.AlphaBlock.Character = alpha.Name;
+                charBlock2.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock2.BlockReset();
+                block2SlideIn.Begin();
+                block2SlideIn.Seek(new TimeSpan(0, 0, 2));
+                charBlock2.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block3SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock3.AlphaBlock.Character = alpha.Name;
-            charBlock3.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock3.BlockReset();
-            block3SlideIn.Begin();
-            block3SlideIn.Seek(new TimeSpan(0, 0, 4));
-            charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock3.AlphaBlock.Character = alpha.Name;
+                charBlock3.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock3.BlockReset();
+                block3SlideIn.Begin();
+                block3SlideIn.Seek(new TimeSpan(0, 0, 4));
+                charBlock3.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block4SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock4.AlphaBlock.Character = alpha.Name;
-            charBlock4.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock4.BlockReset();
-            block4SlideIn.Begin();
-            block4SlideIn.Seek(new TimeSpan(0, 0, 6));
-            charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock4.AlphaBlock.Character = alpha.Name;
+                charBlock4.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock4.BlockReset();
+                block4SlideIn.Begin();
+                block4SlideIn.Seek(new TimeSpan(0, 0, 6));
+                charBlock4.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block5SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock5.AlphaBlock.Character = alpha.Name;
-            charBlock5.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock5.BlockReset();
-            block5SlideIn.Begin();
-            block5SlideIn.Seek(new TimeSpan(0, 0, 8));
-            charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock5.AlphaBlock.Character = alpha.Name;
+                charBlock5.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock5.BlockReset();
+                block5SlideIn.Begin();
+                block5SlideIn.Seek(new TimeSpan(0, 0, 8));
+                charBlock5.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block6SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock6.AlphaBlock.Character = alpha.Name;
-            charBlock6.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock6.BlockReset();
-            block6SlideIn.Begin();
-            block6SlideIn.Seek(new TimeSpan(0, 0, 10));
-            charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock6.AlphaBlock.Character = alpha.Name;
+                charBlock6.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock6.BlockReset();
+                block6SlideIn.Begin();
+                block6SlideIn.Seek(new TimeSpan(0, 0, 10));
+                charBlock6.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block7SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock7.AlphaBlock.Character = alpha.Name;
-            charBlock7.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock7.BlockReset();
-            block7SlideIn.Begin();
-            block7SlideIn.Seek(new TimeSpan(0, 0, 12));
-            charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock7.AlphaBlock.Character = alpha.Name;
+                charBlock7.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock7.BlockReset();
+                block7SlideIn.Begin();
+                block7SlideIn.Seek(new TimeSpan(0, 0, 12));
+                charBlock7.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block8SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock8.AlphaBlock.Character = alpha.Name;
-            charBlock8.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock8.BlockReset();
-            block8SlideIn.Begin();
-            block8SlideIn.Seek(new TimeSpan(0, 0, 14));
-            charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock8.AlphaBlock.Character = alpha.Name;
+                charBlock8.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock8.BlockReset();
+                block8SlideIn.Begin();
+                block8SlideIn.Seek(new TimeSpan(0, 0, 14));
+                charBlock8.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block9SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock9.AlphaBlock.Character = alpha.Name;
-            charBlock9.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock9.BlockReset();
-            block9SlideIn.Begin();
-            block9SlideIn.Seek(new TimeSpan(0, 0, 16));
-            charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock9.AlphaBlock.Character = alpha.Name;
+                charBlock9.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock9.BlockReset();
+                block9SlideIn.Begin();
+                block9SlideIn.Seek(new TimeSpan(0, 0, 16));
+                charBlock9.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
 
         private void block10SlideIn_Completed(object sender, object e)
         {
-            Masteralpha alpha = queue.Dequeue();
-            charBlock10.AlphaBlock.Character = alpha.Name;
-            charBlock10.AlphaBlock.Point = alpha.CodeValue.ToString();
-            charBlock10.BlockReset();
-            block10SlideIn.Begin();
-            block10SlideIn.Seek(new TimeSpan(0, 0, 18));
-            charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            if (queue.Count > 0)
+            {
+                Masteralpha alpha = queue.Dequeue();
+                charBlock10.AlphaBlock.Character = alpha.Name;
+                charBlock10.AlphaBlock.Point = alpha.CodeValue.ToString();
+                charBlock10.BlockReset();
+                block10SlideIn.Begin();
+                block10SlideIn.Seek(new TimeSpan(0, 0, 18));
+                charBlock10.RenderTransform = new CompositeTransform { TranslateX = rand.Next(0, 100) - 50, Rotation = rand.Next(0, 30) - 15 };
+            }
         }
         private void updateCurrentWord(string word, int point)
         {

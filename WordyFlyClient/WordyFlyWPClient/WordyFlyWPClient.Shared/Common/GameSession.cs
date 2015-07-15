@@ -20,7 +20,7 @@ namespace WordyFlyWPClient.Common
         public DateTimeOffset lastTime;
         public DateTimeOffset stopTime;
         private int timesTicked = 0;
-        private int timesToTick = 120;
+        public int timesToTick = 120;
         private string timerString = "0:00";
 
         public Dictionary<string, Word> wordList = new Dictionary<string, Word>();
@@ -115,8 +115,13 @@ namespace WordyFlyWPClient.Common
             }
         }
 
-        public void TimerSetup()
+        public void TimerSetup(DateTime startedTime)
         {
+            timesToTick = 120-(DateTime.UtcNow-startedTime).Seconds;
+            if(timesToTick>120 || timesToTick<0)
+            {
+                timesToTick = 120;
+            }
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
