@@ -164,6 +164,9 @@ namespace WordyFlyWPClient
             get { return this.defaultViewModel; }
         }
 
+        public object MessageBox { get; private set; }
+
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -268,7 +271,20 @@ namespace WordyFlyWPClient
         }
         private async Task InitGame()
         {
-            GameResult = await GameRepository.GetGame();
+            try
+            {
+                GameResult = await GameRepository.GetGame();
+                if(GameResult==null)
+                {
+                    await new MessageDialog("Something went wrong").ShowAsync();
+                    return;
+                }
+            }
+            catch(Exception e)
+            {
+                await new MessageDialog("Check your internet connection").ShowAsync();
+                return;
+            }
             queue = GameResult.GamePlay.MasterAlpha;
 
             this.ManipulationMode = ManipulationModes.All;
@@ -311,7 +327,7 @@ namespace WordyFlyWPClient
             }
 
             gameSession = new GameSession();
-            gameSession.TimerSetup(GameResult.GamePlay.StartTime);
+            gameSession.TimerSetup(GameResult.GamePlay.baseTime);
             txtPoint.DataContext = gameSession;
             txtTotalWord.DataContext = gameSession;
             txtTimer.DataContext = gameSession;

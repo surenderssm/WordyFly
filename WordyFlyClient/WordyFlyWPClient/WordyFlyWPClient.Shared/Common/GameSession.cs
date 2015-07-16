@@ -115,9 +115,9 @@ namespace WordyFlyWPClient.Common
             }
         }
 
-        public void TimerSetup(DateTime startedTime)
+        public void TimerSetup(int baseTime)
         {
-            timesToTick = 120-(DateTime.UtcNow-startedTime).Seconds;
+            timesToTick = 120-baseTime;
             if(timesToTick>120 || timesToTick<0)
             {
                 timesToTick = 120;
