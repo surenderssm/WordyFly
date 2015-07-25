@@ -17,7 +17,7 @@ namespace GameWareHouse
             //UpdateGame();
 
             Console.WriteLine("Game Creation Started");
-            CreateGames();
+           CreateGames();
             Console.WriteLine("Game Creation Completed");
             Console.ReadLine();
             Console.ReadLine();
@@ -28,7 +28,8 @@ namespace GameWareHouse
             try
             {
                 DateTime time = DateTime.UtcNow;
-                GameUpdate.StartDateOfAllGames(time);
+                GameUpdate.ArchiveGameTransactionTable();
+                //GameUpdate.StartDateOfAllGames(time);
             }
             catch (Exception)
             {

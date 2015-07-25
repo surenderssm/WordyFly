@@ -9,11 +9,11 @@ namespace WordFly.AzureStorageAccessLayer.Entities
 
     public class GameEntity : StoreEntityBase
     {
-        public Guid ID { get; set; }
+        public string ID { get { return base.RowKey; } set { base.RowKey = value; } }
         public string GameType { get; set; }
         public long Duration { get; set; }
 
-         // DateTime.MinValue can not be stored in tableStorage due to lack of support
+        // DateTime.MinValue can not be stored in tableStorage due to lack of support
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public int NumberOfStates { get; set; }
@@ -22,7 +22,7 @@ namespace WordFly.AzureStorageAccessLayer.Entities
         public int SessionJumpCounter { get; set; }
         //JSON of Master ALpha
         public string MasterAlpha { get; set; }
-       
+
         // JSON of States (up to 64KB in size) (Number of states * Max words <64 KB)
         // Blob path of the State stored
         public string States { get; set; }
@@ -30,14 +30,14 @@ namespace WordFly.AzureStorageAccessLayer.Entities
         public int GameStatus { get; set; }
 
         // ID of the Source Game
-        public Guid? SourceRepoGameID { get; set; }
+        public string SourceRepoGameID { get; set; }
     }
 
     /// <summary>
     /// State of the Game in the Storage
     /// </summary>
     public enum GameEntityStatus
-    { 
+    {
         Undefined,
         NotPlayed,
         Played,

@@ -22,7 +22,7 @@ namespace WordFly.Shared.Model
             }
             set { _logicalGroup = value; }
         }
-        public Guid ID { get; set; }
+        public string ID { get; set; }
 
         public string Name { get; set; }
 
@@ -95,7 +95,7 @@ namespace WordFly.Shared.Model
         /// <param name="sessionJumpCounter">Number of jumps to change the session</param>
         public GameSession(int numberOfSessions, int sizeOfSession, int sessionJumpCounter, double vowelsProbability = 30)
         {
-            ID = Guid.NewGuid();
+            ID = Guid.NewGuid().ToString();
             this.NumberOfStates = numberOfSessions;
             this.SizeOfState = sizeOfSession;
             this.SessionJumpCounter = sessionJumpCounter;

@@ -42,6 +42,32 @@ namespace WordyFly.Service.Controllers
             return gameResponse;
         }
 
+        /// <summary>
+        /// Get Game States ie Valid Wordsd
+        /// </summary>
+        /// <param name="gameID"></param>
+        /// <returns></returns>
+        public GameState GetGameState(string gameID)
+        {
+            GameState gameStates = new GameState();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(gameID))
+                { 
+
+                }
+                gameStates = Repository.GameManager.GameMangerObject.GetGameState(gameID);
+                
+                
+            }
+            catch (Exception ex)
+            {   WordFly.Common.Logger.Log(ex.ToString(), WordFly.Common.Logger.LogTypes.Exception);
+                Trace.TraceInformation(ex.ToString());
+                // TODO:   
+            }
+            return gameStates;
+        }
+
         [HttpGet]
         public DateTime Ping()
         {

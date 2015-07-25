@@ -65,7 +65,6 @@ namespace WordFly.AzureStorageAccessLayer
             Entities.GameEntity gameEntity = new Entities.GameEntity();
             gameEntity.PartitionKey = gameSession.LogicalGroup;
             gameEntity.ID = gameSession.ID;
-            gameEntity.RowKey = gameEntity.ID.ToString();
             gameEntity.MasterAlpha = JsonConvert.SerializeObject(gameSession.MasterAlpha);
             gameEntity.SessionJumpCounter = gameSession.SessionJumpCounter;
             gameEntity.NumberOfStates = gameSession.NumberOfStates;

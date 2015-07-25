@@ -32,6 +32,11 @@ namespace WordFly.AzureStorageAccessLayer
             GameTableName = gameTableName;
         }
 
+        public void DeleteTable()
+        {
+            LoadTable(GameTableName);
+            base.EntityTable.DeleteIfExists();
+        }
         /// <summary>
         /// Insert or Replace the Game
         /// </summary>
@@ -62,6 +67,7 @@ namespace WordFly.AzureStorageAccessLayer
             TableOperation insertGame = TableOperation.InsertOrReplace(entity);
             base.EntityTable.Execute(insertGame);
         }
+
         /// <summary>
         /// Store the Game state in Blob storage
         /// </summary>
@@ -177,22 +183,5 @@ namespace WordFly.AzureStorageAccessLayer
             return gameEntity;
         }
 
-
-        /// <summary>
-        /// Get the Current Game
-        /// </summary>
-        /// <returns></returns>
-        public GameStoreEntity GetGame(DateTime timeStamp)
-        {
-            var gEntity = GetGameEntity(timeStamp);
-            var gameState = GetGameState(gEntity.ID.ToString());
-
-            GameStoreEntity gameStoreEntity = new GameStoreEntity();
-            gameStoreEntity.GameEntityObject = gEntity;
-            gameStoreEntity.GameStateEntityObject = gameState;
-            return gameStoreEntity;
-        }
-
-      
     }
 }

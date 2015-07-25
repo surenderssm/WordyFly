@@ -32,16 +32,17 @@ namespace WordFly.Coordinator.WorkerRole
                 var gameEntityStore = gameTransactionManager.GetGameEntityFromStore(1).First();
                 GameEntity gameEntity = new GameEntity();
 
+                gameEntity.StartTime = gameStartTime;
+                gameEntity.ID = Storage.StorageUtility.GetRowKeyFromTicks(gameStartTime);
+                gameEntity.PartitionKey = Storage.StorageUtility.GetDayPartitionKey(gameStartTime);
+
                 // For the Reference
                 gameEntity.SourceRepoGameID = gameEntityStore.ID;
                 gameEntity.NumberOfStates = gameEntityStore.NumberOfStates;
                 gameEntity.SessionJumpCounter = gameEntityStore.SessionJumpCounter;
                 gameEntity.SizeOfState = gameEntityStore.SizeOfState;
 
-                gameEntity.StartTime = gameStartTime;
-                gameEntity.RowKey = Storage.StorageUtility.GetRowKeyFromTicks(gameStartTime);
-                gameEntity.ID = Guid.NewGuid();
-                gameEntity.PartitionKey = Storage.StorageUtility.GetDayPartitionKey(gameStartTime);
+               
                 gameEntity.Duration = gameGeneratorConfig.GameDurationInSeconds;
 
                 gameEntity.EndTime = gameStartTime.AddSeconds(gameEntity.Duration + gameGeneratorConfig.TotalSecondsBetweenTwoGames);

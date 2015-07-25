@@ -18,17 +18,18 @@ namespace GameWareHouse
             watch.Start();
             try
             {
-                gameStorageAccess = new GameStorageAccess(Constants.GameRepositoryTableName);
+               //gameStorageAccess = new GameStorageAccess(Constants.GameDayStoreTableName);
 
-                var games = gameStorageAccess.GetGameEntities(GameEntityStatus.Undefined);
+
+                //var games = gameStorageAccess.GetGameEntities(GameEntityStatus.Undefined);
                 
-                foreach (var game in games)
-                {
-                    var totalGameTime = game.EndTime.Value.Subtract(game.StartTime.Value);
-                    game.StartTime = gameStartUTC;
-                    game.EndTime = game.StartTime.Value.Add(totalGameTime);
-                    gameStorageAccess.SaveGameEntity(game);
-                }
+                //foreach (var game in games)
+                //{
+                //    var totalGameTime = game.EndTime.Value.Subtract(game.StartTime.Value);
+                //    game.StartTime = gameStartUTC;
+                //    game.EndTime = game.StartTime.Value.Add(totalGameTime);
+                //    gameStorageAccess.SaveGameEntity(game);
+                //}
             }
             catch (Exception)
             {
@@ -38,6 +39,13 @@ namespace GameWareHouse
             }
             watch.Stop();
             Console.WriteLine(" total time taken " + watch.Elapsed.TotalMilliseconds);
+        }
+
+
+        public static void ArchiveGameTransactionTable()
+        {
+            gameStorageAccess = new GameStorageAccess(Constants.GameDayStoreTableName);
+            gameStorageAccess.DeleteTable();
         }
     }
 }
