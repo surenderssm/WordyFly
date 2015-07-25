@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,12 @@ namespace WordFly.ServiceClientMe
         public object GameLeaderBoard { get; set; }
         public GameStatus StatusGamePlay { get; set; }
         public int ResponseStatus { get; set; }
+        public DateTime ServerUTC { get; set; }
     }
 
     public class Gameplay
     {
+        public int baseTime { get; set; }
         public string LogicalGroup { get; set; }
         public Guid ID { get; set; }
         public object Name { get; set; }
@@ -54,20 +57,39 @@ namespace WordFly.ServiceClientMe
         /// <summary>
         /// TODO: COnfigurable
         /// </summary>
-        private const string GameService = "http://c9035eadd5894f2b876da2ffa6b423cd.cloudapp.net/api/game";
+        private const string GameService = "http://devwordfly.cloudapp.net/api/game/getgame";
 
         public static async Task<Rootobject> GetGame()
         {
             Rootobject game = new Rootobject();
             using (HttpClient client = new HttpClient())
             {
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
                 using (HttpResponseMessage response = await client.GetAsync(new Uri(GameService)))
                 {
                     if (response.IsSuccessStatusCode)
                     {
                         string content = await response.Content.ReadAsStringAsync();
 
+                        stopWatch.Stop();
+
                         game = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(content);
+
+                        game.GamePlay.baseTime = (game.ServerUTC + new TimeSpan(stopWatch.ElapsedTicks/2) - game.GamePlay.StartTime).Seconds;
+                        if(game.GamePlay.baseTime > 120 || game.GamePlay.baseTime < 0)
+                        {
+                            game.GamePlay.baseTime = 0;
+                        }
+
+                        for(int i=21;i<= game.GamePlay.baseTime; i=i+2)
+                        {
+                            game.GamePlay.MasterAlpha.Dequeue();
+                        }
+                    }
+                    else
+                    {
+                        game = null;
                     }
                 }
             }
