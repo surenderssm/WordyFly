@@ -67,6 +67,39 @@ namespace WordyFly.Service.Controllers
             }
             return gameStates;
         }
+        /// <summary>
+        /// Submit the score of a user
+        /// </summary>
+        /// <param name="request"></param>
+        public void PostScore([FromBody]LeaderboardRequest request)
+        {
+            try
+            {
+                Repository.GameManager.GameMangerObject.SubmitScore(request);
+
+            }
+            catch (Exception ex)
+            {
+                WordFly.Common.Logger.Log(ex.ToString(), WordFly.Common.Logger.LogTypes.Exception);
+                Trace.TraceInformation(ex.ToString());
+                // TODO:   
+            }
+        }
+        public LeaderboardResponse GetLeaderboard(LeaderboardRequest request)
+        {
+            LeaderboardResponse response=new LeaderboardResponse();
+            try
+            {
+                response = Repository.GameManager.GameMangerObject.GetLeaderboard(request);
+            }
+            catch (Exception ex)
+            {
+                WordFly.Common.Logger.Log(ex.ToString(), WordFly.Common.Logger.LogTypes.Exception);
+                Trace.TraceInformation(ex.ToString());
+                // TODO:   
+            }
+            return response;
+        }
 
         [HttpGet]
         public DateTime Ping()

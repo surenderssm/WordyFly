@@ -3,6 +3,7 @@
 namespace WordFly.Shared.Model
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -16,11 +17,11 @@ namespace WordFly.Shared.Model
         /// <summary>
         /// GameID of the Game whose LeaderBoard is Presented
         /// </summary>
-        public Guid GameID { get; set; }
+        public string GameID { get; set; }
 
         /// <summary>
         /// List of Profiles participated in the Game
         /// </summary>
-        List<Profile> GameProfiles { get;set;}
+        public ConcurrentBag<Profile> GameProfiles { get;set;}
     }
 }

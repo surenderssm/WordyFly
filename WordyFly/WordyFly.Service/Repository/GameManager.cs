@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WordFly.Shared.Model;
-
 using Storage = WordFly.AzureStorageAccessLayer;
 namespace WordyFly.Service.Repository
 {
     public class GameManager
     {
         private GameSession currentGame;
+        private LeaderBoard currentLeaderBoard;
+        private bool isLeaderboardComplete=false;
         //private GameSession nextGame;
 
         public static GameManager GameMangerObject = new GameManager();
@@ -20,7 +22,13 @@ namespace WordyFly.Service.Repository
 
         public GameManager()
         {
-
+            GetGame();
+        }
+        public void GameInit()
+        {
+            currentGame = new GameSession();
+            currentLeaderBoard = new LeaderBoard();
+            isLeaderboardComplete = false;
         }
 
         /// <summary>
@@ -33,20 +41,12 @@ namespace WordyFly.Service.Repository
 
             // Logic to Poll from Cache for Active Games
 
-            if (currentGame == null)
+            if (currentGame == null || currentGame.EndTime < timeStamp)
             {
-                currentGame = new GameSession();
-
+                GameInit();
                 lock (currentGame)
                 {
-                    currentGame = GetGameFromTimeStamp(timeStamp);
-                }
-            }
-            else if (currentGame.EndTime < timeStamp)
-            {
-                lock (currentGame)
-                {
-                    currentGame = GetGameFromTimeStamp(timeStamp);
+                    currentGame = GetGameFromTimeStamp(timeStamp);                    
                 }
             }
             return currentGame;
@@ -92,6 +92,53 @@ namespace WordyFly.Service.Repository
             {
                 throw;
             }
+        }
+        public void SubmitScore(LeaderboardRequest request)
+        {
+            if(GameMangerObject.currentGame.ID.Equals(request.GameID))
+            {
+                if (GameMangerObject.currentLeaderBoard.GameProfiles == null)
+                {
+                    GameMangerObject.currentLeaderBoard.GameProfiles = new ConcurrentBag<Profile>();
+                }
+
+                GameMangerObject.currentLeaderBoard.GameProfiles.Add(request.GameProfile);
+            }
+        }
+        public void CalculateRank()
+        {
+            GameMangerObject.currentLeaderBoard.GameProfiles = new ConcurrentBag<Profile>(GameMangerObject.currentLeaderBoard.GameProfiles.OrderByDescending(profile => profile.Score));
+            for(int i=0;i<GameMangerObject.currentLeaderBoard.GameProfiles.Count;i++)
+            {
+                GameMangerObject.currentLeaderBoard.GameProfiles.ElementAt(i).Rank = i + 1;
+            }
+        }
+        public LeaderboardResponse GetLeaderboard(LeaderboardRequest request)
+        {
+            if (!GameMangerObject.isLeaderboardComplete)
+            {
+                CalculateRank();
+                GameMangerObject.isLeaderboardComplete = false;
+            }
+            LeaderboardResponse response = new LeaderboardResponse();
+            if (GameMangerObject.currentGame.ID.Equals(request.GameID))
+            {
+                response.LeaderBoard = GameMangerObject.currentLeaderBoard;
+                if (GameMangerObject.currentLeaderBoard.GameProfiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).Count() > 0)
+                {
+                    response.UserProfile = GameMangerObject.currentLeaderBoard.GameProfiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).FirstOrDefault();
+                }
+                else
+                {
+                    response.UserProfile = new Profile();
+                    response.UserProfile.UserID = request.GameProfile.UserID;
+                    response.UserProfile.UserName = request.GameProfile.UserName;
+                    response.UserProfile.NumberOfWords = request.GameProfile.NumberOfWords;
+                    response.UserProfile.Score = request.GameProfile.Score;
+                    response.UserProfile.Rank = GameMangerObject.currentLeaderBoard.GameProfiles.Count + 1;
+                }
+            }
+            return response;
         }
     }
 }

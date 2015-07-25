@@ -49,6 +49,8 @@
     <Compile Include="Model\GameSession.cs" />
     <Compile Include="Model\GameResponse.cs" />
     <Compile Include="Model\GameRequest.cs" />
+    <Compile Include="Model\LeaderboardRequest.cs" />
+    <Compile Include="Model\LeaderboardResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

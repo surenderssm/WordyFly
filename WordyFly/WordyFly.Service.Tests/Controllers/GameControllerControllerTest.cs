@@ -9,6 +9,7 @@ using WordyFly.Service;
 using WordyFly.Service.Controllers;
 using System.Threading;
 using System.Diagnostics;
+using WordFly.Shared.Model;
 
 namespace WordyFly.Service.Tests.Controllers
 {
@@ -24,7 +25,7 @@ namespace WordyFly.Service.Tests.Controllers
             // Arrange
             GameController controller = new GameController();
 
-            var data = controller.Get();
+           // var data = controller.Get();
 
             watch.Stop();
 
@@ -46,11 +47,28 @@ namespace WordyFly.Service.Tests.Controllers
         }
 
         [TestMethod]
+        public void PostScore()
+        {
+            // Arrange
+            GameController controller = new GameController();
+            LeaderboardRequest request = new LeaderboardRequest();
+            request.GameID = "123";
+            request.GameProfile = new Profile();
+            request.GameProfile.NumberOfWords = 12;
+            request.GameProfile.Score = 123;
+            request.GameProfile.UserID = "apurvapathak";
+            request.GameProfile.UserName = "Apurva Pathak";
+            // Act
+            controller.PostScore(request);
+
+            // Assert
+        }
+
+        [TestMethod]
         public void Post()
         {
             // Arrange
             GameController controller = new GameController();
-
             // Act
             controller.Post("value");
 
