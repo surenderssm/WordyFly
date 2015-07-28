@@ -271,7 +271,6 @@ namespace WordyFlyWPClient
         }
         private async Task InitGame()
         {
-            bool failureSignal = false;
             try
             {
                 GameResult = await GameRepository.GetGame();
@@ -282,13 +281,6 @@ namespace WordyFlyWPClient
                 }
             }
             catch(Exception e)
-            {
-                // As catch module can not have await
-                failureSignal = true;
-
-                
-            }
-            if (failureSignal)
             {
                 await new MessageDialog("Check your internet connection").ShowAsync();
                 return;
