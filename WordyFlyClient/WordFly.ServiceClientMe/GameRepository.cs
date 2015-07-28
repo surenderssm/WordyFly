@@ -29,7 +29,7 @@ namespace WordFly.ServiceClientMe
     {
         public int baseTime { get; set; }
         public string LogicalGroup { get; set; }
-        public Guid ID { get; set; }
+        public string ID { get; set; }
         public object Name { get; set; }
         public int CurrentState { get; set; }
         public DateTime StartTime { get; set; }
