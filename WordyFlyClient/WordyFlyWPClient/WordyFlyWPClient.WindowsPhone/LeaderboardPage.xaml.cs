@@ -16,11 +16,67 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WordyFlyWPClient.Data;
+using System.Threading.Tasks;
+using WordFly.ServiceClientMe;
+using Windows.UI.Popups;
+using System.ComponentModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WordyFlyWPClient
 {
+    public class CountDown : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChange(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private void DecrementBy(int step)
+        {
+            Count--;
+        }
+
+        public CountDown(long counter)
+        {
+            Count = counter;
+        }
+        private long count;
+        public long Count
+        {
+            get
+            {
+                return count;
+            }
+            set
+            {
+                count = value;
+                Timer = count.ToString();
+                OnPropertyChange("Count");
+            }
+        }
+
+        private string timer;
+        public string Timer
+        {
+            get
+            {
+
+                return timer;
+            }
+            set
+            {
+                timer = value;
+                OnPropertyChange("Timer");
+            }
+        }
+    }
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -28,6 +84,34 @@ namespace WordyFlyWPClient
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        DispatcherTimer countDownTimer;
+
+        private CountDown counter;
+
+        private void CountDownTimer_Tick(object sender, object e)
+        {
+            //txtCountdown.Text = count + " Seconds Remaining";
+
+
+            if (counter.Count > 0)
+            {
+
+                counter.Count--;
+                // TODO: remvoe
+                txtTimer.Text = counter.Timer;
+            }
+            if (counter.Count == 0)
+            {
+                countDownTimer.Stop();
+
+                // TODO : think Only for dev
+                Frame.Navigate(typeof(GamePage));
+
+            }
+        }
+
+        public WordFly.ServiceClientMe.GameRepository.LeaderboardResponse LeaderBoardViewModel { get; set; }
+
 
 
         public LeaderboardPage()
@@ -37,6 +121,11 @@ namespace WordyFlyWPClient
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            counter = new CountDown(10);
+            countDownTimer = new DispatcherTimer();
+            countDownTimer.Interval = new TimeSpan(0, 0, 0, 1);
+            countDownTimer.Tick += CountDownTimer_Tick;
         }
 
         /// <summary>
@@ -70,8 +159,15 @@ namespace WordyFlyWPClient
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data.
-            var group = await SampleDataSource.GetGroupAsync((string)e.NavigationParameter);
-            this.DefaultViewModel["Group"] = group;
+            //var group = await SampleDataSource.GetGroupAsync((string)e.NavigationParameter);
+            await GetLeaderBoard();
+            countDownTimer.Start();
+
+
+            txtTimer.Text = counter.Timer;
+            //this.DefaultViewModel["Counter"] = counter;
+
+            leaderboardListView.Width = leaderboardListViewHeader.Width;
         }
 
         /// <summary>
@@ -86,6 +182,38 @@ namespace WordyFlyWPClient
         {
         }
 
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async Task GetLeaderBoard()
+        {
+            bool failureSignal = false;
+            try
+            {
+                LeaderBoardViewModel = await GameRepository.GetLeaderBoard();
+                if (LeaderBoardViewModel == null)
+                {
+                    await new MessageDialog("Something went wrong").ShowAsync();
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                // As catch module can not have await
+                failureSignal = true;
+
+
+            }
+            if (failureSignal)
+            {
+                await new MessageDialog("Check your internet connection").ShowAsync();
+                return;
+            }
+
+            this.DefaultViewModel["LeaderBoardView"] = LeaderBoardViewModel;
+        }
         #region NavigationHelper registration
 
         /// <summary>

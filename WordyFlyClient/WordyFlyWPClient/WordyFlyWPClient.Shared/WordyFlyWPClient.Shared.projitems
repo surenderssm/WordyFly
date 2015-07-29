@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\GameSession.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\UserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\Alpha.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Leaderboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\SampleDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\Word.cs" />
     <Content Include="$(MSBuildThisFileDirectory)DataModel\SampleData.json" />
