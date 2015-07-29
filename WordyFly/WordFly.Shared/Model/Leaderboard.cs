@@ -22,6 +22,6 @@ namespace WordFly.Shared.Model
         /// <summary>
         /// List of Profiles participated in the Game
         /// </summary>
-        public ConcurrentBag<Profile> GameProfiles { get;set;}
+        public ConcurrentBag<Profile> Profiles { get;set;}
     }
 }

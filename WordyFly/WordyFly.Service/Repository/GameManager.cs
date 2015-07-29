@@ -97,20 +97,20 @@ namespace WordyFly.Service.Repository
         {
             if(GameMangerObject.currentGame.ID.Equals(request.GameID))
             {
-                if (GameMangerObject.currentLeaderBoard.GameProfiles == null)
+                if (GameMangerObject.currentLeaderBoard.Profiles == null)
                 {
-                    GameMangerObject.currentLeaderBoard.GameProfiles = new ConcurrentBag<Profile>();
+                    GameMangerObject.currentLeaderBoard.Profiles = new ConcurrentBag<Profile>();
                 }
 
-                GameMangerObject.currentLeaderBoard.GameProfiles.Add(request.GameProfile);
+                GameMangerObject.currentLeaderBoard.Profiles.Add(request.GameProfile);
             }
         }
         public void CalculateRank()
         {
-            GameMangerObject.currentLeaderBoard.GameProfiles = new ConcurrentBag<Profile>(GameMangerObject.currentLeaderBoard.GameProfiles.OrderByDescending(profile => profile.Score));
-            for(int i=0;i<GameMangerObject.currentLeaderBoard.GameProfiles.Count;i++)
+            GameMangerObject.currentLeaderBoard.Profiles = new ConcurrentBag<Profile>(GameMangerObject.currentLeaderBoard.Profiles.OrderByDescending(profile => profile.Score));
+            for(int i=0;i<GameMangerObject.currentLeaderBoard.Profiles.Count;i++)
             {
-                GameMangerObject.currentLeaderBoard.GameProfiles.ElementAt(i).Rank = i + 1;
+                GameMangerObject.currentLeaderBoard.Profiles.ElementAt(i).Rank = i + 1;
             }
         }
         public LeaderboardResponse GetLeaderboard(LeaderboardRequest request)
@@ -124,9 +124,9 @@ namespace WordyFly.Service.Repository
             if (GameMangerObject.currentGame.ID.Equals(request.GameID))
             {
                 response.LeaderBoard = GameMangerObject.currentLeaderBoard;
-                if (GameMangerObject.currentLeaderBoard.GameProfiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).Count() > 0)
+                if (GameMangerObject.currentLeaderBoard.Profiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).Count() > 0)
                 {
-                    response.UserProfile = GameMangerObject.currentLeaderBoard.GameProfiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).FirstOrDefault();
+                    response.UserProfile = GameMangerObject.currentLeaderBoard.Profiles.Where(profile => profile.UserID.Equals(request.GameProfile.UserID)).FirstOrDefault();
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace WordyFly.Service.Repository
                     response.UserProfile.UserName = request.GameProfile.UserName;
                     response.UserProfile.NumberOfWords = request.GameProfile.NumberOfWords;
                     response.UserProfile.Score = request.GameProfile.Score;
-                    response.UserProfile.Rank = GameMangerObject.currentLeaderBoard.GameProfiles.Count + 1;
+                    response.UserProfile.Rank = GameMangerObject.currentLeaderBoard.Profiles.Count + 1;
                 }
             }
             return response;
