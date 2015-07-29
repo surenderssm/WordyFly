@@ -267,14 +267,13 @@ namespace WordyFlyWPClient
                 }
 
             }
-
         }
         private async Task InitGame()
         {
             bool failureSignal = false;
             try
             {
-                GameResult = await GameRepository.GetGame();
+            GameResult = await GameRepository.GetGame();
                 if(GameResult==null)
                 {
                     await new MessageDialog("Something went wrong").ShowAsync();

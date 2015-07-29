@@ -117,6 +117,8 @@ namespace WordyFlyWPClient.Common
 
         public void TimerSetup(int baseTime)
         {
+            //Hub
+
             timesToTick = 120-baseTime;
             if(timesToTick>120 || timesToTick<0)
             {

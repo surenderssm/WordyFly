@@ -15,118 +15,67 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WordyFlyWPClient.Data;
 using System.Threading.Tasks;
-using WordFly.ServiceClientMe;
-using Windows.UI.Popups;
-using System.ComponentModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WordyFlyWPClient
 {
-    public class CountDown : INotifyPropertyChanged
+    public class WordsTripod
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChange(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        private void DecrementBy(int step)
-        {
-            Count--;
-        }
-
-        public CountDown(long counter)
-        {
-            Count = counter;
-        }
-        private long count;
-        public long Count
-        {
-            get
-            {
-                return count;
-            }
-            set
-            {
-                count = value;
-                Timer = count.ToString();
-                OnPropertyChange("Count");
-            }
-        }
-
-        private string timer;
-        public string Timer
-        {
-            get
-            {
-
-                return timer;
-            }
-            set
-            {
-                timer = value;
-                OnPropertyChange("Timer");
-            }
-        }
+        public string Word1 { get; set; }
+        public string Word2 { get; set; }
+        public string Word3 { get; set; }
     }
+
+    public class WordsTripodGroup
+    {
+        public List<WordsTripod> ValidWordsTripod { get; set; }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LeaderboardPage : Page
+    public sealed partial class ValidWordsPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         DispatcherTimer countDownTimer;
-
         private CountDown counter;
+        List<WordsTripod> ValidWordsTripod;
 
-        private void CountDownTimer_Tick(object sender, object e)
-        {
-            //txtCountdown.Text = count + " Seconds Remaining";
-
-
-            if (counter.Count > 0)
-            {
-
-                counter.Count--;
-                // TODO: remvoe
-            //    txtTimer.Text = counter.Timer;
-            }
-            if (counter.Count == 0)
-            {
-                countDownTimer.Stop();
-
-                // TODO : think Only for dev
-                Frame.Navigate(typeof(GamePage));
-
-            }
-        }
-
-        public WordFly.ServiceClientMe.GameRepository.LeaderboardResponse LeaderBoardViewModel { get; set; }
-
-
-
-        public LeaderboardPage()
+        public ValidWordsPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
+            ValidWordsTripod = new List<WordsTripod>();
             counter = new CountDown(10);
             countDownTimer = new DispatcherTimer();
             countDownTimer.Interval = new TimeSpan(0, 0, 0, 1);
             countDownTimer.Tick += CountDownTimer_Tick;
         }
+        private void CountDownTimer_Tick(object sender, object e)
+        {
+            //txtCountdown.Text = count + " Seconds Remaining";
+
+            if (counter.Count > 0)
+            {
+                counter.Count--;
+                // TODO: remvoe
+                //    txtTimer.Text = counter.Timer;
+            }
+            if (counter.Count == 0)
+            {
+                countDownTimer.Stop();
+
+                // TODO : think Only for dev
+                Frame.Navigate(typeof(LeaderboardPage));
+            }
+        }
+
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -158,18 +107,62 @@ namespace WordyFlyWPClient
         /// session.  The state will be null the first time a page is visited.</param>
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data.
-            //var group = await SampleDataSource.GetGroupAsync((string)e.NavigationParameter);
-            await GetLeaderBoard();
-            countDownTimer.Start();
+            try
+            {
 
+                countDownTimer.Start();
+                //txtTimer.Text = counter.Timer;
+                txtTimer.DataContext = counter;
+                SetWords();
+                WordsTripodGroup group = new WordsTripodGroup();
+                group.ValidWordsTripod = ValidWordsTripod;
+                this.DefaultViewModel["LeaderBoardView"] = group;
+                //leaderboardListView.DataContext = ValidWordsTripod;
+                txtPossibleWords.Text = ValidWordsTripod.Count.ToString();
+                await GameManager.SubmitScore();
+            }
+            catch (Exception)
+            {
 
-            //txtTimer.Text = counter.Timer;
-            txtTimer.DataContext = counter;
-            //this.DefaultViewModel["Counter"] = counter;
+                throw;
+            }
 
-            leaderboardListView.Width = leaderboardListViewHeader.Width;
         }
+
+        /// <summary>
+        /// DUmmy Valdi Words
+        /// </summary>
+        private void SetWords()
+        {
+            int totalWords = UserProfile.ValidWords.Count;
+            var wordList = UserProfile.ValidWords.Keys.ToList();
+            var randomGenerator = new Random();
+
+            int possibleWords = randomGenerator.Next(200, 400);
+
+            List<string> lstPossibleWords = new List<string>();
+
+            for (int i = 0; i < possibleWords; i++)
+            {
+                lstPossibleWords = new List<string>();
+
+                for (int index = 0; index < 3; index++)
+                {
+
+                    int randomIndex = randomGenerator.Next(2, totalWords - 10);
+                    try
+                    {
+                        lstPossibleWords.Add(wordList.ElementAt(randomIndex));
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+                ValidWordsTripod.Add(new WordsTripod { Word1 = lstPossibleWords[0], Word2 = lstPossibleWords[1], Word3 = lstPossibleWords[2] });
+            }
+        }
+
 
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -183,38 +176,6 @@ namespace WordyFlyWPClient
         {
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private async Task GetLeaderBoard()
-        {
-            bool failureSignal = false;
-            try
-            {
-                await GameManager.GetLeaderBoard();
-                if (GameManager.GameData.LeaderBoard == null)
-                {
-                    await new MessageDialog("Something went wrong").ShowAsync();
-                    return;
-                }
-            }
-            catch (Exception e)
-            {
-                // As catch module can not have await
-                failureSignal = true;
-
-
-            }
-            if (failureSignal)
-            {
-                await new MessageDialog("Check your internet connection").ShowAsync();
-                return;
-            }
-
-            this.DefaultViewModel["LeaderBoardView"] = GameManager.GameData.LeaderBoard;
-        }
         #region NavigationHelper registration
 
         /// <summary>

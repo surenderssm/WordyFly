@@ -1,17 +1,14 @@
 ﻿<Page
-    x:Class="WordyFlyWPClient.LeaderboardPage"
+    x:Class="WordyFlyWPClient.ValidWordsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WordyFlyWPClient"
-    xmlns:data="using:WordFly.ServiceClientMe"
-
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding DefaultViewModel.LeaderBoardView, RelativeSource={RelativeSource Self}}"
-    d:DataContext="{Binding Groups[0], Source={d:DesignData Source=../WordyFlyWPClient.Shared/DataModel/SampleData.json, Type=data:SampleDataSource}}"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+   DataContext="{Binding DefaultViewModel.LeaderBoardView, RelativeSource={RelativeSource Self}}"
 
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
@@ -44,22 +41,21 @@
                 </Grid.RowDefinitions>
                 <!--Binding LeaderBoard.UserProfile.Rank}-->
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock  Name="txtRank" Text="{Binding UserProfile.Rank}" FontSize="28" Margin="15,5,0,0" FontStyle="Italic"></TextBlock>
-                    <TextBlock   x:Name="txtUserName" Text="{Binding UserProfile.UserName}" FontSize="28" Margin="45,5,0,0" FontStyle="Italic" RenderTransformOrigin="1.538,0.439" Width="72"/>
+                    <TextBlock  Name="txtRank" Text="Possible Words" FontSize="28" Margin="15,5,0,0" FontStyle="Italic"></TextBlock>
                 </StackPanel>
 
                 <Line Grid.Row="1" X1="0" X2="1" Stretch="Fill" Stroke="White" />
                 <StackPanel Grid.Row="2" Orientation="Horizontal"  >
-                    <TextBlock  Name="txtTotalParticipant" Text="{Binding TotalParticipant}" FontSize="28" Margin="15,5,0,0" FontStyle="Italic"></TextBlock>
+                    <TextBlock  Name="txtTotalParticipant" Text="" FontSize="28" Margin="15,5,0,0" FontStyle="Italic"></TextBlock>
                     <TextBlock HorizontalAlignment="Center" Name="txtScore"  FontSize="15" Margin="35,5,0,0" FontStyle="Italic">
                           <Run Text="Score"></Run>
-                        <Run Text="{Binding UserProfile.Score}" ></Run>
+                        <Run Text="" ></Run>
                     </TextBlock>
 
-                    <TextBlock  HorizontalAlignment="Center" Name="txtWords" FontSize="15" Margin="15,5,0,0" FontStyle="Italic">
+                    <!--<TextBlock  HorizontalAlignment="Center" Name="txtWords" FontSize="15" Margin="15,5,0,0" FontStyle="Italic">
                           <Run Text="Words "></Run>
                         <Run Text="{Binding UserProfile.NumberOfWords}" ></Run>
-                    </TextBlock>
+                    </TextBlock>-->
 
                 </StackPanel>
                 <!--<TextBlock Grid.Row="0" Name="txtRank" Text="{Binding UserProfile.Rank}" FontSize="28" Margin="15,5,0,0" FontStyle="Italic"></TextBlock>-->
@@ -76,75 +72,55 @@
                 <!--Binding LeaderBoard.UserProfile.Rank}-->
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <!--Text="{Binding Name, Mode OneWay, StringFormat=Hi, {0}}"/-->
-                    <TextBlock  Name="txtPercentageRank"  FontSize="30" Margin="15,5,0,0" FontStyle="Italic">
-                        <Run Text="{Binding PercentageRank}" ></Run>
-                        <Run Text="%"></Run>
+                    <TextBlock  Name="txtPossibleWords" Text="" FontSize="30" Margin="15,5,0,0" FontStyle="Italic">
+                        <!--<Run Text="" ></Run>-->
+                        <!--<Run Text="%"></Run>-->
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock  Name="txtblTIme" Text="Next game" FontSize="20" ></TextBlock>
+                    <TextBlock  Name="txtblTIme" Text="LeaderBoard " FontSize="20" ></TextBlock>
                     <TextBlock  Name="txtTimer" Text="{Binding Timer}" Margin="5,0,0,0"  FontSize="20" ></TextBlock>
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="leaderboardListViewHeader" Grid.Row="1"  Margin="19,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="63*"/>
-                <!--Rank-->
-                <ColumnDefinition Width="169*"/>
-                <!--Name-->
-                <ColumnDefinition Width="85*"/>
-                <!--Score-->
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="33*"/>
-                <!--Words-->
-                <!--<ColumnDefinition Width="20*"/>-->
-                <!--Country-->
-            </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Left" FontSize="15" Grid.Column="0" Text="Rank" />
-            <TextBlock HorizontalAlignment="Left" FontSize="15" Text="Name" Grid.ColumnSpan="2" Margin="63,0,0,0" />
-            <TextBlock HorizontalAlignment="Left" FontSize="15" Grid.Column="1" Text="Score" Grid.ColumnSpan="2" Margin="168.667,0,0,0" />
-            <TextBlock HorizontalAlignment="Left" FontSize="15" Grid.Column="2" Text="Words" Grid.ColumnSpan="3" Margin="84.5,0,0,0" />
-            <!--<TextBlock Grid.Column="4" Text="Country" />-->
-        </Grid>
+
         <Grid Grid.Row="2" x:Name="ContentRoot" Margin="19,0" Background="#00158338" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="36*"/>
-                <ColumnDefinition Width="145*"/>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="33*"/>
             </Grid.ColumnDefinitions>
-
+            
             <ListView
-            x:Name="leaderboardListView"
+                  x:Name="leaderboardListView"
             AutomationProperties.AutomationId="leaderboardListView"
             AutomationProperties.Name="leaderboardListView"
             TabIndex="1"
-            ItemsSource="{Binding LeaderBoard.Profiles}"
             IsItemClickEnabled="True"
             SelectionMode="None"
-            IsSwipeEnabled="false" Margin="0,0,-0.333,0" Grid.ColumnSpan="2"
+            ItemsSource="{Binding ValidWordsTripod}"
+
+            IsSwipeEnabled="false" Margin="0,0,-0.333,0" Grid.ColumnSpan="3"
            >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="320">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15*"/>
                                 <!--Rank-->
-                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="33*"/>
                                 <!--Name-->
-                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="33*"/>
                                 <!--Score-->
-                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="33*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock HorizontalAlignment="Center" FontSize="15" Grid.Column="0" Text="{Binding Rank}" />
-                            <TextBlock  HorizontalAlignment="Center" FontSize="15" Grid.Column="1" Text="{Binding UserName}" />
-                            <TextBlock  HorizontalAlignment="Center" FontSize="15" Grid.Column="2" Margin="40,0,0,0" Text="{Binding Score}" />
-                            <TextBlock HorizontalAlignment="Center" FontSize="15" Grid.Column="3" Margin="25,0,0,0" Text="{Binding NumberOfWords}" />
+                            <!--<TextBlock HorizontalAlignment="Center" FontSize="15" Grid.Column="0" Text="{Binding Rank}" />-->
+                            <TextBlock  HorizontalAlignment="Center" FontSize="10" Grid.Column="0" Text="{Binding Word1}" />
+                            <TextBlock  HorizontalAlignment="Center" FontSize="10" Grid.Column="1" Margin="30,0,0,0" Text="{Binding Word2}" />
+                            <TextBlock HorizontalAlignment="Center" FontSize="10" Grid.Column="2" Margin="30,0,0,0" Text="{Binding Word3}" />
 
                             <!--<TextBlock Grid.Column="0" Text="1" />
                             <TextBlock Grid.Column="1" Text="2" />
-                            <TextBlock Grid.Column="2" Text="3" />
-                            <TextBlock Grid.Column="3"  Text="4" />
-                            <TextBlock Grid.Column="4"  Text="5"/>-->
+                            <TextBlock Grid.Column="2" Text="3" />-->
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

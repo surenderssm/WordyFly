@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using WordFly.Shared.Model;
+using Windows.Web.Http.Headers;
 namespace WordFly.ServiceClientMe
 {
     public enum GameStatus
@@ -52,22 +53,35 @@ namespace WordFly.ServiceClientMe
     }
 
 
-    public class GameRepository
+    public static class GameRepository
     {
 
         /// <summary>
         /// TODO: COnfigurable
         /// </summary>
-        private const string GameService = "http://devwordfly.cloudapp.net/api/game/getgame";
+        private const string gameService = "http://devwordfly.cloudapp.net/api/game/getgame";
+        private const string baseServiceURI = "http://devwordfly.cloudapp.net/api/";
+
+        private const string getGameService = baseServiceURI + "game/getgame";
+        private const string getLeaderBoardService = baseServiceURI + "game/GetLeaderboard";
+        private const string postScoreService = baseServiceURI + "game/PostScore";
+
+
+        //private static HttpClient httpClient;
+        static GameRepository()
+        {
+            //httpClient = new HttpClient();
+        }
 
         public static async Task<Rootobject> GetGame()
         {
+
             Rootobject game = new Rootobject();
             using (HttpClient client = new HttpClient())
             {
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
-                using (HttpResponseMessage response = await client.GetAsync(new Uri(GameService)))
+                using (HttpResponseMessage response = await client.GetAsync(new Uri(getGameService)))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -95,6 +109,7 @@ namespace WordFly.ServiceClientMe
                 }
             }
             return game;
+
         }
 
 
@@ -168,6 +183,12 @@ namespace WordFly.ServiceClientMe
 
             }
         }
+        public class LeaderboardRequest
+        {
+            public string GameID { get; set; }
+            public Profile GameProfile { get; set; }
+        }
+
 
         public class LeaderBoard
         {
@@ -182,69 +203,76 @@ namespace WordFly.ServiceClientMe
             public List<Profile> Profiles { get; set; }
         }
 
-        //TODO: remove
-        private static LeaderboardResponse GetDummyLeaderBoard()
+        ////TODO: remove
+        //private static LeaderboardResponse GetDummyLeaderBoard()
+        //{
+        //    LeaderboardResponse response = new LeaderboardResponse();
+
+        //    var board = new LeaderBoard();
+        //    var profiles = new List<Profile>();
+
+        //    var randomGenerator = new Random();
+        //    for (int i = 1; i <= 30; i++)
+        //    {
+        //        var randomScore = randomGenerator.Next(1, 1000);
+        //        var value = Convert.ToString(i);
+        //        var prof = new Profile { UserID = value, UserName = "User" + value, Score = randomScore, Rank = i, NumberOfWords = randomScore + i };
+        //        profiles.Add(prof);
+        //    }
+        //    board.GameID = Guid.NewGuid().ToString();
+        //    board.Profiles = profiles;
+        //    response.LeaderBoard = board;
+        //    response.UserProfile = profiles[3];
+        //    return response;
+        //}
+
+        public static async Task<LeaderboardResponse> GetLeaderBoard(WordFly.ServiceClientMe.GameRepository.LeaderboardRequest request = null)
         {
-            LeaderboardResponse response = new LeaderboardResponse();
+            LeaderboardResponse leadResponse = new LeaderboardResponse();
 
-            var board = new LeaderBoard();
-            var profiles = new List<Profile>();
-
-            var randomGenerator = new Random();
-            for (int i = 1; i <= 30; i++)
+            // TODO: remove
+            if (request == null)
             {
-                var randomScore = randomGenerator.Next(1, 1000);
-                var value = Convert.ToString(i);
-                var prof = new Profile { UserID = value, UserName = "User" + value, Score = randomScore, Rank = i, NumberOfWords = randomScore + i };
-                profiles.Add(prof);
+                request = new LeaderboardRequest();
+                request.GameID = "dummy";
+
+                request.GameProfile = new Profile { UserID = "72F4C94F-F9A6-4BD1-A4AE-5951FED7439E" };
             }
-            board.GameID = Guid.NewGuid().ToString();
-            board.Profiles = profiles;
-            response.LeaderBoard = board;
-            response.UserProfile = profiles[3];
-            return response;
+            string requestValue = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+
+            try
+            {
+                var content = await HttpUtility.PostRequest(getLeaderBoardService, requestValue);
+                leadResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<LeaderboardResponse>(content);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return leadResponse;
         }
-        public static async Task<LeaderboardResponse> GetLeaderBoard()
+
+        public static async Task SubmitScore(WordFly.ServiceClientMe.GameRepository.LeaderboardRequest request = null)
         {
-            LeaderboardResponse response = new LeaderboardResponse();
+            LeaderboardResponse leadResponse = new LeaderboardResponse();
+            string requestValue = Newtonsoft.Json.JsonConvert.SerializeObject(request);
 
-            // TODO: remvoe
-            return GetDummyLeaderBoard();
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    Stopwatch stopWatch = new Stopwatch();
-            //    stopWatch.Start();
-            //    using (HttpResponseMessage response = await client.GetAsync(new Uri(GameService)))
-            //    {
-            //        if (response.IsSuccessStatusCode)
-            //        {
-            //            string content = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var content = await HttpUtility.PostRequest(postScoreService, requestValue);
+            }
+            catch (Exception)
+            {
 
-            //            stopWatch.Stop();
-
-            //            game = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(content);
-
-            //            game.GamePlay.baseTime = (game.ServerUTC + new TimeSpan(stopWatch.ElapsedTicks / 2) - game.GamePlay.StartTime).Seconds;
-            //            if (game.GamePlay.baseTime > 120 || game.GamePlay.baseTime < 0)
-            //            {
-            //                game.GamePlay.baseTime = 0;
-            //            }
-
-            //            for (int i = 21; i <= game.GamePlay.baseTime; i = i + 2)
-            //            {
-            //                game.GamePlay.MasterAlpha.Dequeue();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            game = null;
-            //        }
-            //    }
-            //}
+                throw;
+            }
         }
-
     }
 
-
 }
+
+
+
 

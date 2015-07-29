@@ -160,7 +160,8 @@ namespace WordyFlyWPClient
         private void GroupSection_ItemClick(object sender, RoutedEventArgs e)
         {
             //Frame.Navigate(typeof(GamePage));
-            Frame.Navigate(typeof(LeaderboardPage));
+           // Frame.Navigate(typeof(LeaderboardPage));
+            Frame.Navigate(typeof(ValidWordsPage));
             
         }
     }
